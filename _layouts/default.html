@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+{% include head.html %}
+</head>
+<body class="pagina-{{ page.corpo | default: 'interna' }}">
+{% include header.html %}
+<main id="contenuto">
+{{ content }}
+</main>
+{% include footer.html %}
+<script src="{{ '/assets/js/sito.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+---
+title: Eventi
+permalink: /eventi/
+description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer Memorial, Barcolana Fun, Speed GPS Barcolan e il calendario dei prossimi appuntamenti.
+---
+{%- assign oggi = site.time | date: "%Y-%m-%d" -%}
+{%- assign tutti = site.eventi | sort: "date" | reverse -%}
+{%- assign prossimi = "" | split: "" -%}
+{%- assign passati = "" | split: "" -%}
+{%- for e in tutti -%}
+  {%- assign d = e.date | date: "%Y-%m-%d" -%}
+  {%- if d >= oggi -%}{%- assign prossimi = prossimi | push: e -%}{%- else -%}{%- assign passati = passati | push: e -%}{%- endif -%}
+{%- endfor -%}
+
+<header class="pagina-testa">
+  <div class="contenitore">
+    <span class="boa" aria-hidden="true">4</span>
+    <div>
+      <p class="etichetta">Boa 4 · Eventi</p>
+      <h1 class="pagina-testa__titolo">Eventi</h1>
+      <p class="pagina-testa__sotto">Gare GPS di velocità, salti in wingfoil, regate di megasup e la settimana della Barcolana: l'albo del club, dal più recente.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sezione" aria-labelledby="t-prossimi">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <p class="etichetta">Prossimi appuntamenti</p>
+      <h2 class="solo-lettori" id="t-prossimi">Prossimi appuntamenti</h2>
+      {%- if prossimi.size > 0 %}
+      <ol class="albo">
+        {%- assign prossimi = prossimi | reverse -%}
+        {%- for e in prossimi %}
+        <li><a href="{{ e.url | relative_url }}">
+          <span class="albo__data">{{ e.data_testo }}</span>
+          <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{{ e.disciplina }} · {{ e.luogo }}</span></span>
+          <span class="albo__freccia" aria-hidden="true">→</span>
+        </a></li>
+        {%- endfor %}
+      </ol>
+      {%- else %}
+      <div class="avviso-calendario">
+        <p><strong>Il calendario dei prossimi appuntamenti è in preparazione.</strong></p>
+        <p>Le date di gare e feste vengono pubblicate qui appena il Direttivo le fissa. Per informazioni scrivi a <a href="mailto:{{ site.data.club.email }}">{{ site.data.club.email }}</a>.</p>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione--carta2" aria-labelledby="t-albo">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <p class="etichetta">Albo del club</p>
+      <h2 class="solo-lettori" id="t-albo">Eventi passati</h2>
+      {%- assign per_anno = passati | group_by_exp: "e", "e.date | date: '%Y'" -%}
+      {%- for gruppo in per_anno %}
+      <div class="anno-blocco">
+        <p class="anno">{{ gruppo.name }}</p>
+        <ol class="albo">
+          {%- for e in gruppo.items %}
+          <li><a href="{{ e.url | relative_url }}">
+            <span class="albo__data">{{ e.data_testo }}</span>
+            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{{ e.disciplina }} · {{ e.luogo }}</span></span>
+            <span class="albo__freccia" aria-hidden="true">→</span>
+          </a></li>
+          {%- endfor %}
+        </ol>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

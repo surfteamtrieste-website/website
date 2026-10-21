@@ -1,0 +1,128 @@
+---
+title: Lezioni
+permalink: /lezioni/
+description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole: scrivici per prenotare."
+---
+{%- assign club = site.data.club -%}
+{%- assign corsi = site.data.corsi -%}
+{%- assign primo = club.referenti | first -%}
+
+<header class="pagina-testa">
+  <div class="contenitore">
+    <span class="boa" aria-hidden="true">2</span>
+    <div>
+      <p class="etichetta">Boa 2 · Scuola di windsurf, wing foil e SUP</p>
+      <h1 class="pagina-testa__titolo">Lezioni</h1>
+      <p class="pagina-testa__sotto">Corsi estivi a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sezione" aria-labelledby="t-come">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <h2 class="solo-lettori" id="t-come">Come funzionano i corsi</h2>
+      <dl class="scheda">
+        <div><dt>Quando</dt><dd>{{ corsi.stagione }}</dd></div>
+        <div><dt>Dove</dt><dd>{{ corsi.dove }}</dd></div>
+        <div><dt>Come</dt><dd>{{ corsi.gruppi }}</dd></div>
+        <div><dt>Attrezzatura</dt><dd>{{ corsi.attrezzatura }}</dd></div>
+        <div><dt>Sconti</dt><dd><ul>{% for s in corsi.sconti %}<li>{{ s }}</li>{% endfor %}</ul></dd></div>
+        <div><dt>Informazioni</dt><dd>{% for r in club.referenti %}{{ r.nome }} {% include tel.html n=r.telefono %}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</dd></div>
+      </dl>
+
+      {%- for c in corsi.elenco %}
+      <article class="corso" id="{{ c.id }}">
+        {% include vela.html tipo=c.vela %}
+        <div>
+          <h2 class="corso__nome">{{ c.nome }}</h2>
+          <p class="corso__sotto">{{ c.sottotitolo }}</p>
+          <p class="testo">{{ c.testo }}</p>
+        </div>
+        <div class="corso__lato">
+          {%- if c.prezzo != "" %}
+          <p class="etichetta">Costo</p>
+          <p class="corso__prezzo">{{ c.prezzo }}</p>
+          <p>{{ c.prezzo_nota | capitalize }} · attrezzatura inclusa</p>
+          {%- else %}
+          <p class="etichetta">Costo</p>
+          <p>Chiedi a chi tiene il corso.</p>
+          {%- endif %}
+          <ul class="contatto-rapido">
+            {%- for nome in c.contatti %}{% assign r = club.referenti | where: "nome", nome | first %}{% if r %}
+            <li>{{ r.nome }} · {% include tel.html n=r.telefono %}{% if r.whatsapp %} · <a href="https://wa.me/39{{ r.telefono }}">WhatsApp</a>{% endif %}</li>
+            {%- endif %}{% endfor %}
+          </ul>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione--carta2" id="richiesta" aria-labelledby="t-richiesta">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <p class="etichetta">Prenota</p>
+      <h2 class="titolo" id="t-richiesta">Scrivici<br><em>per una lezione</em></h2>
+      <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli. Se preferisci, chiama {{ primo.nome }} al {% include tel.html n=primo.telefono %}.</p>
+
+      {%- if site.form_endpoint != "" -%}
+        {%- assign azione = site.form_endpoint -%}
+      {%- else -%}
+        {%- assign azione = "mailto:" | append: club.email -%}
+      {%- endif %}
+      <form class="modulo" data-modulo data-endpoint="{{ site.form_endpoint }}" data-email="{{ club.email }}" action="{{ azione }}" method="post"{% if site.form_endpoint == "" %} enctype="text/plain"{% endif %} novalidate>
+        <div class="campo">
+          <label for="f-nome">Nome e cognome *</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+        </div>
+        <div class="campo">
+          <label for="f-email">Email *</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="campo">
+          <label for="f-tel">Telefono</label>
+          <input id="f-tel" name="telefono" type="tel" autocomplete="tel">
+        </div>
+        <div class="campo">
+          <label for="f-corso">Corso *</label>
+          <select id="f-corso" name="corso" required>
+            {%- for c in corsi.elenco %}<option>{{ c.nome }}</option>{% endfor %}
+            <option>Non so ancora</option>
+          </select>
+        </div>
+        <div class="campo campo--largo">
+          <fieldset>
+            <legend>Esperienza</legend>
+            <div class="scelte">
+              <label><input type="radio" name="livello" value="Mai provato" checked><span>Mai provato</span></label>
+              <label><input type="radio" name="livello" value="Qualche uscita"><span>Qualche uscita</span></label>
+              <label><input type="radio" name="livello" value="Già autonomo"><span>Già autonomo</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="campo">
+          <label for="f-persone">Quante persone</label>
+          <input id="f-persone" name="persone" type="number" min="1" max="12" value="1" inputmode="numeric">
+        </div>
+        <div class="campo">
+          <label for="f-periodo">Periodo preferito</label>
+          <input id="f-periodo" name="periodo" type="text" placeholder="es. luglio, nei weekend">
+        </div>
+        <div class="campo campo--largo">
+          <label for="f-messaggio">Messaggio</label>
+          <textarea id="f-messaggio" name="messaggio" rows="4"></textarea>
+        </div>
+        <label class="consenso"><input type="checkbox" name="privacy" value="sì" required> <span>Ho letto l'<a href="{{ '/privacy/' | relative_url }}">informativa privacy</a> e acconsento a essere ricontattato per questa richiesta. *</span></label>
+        <div class="modulo__invio">
+          <button class="bottone bottone--boa" type="submit">Invia la richiesta</button>
+          <small>* campi obbligatori</small>
+        </div>
+        <p class="modulo__esito" role="status" aria-live="polite" data-esito></p>
+      </form>
+    </div>
+  </div>
+</section>

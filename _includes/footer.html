@@ -1,0 +1,67 @@
+{%- assign club = site.data.club -%}
+<footer class="arrivo" id="contatti">
+  <div class="arrivo__linea" aria-hidden="true"></div>
+  <div class="contenitore">
+    <p class="etichetta etichetta--chiara">Arrivo · Contatti</p>
+    <h2 class="arrivo__titolo">Ci trovi in fondo al Terrapieno.</h2>
+
+    <div class="arrivo__griglia">
+      <section aria-labelledby="f-contatti">
+        <h3 class="arrivo__voce" id="f-contatti">Scrivi o chiama</h3>
+        <ul class="arrivo__lista">
+          {%- for r in club.referenti %}
+          <li><span class="arrivo__chi">{{ r.nome }}</span> {% include tel.html n=r.telefono %}{% if r.whatsapp %} · <a href="https://wa.me/39{{ r.telefono }}">WhatsApp</a>{% endif %}<br><small>{{ r.ruolo }}</small></li>
+          {%- endfor %}
+          <li><span class="arrivo__chi">Email</span> <a href="mailto:{{ club.email }}">{{ club.email }}</a></li>
+          <li><span class="arrivo__chi">PEC</span> <a href="mailto:{{ club.pec }}">{{ club.pec }}</a></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="f-dove">
+        <h3 class="arrivo__voce" id="f-dove">Dove siamo</h3>
+        <address class="arrivo__indirizzo">
+          {{ club.indirizzo.luogo }}<br>
+          {{ club.indirizzo.via }}<br>
+          {{ club.indirizzo.cap }} {{ club.indirizzo.citta }}
+        </address>
+        <a class="collegamento collegamento--chiaro" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank">Apri la mappa</a>
+        <details class="arrivo__strada">
+          <summary>Come arrivare</summary>
+          <dl>
+            {%- for c in club.come_arrivare %}
+            <dt>{{ c.modo }}</dt><dd>{{ c.testo }}</dd>
+            {%- endfor %}
+          </dl>
+        </details>
+      </section>
+
+      <section aria-labelledby="f-doc">
+        <h3 class="arrivo__voce" id="f-doc">Statuto e regolamento</h3>
+        <ul class="arrivo__lista arrivo__lista--doc">
+          {%- for d in site.data.documenti %}
+          <li>{% if d.file != "" %}<a href="{{ d.file | prepend: '/' | relative_url }}">{{ d.titolo }}</a>{% else %}<span>{{ d.titolo }}</span>{% endif %} <small>{{ d.nota }}</small></li>
+          {%- endfor %}
+        </ul>
+      </section>
+
+      <section aria-labelledby="f-club">
+        <h3 class="arrivo__voce" id="f-club">Il club</h3>
+        <p class="arrivo__legale">
+          {{ club.ragione_sociale }}<br>
+          {{ club.affiliazione }} · dal {{ club.fondazione }}<br>
+          C.F. {{ club.codice_fiscale }} · P.IVA {{ club.partita_iva }}
+        </p>
+        <a class="collegamento collegamento--chiaro" href="{{ '/privacy/' | relative_url }}">Privacy</a>
+      </section>
+    </div>
+
+    {%- if site.avviso_dominio %}
+    <p class="arrivo__avviso">
+      <strong>Attenzione:</strong> il vecchio indirizzo <span class="nowrap">windsurfclubtrieste.it</span> non è più gestito dal club
+      e oggi ospita un sito che non è nostro. Non inserite dati personali su quel sito: l'unico sito ufficiale è questo.
+    </p>
+    {%- endif %}
+
+    <p class="arrivo__fondo">© {{ site.time | date: "%Y" }} {{ club.nome }} · Barcola, Trieste</p>
+  </div>
+</footer>

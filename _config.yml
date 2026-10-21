@@ -1,0 +1,58 @@
+# ─────────────────────────────────────────────────────────────
+#  Surf Team Trieste A.S.D. — configurazione del sito
+#  Dopo ogni modifica a questo file GitHub ricostruisce il sito
+#  da solo in 1-2 minuti.
+# ─────────────────────────────────────────────────────────────
+
+title: Surf Team Trieste
+description: >-
+  Windsurf club del Terrapieno di Barcola, Trieste, dal 1997.
+  Windsurf, wing foil e SUP: corsi estivi, eventi, meteo dello spot.
+lang: it
+
+# Indirizzo del sito.
+# ANTEPRIMA (oggi):  url "https://surfteamtrieste-website.github.io"  +  baseurl "/website"
+# DOMINIO VERO (dopo il passaggio): url "https://www.surfteamtrieste.com"  +  baseurl ""
+url: "https://surfteamtrieste-website.github.io"
+baseurl: "/website"
+
+# Finché è true Google non indicizza il sito (serve per l'anteprima).
+# Mettere false solo quando il sito va su surfteamtrieste.com.
+anteprima: true
+
+# Modulo "Lezioni": se resta vuoto, il modulo apre l'app di posta di chi scrive
+# con il messaggio già compilato per surfteamtrieste@gmail.com.
+# Per ricevere i messaggi direttamente (senza app di posta) incollare qui
+# l'indirizzo di un servizio form, es. "https://formspree.io/f/xxxxxxx" (vedi README).
+form_endpoint: ""
+
+# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club).
+# Mettere false per toglierlo dal fondo pagina.
+avviso_dominio: true
+
+# Vento Trieste: pagina meteo in tempo reale incorporata in /meteo/
+ventotrieste: "https://ventotrieste.info/"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+collections:
+  eventi:
+    output: true
+    permalink: /eventi/:name/
+
+defaults:
+  - scope: { path: "", type: eventi }
+    values: { layout: evento }
+  - scope: { path: "" }
+    values: { layout: default }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .jekyll-cache
+  - NOTE-INTERNE.md

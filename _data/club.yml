@@ -1,0 +1,51 @@
+# Dati del club: compaiono in fondo a ogni pagina, nei contatti e per Google.
+# Per cambiare un numero o una mail basta modificare qui.
+
+nome: Surf Team Trieste
+ragione_sociale: Associazione Sportiva Dilettantistica Surf Team Trieste
+affiliazione: Affiliata CONI · AICS
+fondazione: 1997
+
+indirizzo:
+  luogo: Terrapieno di Barcola
+  via: Viale Miramare, 32
+  cap: "34136"
+  citta: Trieste
+  mappa: "https://www.google.com/maps/search/?api=1&query=Surf+Team+Trieste+Viale+Miramare+32+Trieste"
+
+email: surfteamtrieste@gmail.com
+pec: asdsurfteamtrieste@pec.it
+codice_fiscale: "90075540329"
+partita_iva: "01340290327"
+
+# Persone da chiamare per corsi e informazioni (telefono senza spazi: serve ai link).
+referenti:
+  - nome: Andrej
+    ruolo: Corsi windsurf, wing foil e SUP
+    telefono: "3248809908"
+    whatsapp: false   # true = compare anche il link WhatsApp
+  - nome: Giorgio
+    ruolo: Corsi SUP
+    telefono: "3477265198"
+    whatsapp: false   # true = compare anche il link WhatsApp
+
+# Come arrivare (dal vecchio sito)
+come_arrivare:
+  - modo: In autobus
+    testo: >-
+      Linea 6 dal centro, direzione Barcola–Miramare. Si scende alla fermata del
+      circolo canottieri Saturnia, si attraversa e si prende la stradina sulla
+      sinistra che scende al mare, fino in fondo.
+  - modo: A piedi o in bici
+    testo: >-
+      Circa 4 km lungo la ciclabile per Barcola. Al parcheggio Bovedo (c'è il
+      bike sharing) si segue la strada dei circoli nautici fino in fondo.
+  - modo: In auto o camper
+    testo: >-
+      All'altezza dell'unico semaforo di Barcola. Parcheggio comodo e area camper
+      al vicino Park Bovedo.
+
+# Profili social: lasciare vuoto se non c'è
+social:
+  instagram: ""
+  facebook: ""

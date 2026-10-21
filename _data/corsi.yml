@@ -1,0 +1,51 @@
+# Corsi della scuola. Testi dal vecchio sito.
+# prezzo: quello che si vede sul sito ("" per nasconderlo).
+# DA CONFERMARE (riunione 21/10/2026): costi e struttura dei corsi, 140 €.
+
+stagione: Stagione estiva
+dove: Barcola, nello specchio d'acqua davanti al Terrapieno
+gruppi: Gruppi da 3–4 allievi, oppure lezioni singole
+attrezzatura: L'attrezzatura per i corsi è fornita dal club
+sconti:
+  - "10% alle società convenzionate"
+  - "15% a figli e coniugi dei soci"
+
+elenco:
+  - id: windsurf
+    nome: Windsurf
+    vela: windsurf
+    prezzo: "140 €"
+    prezzo_nota: corso
+    sottotitolo: Dai primi passi sulla tavola alle prime planate
+    breve: Lezioni di gruppo o singole, fino a uscire in acqua da soli.
+    testo: >-
+      Sicurezza e divertimento sono alla base delle lezioni. Il percorso
+      accompagna l'allievo dai primi passi sulla tavola alle prime planate,
+      fino a renderlo indipendente. A seconda delle esigenze si va dalle
+      lezioni di gruppo alle lezioni singole.
+    contatti: [Andrej]
+
+  - id: wing-foil
+    nome: Wing foil
+    vela: wing
+    prezzo: ""
+    prezzo_nota: ""
+    sottotitolo: Lo sport del momento
+    breve: Ala gonfiabile e tavola con il foil. Facile anche per chi non ha mai fatto windsurf o kite.
+    testo: >-
+      Si pratica con un'ala gonfiabile e una tavola con il foil, una speciale
+      pinna che ti fa alzare sull'acqua. È di facile apprendimento, adatto
+      anche a chi non è mai salito su un windsurf o un kitesurf.
+    contatti: [Andrej]
+
+  - id: sup
+    nome: SUP
+    vela: sup
+    prezzo: ""
+    prezzo_nota: ""
+    sottotitolo: Stand up paddle, remare in piedi
+    breve: Intuitivo e adatto a tutti i livelli, dall'uscita tranquilla all'agonismo.
+    testo: >-
+      Uno sport molto intuitivo e di facile apprendimento, che si pratica a
+      tutti i livelli: dall'uscita amatoriale fino all'agonismo.
+    contatti: [Giorgio, Andrej]

@@ -1,0 +1,24 @@
+{%- assign voci = "club|Il club|/#club,lezioni|Lezioni|/lezioni/,meteo|Meteo|/meteo/,eventi|Eventi|/eventi/" | split: "," -%}
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<header class="testata">
+  <div class="contenitore testata__riga">
+    <a class="testata__logo" href="{{ '/' | relative_url }}" aria-label="Surf Team Trieste, torna alla home">
+      <img src="{{ '/assets/img/logo-surf-team-480.png' | relative_url }}" width="480" height="257" alt="Surf Team Trieste">
+    </a>
+    <button class="testata__menu" type="button" aria-expanded="false" aria-controls="navigazione">
+      <span class="testata__menu-linee" aria-hidden="true"></span>
+      <span class="testata__menu-testo">Menu</span>
+    </button>
+    <nav class="navigazione" id="navigazione" aria-label="Sezioni del sito">
+      <ol>
+        {%- for voce in voci -%}
+          {%- assign v = voce | split: "|" -%}
+          {%- assign corrente = false -%}
+          {%- if page.url contains v[2] and v[2] != "/#club" -%}{%- assign corrente = true -%}{%- endif -%}
+          <li><a href="{{ v[2] | relative_url }}"{% if corrente %} aria-current="page"{% endif %}><span class="navigazione__boa" aria-hidden="true">{{ forloop.index }}</span>{{ v[1] }}</a></li>
+        {%- endfor -%}
+        <li><a href="#contatti" class="navigazione__arrivo">Contatti</a></li>
+      </ol>
+    </nav>
+  </div>
+</header>

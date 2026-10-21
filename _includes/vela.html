@@ -1,0 +1,22 @@
+{%- comment -%} Disegni al tratto delle tre discipline. Uso: include vela.html tipo="windsurf|wing|sup" {%- endcomment -%}
+<svg class="vela vela--{{ include.tipo }}" viewBox="0 0 120 150" aria-hidden="true" focusable="false">
+{%- case include.tipo -%}
+{%- when "windsurf" %}
+  <path class="vela__tela" d="M60 10C86 34 100 62 104 96L54 128Z"/>
+  <path class="vela__stecca" d="M59.2 30H80M58.4 50H93M57.2 88H103"/>
+  <path class="vela__albero" d="M54 132L60 8"/>
+  <path class="vela__boma" d="M57 70C74 62 96 76 104 96"/>
+  <path class="vela__tavola" d="M8 134C40 141 92 140 114 130"/>
+{%- when "wing" %}
+  <path class="vela__tela" d="M10 72C26 18 94 18 110 72C86 56 34 56 10 72Z"/>
+  <path class="vela__albero" d="M10 72C26 18 94 18 110 72"/>
+  <path class="vela__stecca" d="M60 31V58"/>
+  <path class="vela__tavola" d="M22 108C48 113 84 113 106 106"/>
+  <path class="vela__boma" d="M66 112V136M46 137H90M42 135C48 140 58 140 62 137"/>
+{%- when "sup" %}
+  <path class="vela__tavola" d="M6 120C40 129 92 128 116 116"/>
+  <path class="vela__boma" d="M98 124L96 134"/>
+  <path class="vela__albero" d="M40 20L84 108M34 23L46 17"/>
+  <path class="vela__tela" d="M80 101L95 127L87 132L75 106Z"/>
+{%- endcase %}
+</svg>

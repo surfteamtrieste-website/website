@@ -1,0 +1,80 @@
+---
+title: Meteo e spot di Barcola
+permalink: /meteo/
+description: Vento in tempo reale a Barcola dalla centralina sul Terrapieno, Bora e raffiche, webcam e previsioni con Vento Trieste. Come funziona lo spot di Barcola e cosa controllare prima di uscire.
+---
+{%- assign vt = site.ventotrieste -%}
+{%- assign utm = "utm_source=surfteamtrieste&utm_medium=sito-club&utm_campaign=meteo-barcola" -%}
+
+<header class="pagina-testa">
+  <div class="contenitore">
+    <span class="boa" aria-hidden="true">3</span>
+    <div>
+      <p class="etichetta">Boa 3 · Meteo e spot di Barcola</p>
+      <h1 class="pagina-testa__titolo">Vento ora</h1>
+      <p class="pagina-testa__sotto">Vento medio, raffiche e direzione in tempo reale, con la centralina che sta proprio sul Terrapieno di Barcola, a pochi metri dal club. Dati e previsioni di Vento Trieste.</p>
+    </div>
+  </div>
+</header>
+
+<section class="sezione" aria-labelledby="t-live">
+  <div class="contenitore">
+    <h2 class="solo-lettori" id="t-live">Vento in tempo reale da Vento Trieste</h2>
+    <div class="finestra">
+      <div class="finestra__barra">
+        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
+        <a class="collegamento collegamento--chiaro" href="{{ vt }}?{{ utm }}&utm_content=barra" target="_blank" rel="noopener">Apri a schermo intero</a>
+      </div>
+      <iframe src="{{ vt }}?{{ utm }}&utm_content=iframe" title="Vento Trieste: vento in tempo reale a Barcola e nel Golfo di Trieste" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen"></iframe>
+      <div class="finestra__piede">
+        <span>Surfometro, raffiche, Bora, webcam e previsioni: tutto da <a href="{{ vt }}?{{ utm }}&utm_content=piede" target="_blank" rel="noopener">ventotrieste.info</a>, gratuito e senza pubblicità.</span>
+        <span>Fonti dati e crediti sul sito di Vento Trieste.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione--carta2" aria-labelledby="t-spot">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <p class="etichetta">Lo spot</p>
+      <h2 class="titolo" id="t-spot">Barcola<br><em>di bolina</em></h2>
+      <div class="spot__griglia" style="align-items:start">
+        <div class="testo">
+          <p>La costa barcolana è caratterizzata da fondali sabbiosi e rive artificiali, tipicamente moli e scogli. Il vento prevalente soffia da ENE, quindi da terra (off-shore): per questo le onde sono di solito basse.</p>
+          <p>Alla Bora si somma la componente catabatica: per la conformazione dei rilievi carsici il vento aumenta d'intensità scendendo al mare, specialmente di primo mattino, quando l'acqua è più calda dell'entroterra sloveno. Spesso rafficato, da terra può sembrare non tanto forte, ma al largo aumenta. Nel dubbio sarà sempre meglio scegliere una vela un po' più piccola. Indispensabile saper stringere bene la bolina.</p>
+          <p>Intorno al Castello di Miramare la navigazione è interdetta e il vento cala un po', ma la costa permette comunque di fare bordi di tre chilometri paralleli alla riva. Quando l'intensità comincia a calare conviene riavvicinarsi alla costa.</p>
+        </div>
+        <div>
+          <p class="etichetta">Su Vento Trieste trovi anche</p>
+          <ul class="strumenti" style="grid-template-columns:1fr">
+            <li><a href="{{ vt }}mappa/?{{ utm }}&utm_content=mappa" target="_blank" rel="noopener">Mappa live del Golfo <span>tutte le centraline</span></a></li>
+            <li><a href="{{ vt }}bora-trieste/?{{ utm }}&utm_content=bora" target="_blank" rel="noopener">La Bora a Trieste <span>come nasce e come si legge</span></a></li>
+            <li><a href="{{ vt }}registro/?{{ utm }}&utm_content=registro" target="_blank" rel="noopener">Registro del vento <span>com'era ieri e i giorni scorsi</span></a></li>
+            <li><a href="{{ vt }}guida/?{{ utm }}&utm_content=guida" target="_blank" rel="noopener">Guida <span>gli articoli di Vento Trieste</span></a></li>
+            <li><a href="https://www.meteo.fvg.it/" target="_blank" rel="noopener">Meteo FVG <span>previsioni ufficiali della Regione</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione" aria-labelledby="t-regole">
+  <div class="contenitore sezione__griglia">
+    <div class="vuoto"></div>
+    <div>
+      <p class="etichetta">Dal regolamento del club</p>
+      <h2 class="titolo" id="t-regole">Prima<br><em>di uscire</em></h2>
+      <ol class="prima-di-uscire">
+        <li><span><strong>Guarda il vento al largo, non a riva.</strong> Con la Bora da terra sembra meno forte di quello che trovi fuori.</span></li>
+        <li><span><strong>Nel dubbio, vela più piccola.</strong> Le raffiche scendono dal Carso, soprattutto al mattino presto.</span></li>
+        <li><span><strong>Mai con mare e meteo avversi.</strong> Ed è meglio non uscire da soli.</span></li>
+        <li><span><strong>Scrivi il tuo nome sulla lavagna</strong> con l'ora di uscita e il rig, e cancellalo al rientro. Chi resta a terra tiene d'occhio chi è in acqua.</span></li>
+        <li><span><strong>Rispetta le norme della Capitaneria di Porto di Trieste</strong>: mezzi di galleggiamento adeguati e sistemi di sicurezza.</span></li>
+        <li><span><strong>Attorno al Castello di Miramare</strong> la navigazione è vietata. Quando il vento cala, riavvicinati alla costa.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>

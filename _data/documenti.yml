@@ -1,0 +1,24 @@
+# Documenti scaricabili (in fondo a ogni pagina e nella sezione "Diventa socio").
+# Per aggiornarne uno: caricare il nuovo PDF nella cartella "documenti"
+# con lo STESSO nome del file, oppure cambiare "file" qui sotto.
+# file: "" = documento non ancora disponibile (si vede "in aggiornamento").
+
+- titolo: Statuto
+  file: ""
+  nota: in aggiornamento
+
+- titolo: Regolamento del club
+  file: documenti/regolamento-surf-team-trieste.pdf
+  nota: approvato il 22 marzo 2020
+
+- titolo: Domanda di ammissione
+  file: documenti/domanda-ammissione-socio.pdf
+  nota: PDF da compilare
+
+- titolo: Affiliazione CONI
+  file: documenti/certificato-affiliazione-coni.pdf
+  nota: certificato
+
+- titolo: Adesione AICS
+  file: documenti/certificato-adesione-aics.pdf
+  nota: certificato

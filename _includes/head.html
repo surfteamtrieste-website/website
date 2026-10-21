@@ -1,0 +1,56 @@
+{%- assign club = site.data.club -%}
+{%- if page.title and page.url != "/" -%}
+  {%- assign titolo = page.title | append: " · " | append: site.title -%}
+{%- else -%}
+  {%- assign titolo = site.title | append: " · Windsurf club a Barcola, Trieste" -%}
+{%- endif -%}
+{%- assign descrizione = page.description | default: page.riassunto | default: site.description | strip_newlines | strip -%}
+{%- if page.immagine and page.immagine != "" -%}
+  {%- assign og = page.immagine | absolute_url -%}
+{%- else -%}
+  {%- assign og = "/assets/img/og-surf-team-trieste.jpg" | absolute_url -%}
+{%- endif -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titolo }}</title>
+<meta name="description" content="{{ descrizione | escape }}">
+{%- if site.anteprima %}
+<meta name="robots" content="noindex, nofollow">
+{%- endif %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta name="theme-color" content="#0b2643">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ titolo | escape }}">
+<meta property="og:description" content="{{ descrizione | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ og }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+<link rel="preload" href="{{ '/assets/fonts/archivo-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/stile.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsClub",
+  "name": "{{ club.ragione_sociale }}",
+  "alternateName": "{{ club.nome }}",
+  "url": "{{ '/' | absolute_url }}",
+  "logo": "{{ '/assets/img/logo-surf-team.png' | absolute_url }}",
+  "image": "{{ '/assets/img/golfo-faro-2000.jpg' | absolute_url }}",
+  "email": "{{ club.email }}",
+  "telephone": "+39{{ club.referenti[0].telefono }}",
+  "foundingDate": "{{ club.fondazione }}",
+  "taxID": "{{ club.codice_fiscale }}",
+  "sport": ["Windsurfing", "Wing foiling", "Stand up paddleboarding"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ club.indirizzo.via }}",
+    "postalCode": "{{ club.indirizzo.cap }}",
+    "addressLocality": "{{ club.indirizzo.citta }}",
+    "addressCountry": "IT"
+  }
+}
+</script>
