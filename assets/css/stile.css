@@ -336,6 +336,9 @@ h1, h2, h3 { margin: 0; }
 .vela__albero { fill: none; stroke: var(--inchiostro); stroke-width: 3; stroke-linecap: round; }
 .vela__boma { fill: none; stroke: var(--inchiostro); stroke-width: 2.2; stroke-linecap: round; }
 .vela__tavola { fill: none; stroke: var(--boa); stroke-width: 4; stroke-linecap: round; }
+.scatto { margin: 0 0 clamp(28px, 4vw, 44px); }
+.scatto img { display: block; width: 100%; height: auto; }
+.scatto figcaption { font-size: .82rem; color: var(--inchiostro-2); margin-top: 10px; }
 .lezioni__piede { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 32px; margin-top: 32px; }
 .lezioni__piede p { margin: 0; color: var(--inchiostro-2); }
 @media (max-width: 860px) {
