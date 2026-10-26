@@ -335,10 +335,14 @@
       var bottone = modulo.querySelector("button[type=submit]");
       bottone.disabled = true;
       mostra("Invio in corso…");
+      // FormSubmit a volte risponde dopo più di un minuto: oltre i 30 s si propone la mail già scritta
+      var lento = false, ferma = window.AbortController ? new AbortController() : null;
+      var attesa = setTimeout(function () { lento = true; if (ferma) ferma.abort(); }, 30000);
       fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(corpo)
+        body: JSON.stringify(corpo),
+        signal: ferma ? ferma.signal : undefined
       })
         .then(function (r) {
           return r.json().catch(function () { return {}; }).then(function (j) {
@@ -350,9 +354,11 @@
           modulo.reset();
           mostra("Richiesta inviata, grazie! Ti rispondiamo appena possibile alla mail che ci hai lasciato.");
         }, function () {
-          dallaPosta(dati, "Non siamo riusciti a inviare la richiesta dal sito. Mandala dalla tua posta, è già scritta:", false);
+          dallaPosta(dati, lento
+            ? "Il servizio di invio è lento e la richiesta potrebbe arrivarci lo stesso. Per essere sicuro, mandala dalla tua posta, è già scritta:"
+            : "Non siamo riusciti a inviare la richiesta dal sito. Mandala dalla tua posta, è già scritta:", false);
         })
-        .then(function () { bottone.disabled = false; });
+        .then(function () { clearTimeout(attesa); bottone.disabled = false; });
     });
   }
 })();
