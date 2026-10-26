@@ -61,7 +61,8 @@ Qui il racconto dell'evento, normale testo. **Grassetto** con due asterischi.
 ```
 
 Gli eventi con data futura compaiono da soli in **Prossimi appuntamenti**; passata la data
-scendono nell'albo, divisi per anno. Per la classifica si può aggiungere il blocco
+scendono nell'albo, divisi per anno. Per tenere un evento in cima agli elenchi anche se non è il
+più recente, aggiungi in alto la riga `in_cima: true`. Per la classifica si può aggiungere il blocco
 `risultati:` come in `2025-10-19-barcola-big-air.md`.
 
 ### Cambiare o aggiungere foto

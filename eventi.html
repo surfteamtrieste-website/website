@@ -5,6 +5,9 @@ description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer
 ---
 {%- assign oggi = site.time | date: "%Y-%m-%d" -%}
 {%- assign tutti = site.eventi | sort: "date" | reverse -%}
+{%- assign in_cima = tutti | where: "in_cima", true -%}
+{%- assign altri = tutti | where_exp: "e", "e.in_cima != true" -%}
+{%- assign tutti = in_cima | concat: altri -%}
 {%- assign prossimi = "" | split: "" -%}
 {%- assign passati = "" | split: "" -%}
 {%- for e in tutti -%}

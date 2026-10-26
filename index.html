@@ -5,6 +5,9 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
 ---
 {%- assign club = site.data.club -%}
 {%- assign eventi = site.eventi | sort: "date" | reverse -%}
+{%- assign in_cima = eventi | where: "in_cima", true -%}
+{%- assign altri = eventi | where_exp: "e", "e.in_cima != true" -%}
+{%- assign eventi = in_cima | concat: altri -%}
 
 <section class="apertura" aria-labelledby="titolo-home">
   <div class="contenitore apertura__griglia">
