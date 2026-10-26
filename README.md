@@ -7,7 +7,7 @@ su GitHub va online da sola in 1–2 minuti, senza installare niente.
 - **Anteprima:** https://surfteamtrieste-website.github.io/website/
 - **Dominio definitivo (dopo il passaggio):** https://www.surfteamtrieste.com
 
-Pagine: **Home** (storia, chi siamo, il club, diventa socio) · **Lezioni** (corsi e modulo di
+Pagine: **Home** (storia, chi siamo, il club) · **Lezioni** (corsi e modulo di
 contatto) · **Meteo** (spot di Barcola e vento in tempo reale da Vento Trieste) · **Eventi**.
 In fondo a ogni pagina: contatti, statuto e regolamento.
 
@@ -34,7 +34,7 @@ Se qualcosa va storto, nella cronologia del file (**History**) si torna a qualsi
 | Statuto, regolamento e altri PDF | `_data/documenti.yml` + cartella `documenti/` |
 | Consiglio Direttivo (oggi nascosto) | `_data/direttivo.yml` → `mostra: true` |
 | Eventi | cartella `_eventi/` |
-| Testi della home (storia, giornale di bordo, diventa socio) | `index.html` |
+| Testi della home (storia, giornale di bordo) | `index.html` |
 | Testi delle pagine Lezioni, Meteo, Eventi | `lezioni.html`, `meteo.html`, `eventi.html` |
 | Avviso sul vecchio dominio, anteprima, modulo | `_config.yml` |
 

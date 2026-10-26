@@ -240,7 +240,6 @@ h1, h2, h3 { margin: 0; }
 /* ── sezioni del percorso ─────────────────────────────────── */
 .tappa { position: relative; padding-block: clamp(56px, 8vw, 112px); }
 .tappa--spuma { background: var(--spuma); }
-.tappa--vele { background: var(--spuma) url("../img/texture-vele.svg") right -120px top -60px / min(760px, 120%) auto no-repeat; }
 
 /* boa 1: il club */
 .club__griglia { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
@@ -323,22 +322,13 @@ h1, h2, h3 { margin: 0; }
   .albo__data { grid-column: 1 / -1; }
 }
 
-/* arrivo in home: diventa socio */
-.socio__passi { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; counter-reset: passo; }
-.socio__passi li { counter-increment: passo; padding: 22px; border-radius: 14px; background: rgba(255, 255, 255, .9); border: 1px solid var(--linea); }
-.socio__passi li::before { content: counter(passo); display: block; font-stretch: 62%; font-weight: 900; font-size: 2.8rem; line-height: .9; color: var(--azzurro-testo); margin-bottom: 8px; }
-.socio__passi h3 { font-stretch: 75%; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; line-height: 1; margin-bottom: 8px; color: var(--blu-notte); }
-.socio__passi p { margin: 0; color: var(--inchiostro-2); }
-.socio__passi a, .socio__note a { color: var(--blu); text-decoration-color: var(--boa); text-underline-offset: 3px; }
-.socio__note { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 40px; color: var(--inchiostro-2); font-size: .95rem; }
-.socio__note p { margin: 0; padding-left: 14px; border-left: 3px solid var(--boa); }
+/* il Consiglio Direttivo (oggi nascosto, _data/direttivo.yml) */
 .direttivo { margin-top: 44px; }
 .direttivo dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; border-top: 2px solid var(--blu-notte); }
 .direttivo div { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--linea); }
 .direttivo dt { font-stretch: 125%; font-weight: 600; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--inchiostro-2); }
 .direttivo dd { margin: 4px 0 0; font-weight: 650; }
 @media (max-width: 860px) {
-  .socio__passi, .socio__note { grid-template-columns: 1fr; }
   .direttivo dl { grid-template-columns: 1fr 1fr; }
 }
 

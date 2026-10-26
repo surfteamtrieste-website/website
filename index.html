@@ -68,6 +68,17 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
       </ul>
       <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. All'altezza dell'unico semaforo, con parcheggio facile, la fermata dell'autobus e lo spazio camper del vicino Park Bovedo.</p>
     </div>
+
+    {%- if site.data.direttivo.mostra %}
+    <div class="direttivo">
+      <p class="etichetta">Il Consiglio Direttivo</p>
+      <dl>
+        {%- for m in site.data.direttivo.membri %}{% if m.nome != "" %}
+        <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
+        {%- endif %}{% endfor %}
+      </dl>
+    </div>
+    {%- endif %}
   </div>
 </section>
 
@@ -166,42 +177,5 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
         <p style="margin-top:24px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ARRIVO · DIVENTA SOCIO -->
-<section class="tappa tappa--vele" id="socio" aria-labelledby="t-socio">
-  <div class="contenitore">
-    <p class="etichetta"><span class="boa boa--arrivo" aria-hidden="true">◆</span> Arrivo · Diventa socio</p>
-    <h2 class="titolo" id="t-socio">Un posto in rastrelliera,<br><em>una chiave numerata</em></h2>
-    <ol class="socio__passi">
-      <li>
-        <h3>La domanda</h3>
-        <p>Si compila la <a href="{{ '/documenti/domanda-ammissione-socio.pdf' | relative_url }}">domanda di ammissione</a> e la si invia al Direttivo.</p>
-      </li>
-      <li>
-        <h3>Il Direttivo</h3>
-        <p>Valuta le richieste in base ai posti disponibili, con precedenza ai familiari dei soci. Gli altri aspiranti entrano se un socio se ne fa garante.</p>
-      </li>
-      <li>
-        <h3>Quota e chiave</h3>
-        <p>L'ammissione si perfeziona con il pagamento della quota. Con la quota arriva la chiave del cancello: numerata e personale.</p>
-      </li>
-    </ol>
-    <div class="socio__note">
-      <p>Le quote annuali le stabilisce il Direttivo entro fine anno: chiedile a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
-      <p>Per windsurf, SUP, canoa e wing foil serve il certificato medico per attività sportiva non agonistica.</p>
-    </div>
-
-    {%- if site.data.direttivo.mostra %}
-    <div class="direttivo">
-      <p class="etichetta">Il Consiglio Direttivo</p>
-      <dl>
-        {%- for m in site.data.direttivo.membri %}{% if m.nome != "" %}
-        <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
-        {%- endif %}{% endfor %}
-      </dl>
-    </div>
-    {%- endif %}
   </div>
 </section>
