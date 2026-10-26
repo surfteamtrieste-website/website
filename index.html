@@ -23,8 +23,8 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     {% include vento.html %}
   </div>
   <figure class="apertura__foto">
-    <video class="apertura__video" data-video-bora data-src-720="{{ '/assets/video/bora-miramare-720.mp4' | relative_url }}" data-src-1080="{{ '/assets/video/bora-miramare-1080.mp4' | relative_url }}" poster="{{ '/assets/video/bora-miramare-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Wing foil e windsurf con la Bora davanti al Castello di Miramare (animazione)"></video>
-    <figcaption class="contenitore">Wing foil e windsurf con la Bora davanti al Castello di Miramare. Animazione generata con l'IA da una foto del club.</figcaption>
+    <video class="apertura__video" data-video-bora data-src-720="{{ '/assets/video/bora-alba-720.mp4' | relative_url }}" data-src-1080="{{ '/assets/video/bora-alba-1080.mp4' | relative_url }}" poster="{{ '/assets/video/bora-alba-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Wing foil e windsurf all'alba davanti al Castello di Miramare, in super slow motion (animazione)"></video>
+    <figcaption class="contenitore">Wing foil e windsurf all'alba davanti al Castello di Miramare. Luce e animazione generate con l'IA da una foto del club.</figcaption>
   </figure>
 </section>
 
@@ -42,12 +42,16 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
       </div>
       <div>
         <p class="etichetta">Giornale di bordo</p>
+        <div class="giornale-rotta" data-giornale>
+        <span class="giornale__scia" aria-hidden="true"></span>
+        <span class="giornale__vela" aria-hidden="true">{% include vela.html tipo="windsurf" %}</span>
         <ol class="giornale">
           <li><span class="giornale__anno">1997</span><p>Cesare Redolfi e un gruppo di amici fondano il primo club di windsurfisti della zona.</p></li>
           <li><span class="giornale__anno">2020</span><p>Riccardo Marchesi diventa presidente. Il club entra nella rete AICS Windsurfing.</p></li>
           <li><span class="giornale__anno">2023</span><p>Barcolana Fun: 68 partecipanti nella gara GPS organizzata con SVBG e Kitelife.</p></li>
           <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wingfoil in Italia.</p></li>
         </ol>
+        </div>
       </div>
     </div>
 
@@ -141,12 +145,12 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     </figure>
     <figure class="foto spot__foto spot__mappa">
       <picture>
-        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/mappa-lidar-terrapieno-stretto-1500.webp' | relative_url }} 1500w" sizes="100vw">
-        <source media="(max-width: 700px)" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.jpg' | relative_url }}">
-        <source type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/mappa-lidar-terrapieno-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
-        <img src="{{ '/assets/img/mappa-lidar-terrapieno-largo-1600.jpg' | relative_url }}" width="2400" height="1571" loading="lazy" alt="Mappa del Terrapieno di Barcola dal rilievo LiDAR: il Terrapieno evidenziato in azzurro, il Faro della Vittoria, Viale Miramare e il logo del Surf Team Trieste sulla punta nord-ovest, sulla riva">
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/vista3d-spot-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/vista3d-spot-stretto-1200.webp' | relative_url }} 1200w" sizes="100vw">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/vista3d-spot-stretto-900.jpg' | relative_url }}">
+        <source type="image/webp" srcset="{{ '/assets/img/vista3d-spot-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/vista3d-spot-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D dall'alto del Carso verso ovest: la costa da Trieste a Miramare, la fascia di mare dello spot di Barcola, le frecce della Bora da terra verso il largo e il logo del Surf Team Trieste sulla punta del Terrapieno">
       </picture>
-      <figcaption>Dove siamo: il Terrapieno di Barcola nel rilievo LiDAR della Regione FVG (2017-2020, ombreggiatura del terreno a 0,5 m). Il club è sulla punta nord-ovest, sulla riva.</figcaption>
+      <figcaption>Lo spot visto dal Carso verso ovest. La Bora scende da terra, da ENE, e soffia verso il largo; la fascia chiara indica lo specchio d'acqua dove si esce, davanti alla riva fra il Terrapieno e Miramare. Modello 3D da rilievo LiDAR e ortofoto della Regione FVG e Copernicus DEM.</figcaption>
     </figure>
   </div>
 </section>
@@ -157,13 +161,10 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <p class="etichetta"><span class="boa" aria-hidden="true">4</span> Eventi</p>
     <h2 class="titolo" id="t-eventi">Gare, memorial<br><em>e Barcolana</em></h2>
     <div class="eventi__griglia">
-      {%- assign primo = eventi | where_exp: "e", "e.immagine != ''" | first -%}
-      {%- if primo %}
       <figure class="locandina">
-        <a href="{{ primo.url | relative_url }}"><img src="{{ primo.immagine | prepend: '/' | relative_url }}" width="1012" height="602" loading="lazy" alt="{{ primo.title }}: un rider in volo sul wingfoil davanti a Barcola"></a>
-        <figcaption>{{ primo.title }} · {{ primo.data_testo }}</figcaption>
+        {% include immagine.html nome="regata-windsurf" alt="Una regata di windsurf: vele colorate con i numeri velici in planata" w=1600 h=1067 sizes="(max-width: 900px) 100vw, 500px" %}
+        <figcaption>Foto di repertorio: Maël Balland, Unsplash.</figcaption>
       </figure>
-      {%- endif %}
       <div>
         <ol class="albo">
           {%- for e in eventi limit: 4 %}

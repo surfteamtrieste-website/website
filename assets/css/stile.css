@@ -226,9 +226,11 @@ h1, h2, h3 { margin: 0; }
 .vento__kt b { font-weight: inherit; }
 .vento__kt span { font-stretch: 100%; font-weight: 600; font-size: .3em; margin-left: .25em; color: var(--inchiostro-2); }
 .vento__dir { margin: 4px 0 0; font-stretch: 125%; font-weight: 650; font-size: .78rem; letter-spacing: .1em; color: var(--blu); }
-.vento__parola { margin: 16px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
-.vento__parola strong { display: inline-block; padding: 4px 12px; border-radius: 999px; background: var(--colore-parola, #8a94a0); color: var(--bianco); font-stretch: 75%; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .02em; }
-.vento__parola span { font-size: .9rem; color: var(--inchiostro-2); }
+.vento__parola { margin: 16px 0 0; font-style: italic; line-height: 1.3; }
+.vento__parola[hidden] { display: none; }
+.vento__parola em { font-size: .95rem; color: var(--inchiostro-2); }
+.vento__parola strong { font-stretch: 85%; font-weight: 800; font-size: 1.6rem; color: var(--colore-parola, #5d6b78); letter-spacing: .005em; }
+.vento__parola span { display: block; margin-top: 4px; font-size: .88rem; color: var(--inchiostro-2); }
 .vento__fonte { margin: 14px 0 0; font-size: .8rem; color: var(--inchiostro-2); }
 .vento__fonte a { color: var(--blu); text-decoration-color: var(--boa); text-underline-offset: 3px; }
 .vento__piede { margin-top: 14px; }
@@ -254,6 +256,30 @@ h1, h2, h3 { margin: 0; }
 .giornale li:last-child::before { background: var(--boa); border-color: var(--boa); }
 .giornale__anno { display: block; font-stretch: 62%; font-weight: 850; font-size: 2.1rem; line-height: .9; color: var(--blu); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
 .giornale p { margin: 0; color: var(--inchiostro-2); }
+/* scorrendo, una tavola a vela scende lungo il giornale e accende le date (sito.js) */
+.giornale-rotta { position: relative; --avanzamento: 0; --inclina: 0deg; }
+.giornale__scia, .giornale__vela { display: none; }
+.giornale-rotta.animata .giornale { border-left-color: rgba(38, 170, 225, .28); }
+.giornale-rotta.animata .giornale__scia { display: block; position: absolute; z-index: 1; left: 0; top: 0; width: 2px; height: calc(var(--avanzamento) * 100%); background: var(--azzurro); }
+.giornale-rotta.animata .giornale__vela {
+  display: block; position: absolute; z-index: 2; left: -21px; top: calc(var(--avanzamento) * 100%);
+  width: 40px; height: 50px; transform: translate(0, -88%) rotate(var(--inclina)); transform-origin: 50% 90%; transition: transform .35s ease;
+}
+.giornale__vela .vela { width: 100%; height: 100%; }
+.giornale__vela .vela__tela { fill: rgba(255, 255, 255, .92); }
+.giornale-rotta.animata .giornale li { opacity: .38; transform: translateX(10px); transition: opacity .5s ease, transform .5s ease; }
+.giornale-rotta.animata .giornale li::before { background: var(--bianco); border-color: rgba(38, 170, 225, .45); transition: background-color .4s, border-color .4s; }
+.giornale-rotta.animata .giornale li.raggiunto { opacity: 1; transform: none; }
+.giornale-rotta.animata .giornale li.raggiunto::before { background: var(--boa); border-color: var(--boa); }
+/* le vele delle discipline si disegnano quando entrano in vista */
+.disciplina.da-disegnare .vela path { stroke-dasharray: 420; stroke-dashoffset: 420; }
+.disciplina.da-disegnare .vela__tela { fill-opacity: 0; }
+.disciplina.disegnata .vela path { animation: disegna-vela 1.6s ease forwards; }
+.disciplina.disegnata .vela__tela { animation: disegna-vela 1.6s ease forwards, riempi-vela .8s ease 1.1s forwards; }
+.disciplina.disegnata .vela { transform-origin: 50% 92%; animation: dondola-vela 3.2s ease-in-out 1.4s 2; }
+@keyframes disegna-vela { to { stroke-dashoffset: 0; } }
+@keyframes riempi-vela { to { fill-opacity: 1; } }
+@keyframes dondola-vela { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-4deg); } 70% { transform: rotate(3deg); } }
 .dotazione { margin-top: clamp(40px, 6vw, 72px); }
 .dotazione__elenco { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .dotazione__elenco li { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 10px; background: var(--spuma); font-weight: 550; }
@@ -398,13 +424,12 @@ h1, h2, h3 { margin: 0; }
 .scelte span { display: inline-block; padding: 10px 16px; border: 1.5px solid rgba(19, 38, 59, .25); border-radius: 999px; cursor: pointer; font-weight: 550; font-size: .95rem; background: var(--bianco); }
 .scelte input:checked + span { background: var(--blu); color: var(--bianco); border-color: var(--blu); }
 .scelte input:focus-visible + span { outline: 3px solid var(--boa); outline-offset: 2px; }
-.consenso { grid-column: 1 / -1; display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--inchiostro-2); }
-.consenso input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--blu); flex: none; }
-.consenso a { color: var(--blu); }
 .modulo__invio { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .modulo__invio p { margin: 0; }
 .modulo__esito { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-left: 3px solid var(--boa); background: var(--cielo); border-radius: 0 8px 8px 0; display: none; }
 .modulo__esito.visibile { display: block; }
+.modulo__webmail { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.modulo__webmail .bottone { min-height: 42px; padding: .6em 1.1em; font-size: .72rem; }
 @media (max-width: 640px) { .modulo { grid-template-columns: 1fr; } }
 
 /* meteo */
@@ -493,6 +518,7 @@ h1, h2, h3 { margin: 0; }
 .arrivo__avviso { margin: 36px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--bianco); border: 1px solid rgba(255, 91, 20, .5); font-size: .88rem; color: var(--inchiostro); max-width: 900px; }
 .arrivo__avviso strong { color: var(--boa-testo); }
 .arrivo__fondo { margin: 26px 0 0; font-size: .8rem; color: var(--inchiostro-2); }
+.arrivo__fondo a { color: var(--blu); text-decoration-color: var(--boa); text-underline-offset: 3px; }
 @media (max-width: 1000px) { .arrivo__griglia { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .arrivo__griglia { grid-template-columns: 1fr; } }
 

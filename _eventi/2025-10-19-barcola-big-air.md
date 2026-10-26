@@ -4,7 +4,7 @@ date: 2025-10-19
 data_testo: Domenica 19 ottobre 2025
 luogo: Barcola, Trieste
 disciplina: Wing foil
-immagine: assets/img/barcola-big-air-2025.jpg
+immagine: ""
 riassunto: La prima gara di salti in wingfoil in Italia. Vince chi salta più in alto.
 risultati:
   - posto: 1

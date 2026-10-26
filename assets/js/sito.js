@@ -95,7 +95,7 @@
       freccia.hidden = true;
     }
     var p = banda(scelta.parolaSu), parola = q("[data-v-parola]");
-    parola.querySelector("strong").textContent = p.txt;
+    parola.querySelector("strong").textContent = "«" + p.txt + "»";
     parola.querySelector("strong").style.setProperty("--colore-parola", p.colore);
     parola.querySelector("span").textContent = p.gloss;
     parola.hidden = false;
@@ -213,6 +213,44 @@
     }
   }
 
+  /* ── giornale di bordo: la tavola scende con lo scorrimento e accende le date ── */
+  var rotta = document.querySelector("[data-giornale]");
+  var riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (rotta && !riduci) {
+    rotta.classList.add("animata");
+    var voci = rotta.querySelectorAll(".giornale li");
+    var precedente = 0, inAttesa = false;
+    var aggiornaRotta = function () {
+      inAttesa = false;
+      var r = rotta.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height));
+      rotta.style.setProperty("--avanzamento", p.toFixed(4));
+      // la vela si inclina verso il lato in cui sta andando, poi torna dritta
+      rotta.style.setProperty("--inclina", (p > precedente + 0.001 ? 9 : p < precedente - 0.001 ? -9 : 0) + "deg");
+      precedente = p;
+      Array.prototype.forEach.call(voci, function (li) {
+        li.classList.toggle("raggiunto", p * r.height >= li.offsetTop + 8);
+      });
+      clearTimeout(rotta._dritta);
+      rotta._dritta = setTimeout(function () { rotta.style.setProperty("--inclina", "0deg"); }, 220);
+    };
+    var chiedi = function () { if (!inAttesa) { inAttesa = true; requestAnimationFrame(aggiornaRotta); } };
+    window.addEventListener("scroll", chiedi, { passive: true });
+    window.addEventListener("resize", chiedi);
+    aggiornaRotta();
+  }
+
+  /* ── le vele delle discipline si disegnano quando entrano in vista ── */
+  var discipline = document.querySelectorAll(".disciplina");
+  if (discipline.length && !riduci && "IntersectionObserver" in window) {
+    var ossVele = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (v.isIntersecting) { v.target.classList.add("disegnata"); ossVele.unobserve(v.target); }
+      });
+    }, { threshold: 0.35 });
+    Array.prototype.forEach.call(discipline, function (d) { d.classList.add("da-disegnare"); ossVele.observe(d); });
+  }
+
   /* ── animazioni della Bora (Higgsfield): partono solo se servono ───
      Niente video con «movimento ridotto» o risparmio dati: resta l'immagine di anteprima.
      Su schermi stretti si carica la versione 720p. */
@@ -244,7 +282,7 @@
       e.preventDefault();
       if (!modulo.checkValidity()) {
         var primo = modulo.querySelector(":invalid");
-        mostra("Controlla i campi obbligatori: nome, email valida, corso e consenso privacy.");
+        mostra("Controlla i campi obbligatori: nome, email valida e corso.");
         if (primo) primo.focus();
         return;
       }
@@ -282,9 +320,20 @@
         dati.get("messaggio") || ""
       ];
       var oggetto = "Lezione di " + dati.get("corso") + " - " + dati.get("nome");
-      window.location.href = "mailto:" + modulo.getAttribute("data-email") +
-        "?subject=" + encodeURIComponent(oggetto) + "&body=" + encodeURIComponent(righe.join("\n"));
-      mostra("Si sta aprendo la tua app di posta con il messaggio pronto: basta premere Invia. Se non si apre, scrivici a " + modulo.getAttribute("data-email") + ".");
+      var a = modulo.getAttribute("data-email"), s = encodeURIComponent(oggetto), b = encodeURIComponent(righe.join("\n"));
+      window.location.href = "mailto:" + a + "?subject=" + s + "&body=" + b;
+      // chi usa la posta dal browser non ha un'app che si apre: stessa mail già scritta in Gmail o Outlook
+      esito.innerHTML = "";
+      esito.appendChild(document.createTextNode("Si sta aprendo la tua app di posta con il messaggio pronto: basta premere Invia. Se non si apre, usa la posta dal browser:"));
+      var scelte = document.createElement("span"); scelte.className = "modulo__webmail";
+      [["Apri in Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(a) + "&su=" + s + "&body=" + b],
+       ["Apri in Outlook", "https://outlook.live.com/mail/0/deeplink/compose?to=" + encodeURIComponent(a) + "&subject=" + s + "&body=" + b]
+      ].forEach(function (x) {
+        var l = document.createElement("a"); l.href = x[1]; l.target = "_blank"; l.rel = "noopener"; l.className = "bottone bottone--linea"; l.textContent = x[0];
+        scelte.appendChild(l);
+      });
+      esito.appendChild(scelte);
+      esito.classList.add("visibile");
     });
   }
 })();
