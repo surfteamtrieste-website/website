@@ -426,6 +426,7 @@ h1, h2, h3 { margin: 0; }
 .scelte input:focus-visible + span { outline: 3px solid var(--boa); outline-offset: 2px; }
 .modulo__invio { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .modulo__invio p { margin: 0; }
+.modulo__nota { grid-column: 1 / -1; margin: -4px 0 0; font-size: .82rem; color: var(--inchiostro-2); }
 .modulo__esito { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-left: 3px solid var(--boa); background: var(--cielo); border-radius: 0 8px 8px 0; display: none; }
 .modulo__esito.visibile { display: block; }
 .modulo__webmail { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }

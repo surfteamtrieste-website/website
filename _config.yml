@@ -20,11 +20,11 @@ baseurl: "/website"
 # Mettere false solo quando il sito va su surfteamtrieste.com.
 anteprima: true
 
-# Modulo "Lezioni": se resta vuoto, il modulo apre l'app di posta di chi scrive
-# con il messaggio già compilato per surfteamtrieste@gmail.com.
-# Per ricevere i messaggi direttamente (senza app di posta) incollare qui
-# l'indirizzo di un servizio form, es. "https://formspree.io/f/xxxxxxx" (vedi README).
-form_endpoint: ""
+# Modulo "Lezioni": le richieste arrivano a surfteamtrieste@gmail.com tramite FormSubmit
+# (formsubmit.co, gratuito, senza account). Se il servizio non risponde, il modulo
+# propone la stessa mail già scritta da mandare con la propria posta.
+# Lasciando "" il modulo apre direttamente l'app di posta di chi scrive (vedi README).
+form_endpoint: "https://formsubmit.co/ajax/surfteamtrieste@gmail.com"
 
 # Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club).
 # Mettere false per toglierlo dal fondo pagina.

@@ -80,13 +80,16 @@ Carica il PDF in `documenti/` e in `_data/documenti.yml` scrivi il nome del file
 
 ## Modulo "Scrivici per una lezione"
 
-Oggi il modulo apre l'app di posta di chi scrive con il messaggio già compilato per
-surfteamtrieste@gmail.com: funziona subito, senza servizi esterni.
-Per ricevere le richieste direttamente (anche da chi non ha un'app di posta sul telefono):
+Le richieste arrivano direttamente a surfteamtrieste@gmail.com tramite
+[FormSubmit](https://formsubmit.co), un servizio gratuito che non chiede account: l'oggetto
+è «Lezione di <corso> - <nome>» e il pulsante Rispondi scrive a chi ha mandato la richiesta.
+FormSubmit va attivato una volta sola, con il link che manda alla casella del club al primo invio;
+se il sito cambia indirizzo (surfteamtrieste.com) può chiedere di nuovo la conferma.
+Se il servizio non risponde, il modulo propone a chi scrive la stessa mail già pronta
+da mandare con la sua posta (app, Gmail o Outlook).
 
-1. crea un account gratuito su [formspree.io](https://formspree.io) con surfteamtrieste@gmail.com;
-2. crea un form e copia l'indirizzo che ti dà (tipo `https://formspree.io/f/abcdwxyz`);
-3. incollalo in `_config.yml` alla voce `form_endpoint: ""`.
+L'indirizzo del servizio sta in `_config.yml` alla voce `form_endpoint`. Lasciandolo vuoto
+(`form_endpoint: ""`) il modulo apre direttamente l'app di posta di chi scrive.
 
 ## Pagina Meteo
 

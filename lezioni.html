@@ -67,11 +67,16 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
       <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli. Se preferisci, chiama {{ primo.nome }} al {% include tel.html n=primo.telefono %}.</p>
 
       {%- if site.form_endpoint != "" -%}
-        {%- assign azione = site.form_endpoint -%}
+        {%- assign azione = site.form_endpoint | replace: "/ajax/", "/" -%}
       {%- else -%}
         {%- assign azione = "mailto:" | append: club.email -%}
       {%- endif %}
       <form class="modulo" data-modulo data-endpoint="{{ site.form_endpoint }}" data-email="{{ club.email }}" action="{{ azione }}" method="post"{% if site.form_endpoint == "" %} enctype="text/plain"{% endif %} novalidate>
+        {%- if site.form_endpoint contains "formsubmit.co" %}
+        <input type="hidden" name="_subject" value="Richiesta lezione dal sito">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        {%- endif %}
         <div class="campo">
           <label for="f-nome">Nome e cognome *</label>
           <input id="f-nome" name="nome" type="text" autocomplete="name" required>
@@ -117,6 +122,9 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
           <button class="bottone bottone--boa" type="submit">Invia la richiesta</button>
           <small>* campi obbligatori</small>
         </div>
+        {%- if site.form_endpoint contains "formsubmit.co" %}
+        <p class="modulo__nota">La richiesta arriva alla mail del club tramite il servizio FormSubmit. Usiamo i tuoi dati solo per risponderti.</p>
+        {%- endif %}
         <p class="modulo__esito" role="status" aria-live="polite" data-esito></p>
       </form>
   </div>

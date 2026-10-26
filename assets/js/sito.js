@@ -277,35 +277,10 @@
   if (modulo) {
     var esito = modulo.querySelector("[data-esito]");
     var mostra = function (testo) { esito.textContent = testo; esito.classList.add("visibile"); };
+    var oggetto = function (dati) { return "Lezione di " + dati.get("corso") + " - " + dati.get("nome"); };
 
-    modulo.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!modulo.checkValidity()) {
-        var primo = modulo.querySelector(":invalid");
-        mostra("Controlla i campi obbligatori: nome, email valida e corso.");
-        if (primo) primo.focus();
-        return;
-      }
-      var dati = new FormData(modulo);
-      var endpoint = modulo.getAttribute("data-endpoint");
-
-      if (endpoint) {
-        var bottone = modulo.querySelector("button[type=submit]");
-        bottone.disabled = true;
-        fetch(endpoint, { method: "POST", body: dati, headers: { Accept: "application/json" } })
-          .then(function (r) {
-            if (!r.ok) throw new Error(r.status);
-            modulo.reset();
-            mostra("Richiesta inviata, grazie! Ti rispondiamo appena possibile.");
-          })
-          .catch(function () {
-            mostra("Non è stato possibile inviare il modulo. Scrivici a " + modulo.getAttribute("data-email") + " o chiamaci.");
-          })
-          .then(function () { bottone.disabled = false; });
-        return;
-      }
-
-      // Nessun servizio collegato: si apre l'app di posta con il messaggio già scritto.
+    // La stessa richiesta come email già scritta: app di posta (mailto), Gmail o Outlook dal browser.
+    var dallaPosta = function (dati, testo, apri) {
       var righe = [
         "Richiesta lezione dal sito",
         "",
@@ -319,21 +294,65 @@
         "",
         dati.get("messaggio") || ""
       ];
-      var oggetto = "Lezione di " + dati.get("corso") + " - " + dati.get("nome");
-      var a = modulo.getAttribute("data-email"), s = encodeURIComponent(oggetto), b = encodeURIComponent(righe.join("\n"));
-      window.location.href = "mailto:" + a + "?subject=" + s + "&body=" + b;
-      // chi usa la posta dal browser non ha un'app che si apre: stessa mail già scritta in Gmail o Outlook
+      var a = modulo.getAttribute("data-email"), s = encodeURIComponent(oggetto(dati)), b = encodeURIComponent(righe.join("\n"));
+      var mailto = "mailto:" + a + "?subject=" + s + "&body=" + b;
+      if (apri) window.location.href = mailto;
       esito.innerHTML = "";
-      esito.appendChild(document.createTextNode("Si sta aprendo la tua app di posta con il messaggio pronto: basta premere Invia. Se non si apre, usa la posta dal browser:"));
+      esito.appendChild(document.createTextNode(testo));
       var scelte = document.createElement("span"); scelte.className = "modulo__webmail";
-      [["Apri in Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(a) + "&su=" + s + "&body=" + b],
-       ["Apri in Outlook", "https://outlook.live.com/mail/0/deeplink/compose?to=" + encodeURIComponent(a) + "&subject=" + s + "&body=" + b]
-      ].forEach(function (x) {
-        var l = document.createElement("a"); l.href = x[1]; l.target = "_blank"; l.rel = "noopener"; l.className = "bottone bottone--linea"; l.textContent = x[0];
+      var link = [["Apri in Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(a) + "&su=" + s + "&body=" + b],
+                  ["Apri in Outlook", "https://outlook.live.com/mail/0/deeplink/compose?to=" + encodeURIComponent(a) + "&subject=" + s + "&body=" + b]];
+      if (!apri) link.unshift(["App di posta", mailto]);
+      link.forEach(function (x) {
+        var l = document.createElement("a"); l.href = x[1]; l.className = "bottone bottone--linea"; l.textContent = x[0];
+        if (x[1].indexOf("https:") === 0) { l.target = "_blank"; l.rel = "noopener"; }
         scelte.appendChild(l);
       });
       esito.appendChild(scelte);
       esito.classList.add("visibile");
+    };
+
+    modulo.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!modulo.checkValidity()) {
+        var primo = modulo.querySelector(":invalid");
+        mostra("Controlla i campi obbligatori: nome, email valida e corso.");
+        if (primo) primo.focus();
+        return;
+      }
+      var dati = new FormData(modulo);
+      var endpoint = modulo.getAttribute("data-endpoint");
+
+      if (!endpoint) {
+        // Nessun servizio collegato: si apre l'app di posta con il messaggio già scritto.
+        dallaPosta(dati, "Si sta aprendo la tua app di posta con il messaggio pronto: basta premere Invia. Se non si apre, usa la posta dal browser:", true);
+        return;
+      }
+
+      var corpo = {};
+      dati.forEach(function (v, k) { corpo[k] = v; });
+      corpo._subject = oggetto(dati);
+      var bottone = modulo.querySelector("button[type=submit]");
+      bottone.disabled = true;
+      mostra("Invio in corso…");
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(corpo)
+      })
+        .then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (j) {
+            // FormSubmit risponde 200 anche quando l'invio non è andato: conta il campo success
+            if (!r.ok || j.success === false || j.success === "false") throw new Error(j.message || r.status);
+          });
+        })
+        .then(function () {
+          modulo.reset();
+          mostra("Richiesta inviata, grazie! Ti rispondiamo appena possibile alla mail che ci hai lasciato.");
+        }, function () {
+          dallaPosta(dati, "Non siamo riusciti a inviare la richiesta dal sito. Mandala dalla tua posta, è già scritta:", false);
+        })
+        .then(function () { bottone.disabled = false; });
     });
   }
 })();
