@@ -1,0 +1,24 @@
+{%- comment -%}
+  Vento ora a Barcola, dai dati di Vento Trieste (ventotrieste.info): li legge sito.js.
+  Uso: {% include vento.html %} in home, {% include vento.html esteso=true %} nella pagina meteo
+  (aggiunge le righe di Barcola e Trieste molo).
+{%- endcomment -%}
+{%- assign utm = "utm_source=surfteamtrieste&utm_medium=sito-club&utm_campaign=badge-vento" -%}
+<aside class="vento" data-vento aria-labelledby="vento-titolo{{ include.esteso }}">
+  <p class="vento__titolo" id="vento-titolo{{ include.esteso }}"><span class="vento__live" aria-hidden="true"></span> <span data-v-luogo>Vento ora a Barcola</span></p>
+  <div class="vento__dati">
+    <svg class="vento__freccia" data-v-freccia viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M12 3v17m-6-6 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <p class="vento__kt"><b data-v-kt>–</b><span>kt</span></p>
+      <p class="vento__dir" data-v-dir>Carico i dati…</p>
+    </div>
+  </div>
+  <p class="vento__parola" data-v-parola hidden><strong></strong> <span></span></p>
+  {%- if include.esteso %}
+  <ul class="vento__righe" data-v-righe hidden></ul>
+  {%- endif %}
+  <p class="vento__fonte"><span data-v-fonte>Media e raffica degli ultimi 10 minuti dalla centralina sul Terrapieno.</span> Dati di <a href="{{ site.ventotrieste }}?{{ utm }}" target="_blank" rel="noopener">Vento Trieste</a>.</p>
+  {%- unless include.esteso %}
+  <p class="vento__piede"><a class="collegamento" href="{{ '/meteo/' | relative_url }}">Meteo e webcam</a></p>
+  {%- endunless %}
+</aside>

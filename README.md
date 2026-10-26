@@ -30,7 +30,7 @@ Se qualcosa va storto, nella cronologia del file (**History**) si torna a qualsi
 | Cosa vuoi cambiare | File |
 |---|---|
 | Telefoni, email, PEC, indirizzo, come arrivare | `_data/club.yml` |
-| Corsi, prezzi, sconti | `_data/corsi.yml` |
+| Corsi e sconti (i prezzi non si pubblicano) | `_data/corsi.yml` |
 | Statuto, regolamento e altri PDF | `_data/documenti.yml` + cartella `documenti/` |
 | Consiglio Direttivo (oggi nascosto) | `_data/direttivo.yml` → `mostra: true` |
 | Eventi | cartella `_eventi/` |

@@ -9,19 +9,14 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
 
 <header class="pagina-testa">
   <div class="contenitore">
-    <span class="boa" aria-hidden="true">2</span>
-    <div>
-      <p class="etichetta">Boa 2 · Scuola di windsurf, wing foil e SUP</p>
-      <h1 class="pagina-testa__titolo">Lezioni</h1>
-      <p class="pagina-testa__sotto">Corsi estivi a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
-    </div>
+    <p class="etichetta"><span class="boa" aria-hidden="true">2</span> Scuola di windsurf, wing foil e SUP</p>
+    <h1 class="pagina-testa__titolo">Lezioni</h1>
+    <p class="pagina-testa__sotto">Corsi estivi a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
   </div>
 </header>
 
 <section class="sezione" aria-labelledby="t-come">
-  <div class="contenitore sezione__griglia">
-    <div class="vuoto"></div>
-    <div>
+  <div class="contenitore">
       <h2 class="solo-lettori" id="t-come">Come funzionano i corsi</h2>
       <dl class="scheda">
         <div><dt>Quando</dt><dd>{{ corsi.stagione }}</dd></div>
@@ -32,13 +27,16 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
         <div><dt>Informazioni</dt><dd>{% for r in club.referenti %}{{ r.nome }} {% include tel.html n=r.telefono %}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</dd></div>
       </dl>
 
-      <figure class="scatto">
-        <picture>
-          <source type="image/webp" srcset="{{ '/assets/img/andrej-windsurf-portacontainer-900.webp' | relative_url }} 900w, {{ '/assets/img/andrej-windsurf-portacontainer-1600.webp' | relative_url }} 1600w" sizes="(max-width: 1100px) 100vw, 980px">
-          <img src="{{ '/assets/img/andrej-windsurf-portacontainer-1600.jpg' | relative_url }}" srcset="{{ '/assets/img/andrej-windsurf-portacontainer-900.jpg' | relative_url }} 900w, {{ '/assets/img/andrej-windsurf-portacontainer-1600.jpg' | relative_url }} 1600w" sizes="(max-width: 1100px) 100vw, 980px" width="1600" height="1071" loading="lazy" alt="Andrej sul windsurf con la vela gialla, sullo sfondo un portacontainer nel Golfo di Trieste">
-        </picture>
-        <figcaption>Andrej in acqua nel Golfo, con un portacontainer sullo sfondo.</figcaption>
-      </figure>
+      <div class="foto-coppia">
+        <figure class="foto">
+          {% include immagine.html nome="andrej-windsurf-portacontainer" alt="Andrej sul windsurf con la vela gialla, sullo sfondo un portacontainer nel Golfo di Trieste" w=1600 h=1071 sizes="(max-width: 700px) 100vw, 580px" %}
+          <figcaption>Windsurf: Andrej nel Golfo, con un portacontainer sullo sfondo.</figcaption>
+        </figure>
+        <figure class="foto">
+          {% include immagine.html nome="wing-foil-barcola" alt="Un rider di wing foil con l'ala gialla nel golfo, accanto una moto d'acqua" w=1600 h=611 sizes="(max-width: 700px) 100vw, 580px" %}
+          <figcaption>Wing foil: l'ala gialla e la tavola con il foil.</figcaption>
+        </figure>
+      </div>
 
       {%- for c in corsi.elenco %}
       <article class="corso" id="{{ c.id }}">
@@ -49,14 +47,8 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
           <p class="testo">{{ c.testo }}</p>
         </div>
         <div class="corso__lato">
-          {%- if c.prezzo != "" %}
-          <p class="etichetta">Costo</p>
-          <p class="corso__prezzo">{{ c.prezzo }}</p>
-          <p>{{ c.prezzo_nota | capitalize }} · attrezzatura inclusa</p>
-          {%- else %}
-          <p class="etichetta">Costo</p>
-          <p>Chiedi a chi tiene il corso.</p>
-          {%- endif %}
+          <p class="etichetta">Informazioni e iscrizioni</p>
+          <p>Date, gruppi e costi: chiedi a chi tiene il corso.</p>
           <ul class="contatto-rapido">
             {%- for nome in c.contatti %}{% assign r = club.referenti | where: "nome", nome | first %}{% if r %}
             <li>{{ r.nome }} · {% include tel.html n=r.telefono %}{% if r.whatsapp %} · <a href="https://wa.me/39{{ r.telefono }}">WhatsApp</a>{% endif %}</li>
@@ -65,14 +57,11 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
         </div>
       </article>
       {%- endfor %}
-    </div>
   </div>
 </section>
 
-<section class="sezione sezione--carta2" id="richiesta" aria-labelledby="t-richiesta">
-  <div class="contenitore sezione__griglia">
-    <div class="vuoto"></div>
-    <div>
+<section class="sezione sezione--spuma" id="richiesta" aria-labelledby="t-richiesta">
+  <div class="contenitore">
       <p class="etichetta">Prenota</p>
       <h2 class="titolo" id="t-richiesta">Scrivici<br><em>per una lezione</em></h2>
       <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli. Se preferisci, chiama {{ primo.nome }} al {% include tel.html n=primo.telefono %}.</p>
@@ -131,6 +120,5 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
         </div>
         <p class="modulo__esito" role="status" aria-live="polite" data-esito></p>
       </form>
-    </div>
   </div>
 </section>

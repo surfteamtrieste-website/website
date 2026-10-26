@@ -3,22 +3,18 @@ layout: default
 ---
 <header class="pagina-testa">
   <div class="contenitore">
-    <span class="boa" aria-hidden="true">4</span>
-    <div>
-      <p class="etichetta"><a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a> · {{ page.disciplina }}</p>
-      <h1 class="pagina-testa__titolo" style="font-size:clamp(2.8rem, 1.2rem + 6vw, 6.4rem)">{{ page.title }}</h1>
-      <dl class="evento__meta">
-        <div><dt>Quando</dt><dd>{{ page.data_testo }}</dd></div>
-        <div><dt>Dove</dt><dd>{{ page.luogo }}</dd></div>
-        <div><dt>Disciplina</dt><dd>{{ page.disciplina }}</dd></div>
-      </dl>
-    </div>
+    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> <a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a> · {{ page.disciplina }}</p>
+    <h1 class="pagina-testa__titolo" style="font-size:clamp(2.6rem, 1.4rem + 5vw, 5.6rem)">{{ page.title }}</h1>
+    <dl class="evento__meta">
+      <div><dt>Quando</dt><dd>{{ page.data_testo }}</dd></div>
+      <div><dt>Dove</dt><dd>{{ page.luogo }}</dd></div>
+      <div><dt>Disciplina</dt><dd>{{ page.disciplina }}</dd></div>
+    </dl>
   </div>
 </header>
 
 <section class="sezione">
-  <div class="contenitore sezione__griglia">
-    <div class="vuoto"></div>
+  <div class="contenitore">
     <div class="evento__corpo">
       <div class="testo">
         {{ content }}

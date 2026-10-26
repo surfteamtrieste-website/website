@@ -1,6 +1,5 @@
 # Corsi della scuola. Testi dal vecchio sito.
-# prezzo: quello che si vede sul sito ("" per nasconderlo).
-# DA CONFERMARE (riunione 21/10/2026): costi e struttura dei corsi, 140 €.
+# I prezzi non si pubblicano: sul sito c'è "chiedi a chi tiene il corso".
 
 stagione: Stagione estiva
 dove: Barcola, nello specchio d'acqua davanti al Terrapieno
@@ -14,8 +13,6 @@ elenco:
   - id: windsurf
     nome: Windsurf
     vela: windsurf
-    prezzo: "140 €"
-    prezzo_nota: corso
     sottotitolo: Dai primi passi sulla tavola alle prime planate
     breve: Lezioni di gruppo o singole, fino a uscire in acqua da soli.
     testo: >-
@@ -28,8 +25,6 @@ elenco:
   - id: wing-foil
     nome: Wing foil
     vela: wing
-    prezzo: ""
-    prezzo_nota: ""
     sottotitolo: Lo sport del momento
     breve: Ala gonfiabile e tavola con il foil. Facile anche per chi non ha mai fatto windsurf o kite.
     testo: >-
@@ -41,8 +36,6 @@ elenco:
   - id: sup
     nome: SUP
     vela: sup
-    prezzo: ""
-    prezzo_nota: ""
     sottotitolo: Stand up paddle, remare in piedi
     breve: Intuitivo e adatto a tutti i livelli, dall'uscita tranquilla all'agonismo.
     testo: >-

@@ -1,0 +1,11 @@
+{%- comment -%}
+  Foto in WebP e JPEG, larghe 900 e 1600 px (file assets/img/NOME-900.webp, NOME-1600.jpg …).
+  Uso: {% include immagine.html nome="windsurf-miramare" alt="…" w=1600 h=696 sizes="100vw" %}
+  subito=true per la foto in cima alla pagina (niente caricamento differito).
+{%- endcomment -%}
+{%- assign base = '/assets/img/' | append: include.nome | relative_url -%}
+{%- assign misure = include.sizes | default: "100vw" -%}
+<picture>
+  <source type="image/webp" srcset="{{ base }}-900.webp 900w, {{ base }}-1600.webp 1600w" sizes="{{ misure }}">
+  <img src="{{ base }}-1600.jpg" srcset="{{ base }}-900.jpg 900w, {{ base }}-1600.jpg 1600w" sizes="{{ misure }}" width="{{ include.w }}" height="{{ include.h }}" alt="{{ include.alt }}"{% if include.subito %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+</picture>

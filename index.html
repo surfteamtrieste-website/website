@@ -1,7 +1,7 @@
 ---
 title: Home
 corpo: home
-description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi estivi, eventi e meteo dello spot.
+description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi estivi, eventi, vento in tempo reale e webcam dello spot.
 ---
 {%- assign club = site.data.club -%}
 {%- assign eventi = site.eventi | sort: "date" | reverse -%}
@@ -9,219 +9,185 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
 <section class="apertura" aria-labelledby="titolo-home">
   <div class="contenitore apertura__griglia">
     <div>
-      <p class="etichetta etichetta--chiara">A.S.D. Surf Team Trieste · dal {{ club.fondazione }}</p>
+      <p class="etichetta">A.S.D. Surf Team Trieste · dal {{ club.fondazione }}</p>
       <h1 class="titolone" id="titolo-home"><span>Bora,</span> <span>alba,</span> <span>Barcola</span></h1>
       <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi d'estate, eventi, e un gruppo di appassionati che con la Bora esce in acqua dalle prime luci dell'alba.</p>
       <div class="apertura__azioni">
         <a class="bottone bottone--boa" href="{{ '/lezioni/' | relative_url }}">Prenota una lezione</a>
-        <a class="bottone bottone--linea" href="{{ '/meteo/' | relative_url }}">Vento ora a Barcola</a>
+        <a class="bottone bottone--linea" href="{{ '/meteo/' | relative_url }}">Meteo e webcam</a>
       </div>
     </div>
-    <aside class="cartiglio" aria-label="Il vento dello spot">
-      {% include rosa-venti.svg %}
-      <dl class="cartiglio__dati">
-        <dt>Vento</dt><dd>Bora da ENE, da terra verso il mare</dd>
-        <dt>Mare</dt><dd>Onda bassa, raffiche più forti al largo</dd>
-        <dt>Spot</dt><dd>Fondali sabbiosi, bordi lunghi 3 km lungo la costa</dd>
-      </dl>
-    </aside>
+    {% include vento.html %}
   </div>
-
-  <figure class="panorama">
-    <div class="panorama__scorri" data-panorama tabindex="0" aria-label="Foto panoramica del Golfo di Trieste, scorrevole">
-      <div class="panorama__tela">
-        <picture>
-          <source type="image/webp" srcset="{{ '/assets/img/golfo-faro-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.webp' | relative_url }} 2000w" sizes="(max-width: 760px) 946px, 100vw">
-          <img src="{{ '/assets/img/golfo-faro-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/golfo-faro-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.jpg' | relative_url }} 2000w" sizes="(max-width: 760px) 946px, 100vw" width="2000" height="634" alt="Il Golfo di Trieste dall'alto: al centro il Faro della Vittoria, in basso a sinistra il Terrapieno di Barcola, in mare decine di windsurf e in fondo il Castello di Miramare." fetchpriority="high">
-        </picture>
-        <span class="segno segno--sotto" style="--x:94%;--y:8%;--ax:-88%"><span>Castello di Miramare</span></span>
-        <span class="segno segno--sotto" style="--x:50%;--y:15%"><span>Faro della Vittoria</span></span>
-        <span class="segno segno--sopra" style="--x:22.5%;--y:61%"><span>Windsurf con la Bora</span></span>
-        <span class="segno segno--sopra segno--club" style="--x:27.5%;--y:89%;--ax:-30%"><span>Terrapieno di Barcola · il club</span></span>
-      </div>
-    </div>
-    <figcaption><span>Il Golfo con la Bora: i puntini bianchi in mare sono windsurf.</span> <span class="panorama__suggerimento" aria-hidden="true">Scorri il golfo →</span></figcaption>
+  <figure class="apertura__foto">
+    {% include immagine.html nome="windsurf-miramare" alt="Windsurf in planata nel Golfo di Trieste, sullo sfondo il Castello di Miramare" w=1600 h=696 subito=true %}
+    <figcaption class="contenitore">Windsurf nel golfo, davanti al Castello di Miramare.</figcaption>
   </figure>
 </section>
 
-<div class="percorso" data-percorso>
-  <svg class="percorso__rotta" aria-hidden="true" focusable="false">
-    <path class="percorso__piano"/>
-    <path class="percorso__scia"/>
-    <g class="percorso__vela"><path d="M0-30C9-22 13-11 13 0H-1Z"/><path class="percorso__tavola" d="M-12 3H16"/></g>
-  </svg>
-
-  <!-- BOA 1 · IL CLUB -->
-  <section class="tappa" id="club" aria-labelledby="t-club">
-    <div class="contenitore tappa__griglia">
-      <div class="tappa__rail"><span class="boa" data-boa>1</span></div>
-      <div>
-        <p class="etichetta">Boa 1 · Storia, chi siamo, il club</p>
-        <h2 class="titolo" id="t-club">Un pezzo di spiaggia<br><em>e tanta Bora</em></h2>
-        <div class="club__griglia">
-          <div class="club__storia testo">
-            <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
-            <p>Ottenuta la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana, negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per andare in acqua fin dalle prime luci dell'alba.</p>
-            <p>Dopo oltre vent'anni di presidenza, nel 2020 Cesare lascia il posto a Riccardo Marchesi, che dà al club una nuova spinta con l'ambizione di rinnovare la sede sociale.</p>
-            <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola d'estate ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
-          </div>
-          <div>
-            <p class="etichetta">Giornale di bordo</p>
-            <ol class="giornale">
-              <li><span class="giornale__anno">1997</span><p>Cesare Redolfi e un gruppo di amici fondano il primo club di windsurfisti della zona.</p></li>
-              <li><span class="giornale__anno">2020</span><p>Riccardo Marchesi diventa presidente. Il club entra nella rete AICS Windsurfing.</p></li>
-              <li><span class="giornale__anno">2023</span><p>Barcolana Fun: 68 partecipanti nella gara GPS organizzata con SVBG e Kitelife.</p></li>
-              <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wingfoil in Italia.</p></li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="dotazione">
-          <p class="etichetta">In dotazione al club</p>
-          <ul class="dotazione__elenco">
-            <li>Rastrelliere per il rimessaggio dell'attrezzatura</li>
-            <li>Spogliatoio</li>
-            <li>Doccia</li>
-            <li>Acqua per sciacquare le vele</li>
-            <li>Tavole per la scuola</li>
-            <li>Zona ombreggiata</li>
-          </ul>
-          <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. All'altezza dell'unico semaforo, con parcheggio facile, la fermata dell'autobus e lo spazio camper del vicino Park Bovedo.</p>
-        </div>
+<!-- BOA 1 · IL CLUB -->
+<section class="tappa" id="club" aria-labelledby="t-club">
+  <div class="contenitore">
+    <p class="etichetta"><span class="boa" aria-hidden="true">1</span> Storia, chi siamo, il club</p>
+    <h2 class="titolo" id="t-club">Un pezzo di spiaggia<br><em>e tanta Bora</em></h2>
+    <div class="club__griglia">
+      <div class="club__storia testo">
+        <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
+        <p>Ottenuta la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana, negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per andare in acqua fin dalle prime luci dell'alba.</p>
+        <p>Dopo oltre vent'anni di presidenza, nel 2020 Cesare lascia il posto a Riccardo Marchesi, che dà al club una nuova spinta con l'ambizione di rinnovare la sede sociale.</p>
+        <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola d'estate ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- BOA 2 · LEZIONI -->
-  <section class="tappa tappa--carta2" aria-labelledby="t-lezioni">
-    <div class="contenitore tappa__griglia">
-      <div class="tappa__rail"><span class="boa" data-boa>2</span></div>
       <div>
-        <p class="etichetta">Boa 2 · Lezioni</p>
-        <h2 class="titolo" id="t-lezioni">Dai primi passi<br><em>alla prima planata</em></h2>
-        <figure class="scatto">
-          <picture>
-            <source type="image/webp" srcset="{{ '/assets/img/andrej-windsurf-planata-900.webp' | relative_url }} 900w, {{ '/assets/img/andrej-windsurf-planata-1600.webp' | relative_url }} 1600w" sizes="(max-width: 1100px) 100vw, 980px">
-            <img src="{{ '/assets/img/andrej-windsurf-planata-1600.jpg' | relative_url }}" srcset="{{ '/assets/img/andrej-windsurf-planata-900.jpg' | relative_url }} 900w, {{ '/assets/img/andrej-windsurf-planata-1600.jpg' | relative_url }} 1600w" sizes="(max-width: 1100px) 100vw, 980px" width="1600" height="900" loading="lazy" alt="Andrej in planata sul windsurf, vela gialla, nel Golfo di Trieste">
-          </picture>
-          <figcaption>Andrej, che segue i corsi del club, in planata nel Golfo.</figcaption>
-        </figure>
-        <div class="discipline">
-          {%- for c in site.data.corsi.elenco %}
-          <article class="disciplina">
-            {% include vela.html tipo=c.vela %}
-            <h3 class="disciplina__nome">{{ c.nome }}</h3>
-            <p class="disciplina__sotto">{{ c.sottotitolo }}</p>
-            <p>{{ c.breve | default: c.testo }}</p>
-            {%- if c.prezzo != "" %}
-            <p class="disciplina__prezzo"><strong>{{ c.prezzo }}</strong> <small>{{ c.prezzo_nota }}</small></p>
-            {%- endif %}
-          </article>
-          {%- endfor %}
-        </div>
-        <div class="lezioni__piede">
-          <a class="bottone bottone--blu" href="{{ '/lezioni/' | relative_url }}#richiesta">Chiedi una lezione</a>
-          <p>{{ site.data.corsi.stagione }} · {{ site.data.corsi.gruppi | downcase }} · attrezzatura fornita dal club.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOA 3 · LO SPOT -->
-  <section class="tappa tappa--scura" aria-labelledby="t-spot">
-    <div class="contenitore tappa__griglia">
-      <div class="tappa__rail"><span class="boa" data-boa>3</span></div>
-      <div>
-        <p class="etichetta">Boa 3 · Meteo e spot di Barcola</p>
-        <h2 class="titolo" id="t-spot">Da terra,<br><em>raffiche al largo</em></h2>
-        <div class="spot__griglia">
-          <div class="testo">
-            <p>La costa di Barcola ha fondali sabbiosi e rive artificiali, moli e scogli. Il vento prevalente soffia da ENE, cioè da terra: per questo l'onda di solito è bassa.</p>
-            <p>Alla Bora si somma la componente catabatica: scendendo dal Carso il vento rinforza, soprattutto di primo mattino. Spesso è rafficato e da terra può sembrare debole, ma al largo aumenta. Nel dubbio, meglio una vela un po' più piccola.</p>
-            <div class="spot__azioni">
-              <a class="bottone bottone--boa" href="{{ '/meteo/' | relative_url }}">Vento in tempo reale</a>
-            </div>
-          </div>
-          <dl class="spot__valori">
-            <div><dt>Direzione</dt><dd>ENE<small>Bora, off-shore</small></dd></div>
-            <div><dt>Onda</dt><dd>Bassa<small>vento da terra</small></dd></div>
-            <div><dt>Bordi</dt><dd>3 km<small>paralleli alla riva</small></dd></div>
-            <div><dt>Il trucco</dt><dd>Bolina<small>indispensabile stringere bene</small></dd></div>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOA 4 · EVENTI -->
-  <section class="tappa" aria-labelledby="t-eventi">
-    <div class="contenitore tappa__griglia">
-      <div class="tappa__rail"><span class="boa" data-boa>4</span></div>
-      <div>
-        <p class="etichetta">Boa 4 · Eventi</p>
-        <h2 class="titolo" id="t-eventi">Gare, memorial<br><em>e Barcolana</em></h2>
-        <div class="eventi__griglia">
-          {%- assign primo = eventi | where_exp: "e", "e.immagine != ''" | first -%}
-          {%- if primo %}
-          <figure class="locandina">
-            <a href="{{ primo.url | relative_url }}"><img src="{{ primo.immagine | prepend: '/' | relative_url }}" width="1012" height="602" loading="lazy" alt="{{ primo.title }}: un rider in volo sul wingfoil davanti a Barcola"></a>
-            <figcaption>{{ primo.title }} · {{ primo.data_testo }}</figcaption>
-          </figure>
-          {%- endif %}
-          <div>
-            <ol class="albo">
-              {%- for e in eventi limit: 4 %}
-              <li><a href="{{ e.url | relative_url }}">
-                <span class="albo__data">{{ e.data_testo }}</span>
-                <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small></span>
-                <span class="albo__freccia" aria-hidden="true">→</span>
-              </a></li>
-              {%- endfor %}
-            </ol>
-            <p style="margin-top:24px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARRIVO · DIVENTA SOCIO -->
-  <section class="tappa tappa--carta2" id="socio" aria-labelledby="t-socio">
-    <div class="contenitore tappa__griglia">
-      <div class="tappa__rail"><span class="boa boa--arrivo" data-boa aria-label="Arrivo">◆</span></div>
-      <div>
-        <p class="etichetta">Arrivo · Diventa socio</p>
-        <h2 class="titolo" id="t-socio">Un posto in rastrelliera,<br><em>una chiave numerata</em></h2>
-        <ol class="socio__passi">
-          <li>
-            <h3>La domanda</h3>
-            <p>Si compila la <a href="{{ '/documenti/domanda-ammissione-socio.pdf' | relative_url }}">domanda di ammissione</a> e la si invia al Direttivo.</p>
-          </li>
-          <li>
-            <h3>Il Direttivo</h3>
-            <p>Valuta le richieste in base ai posti disponibili, con precedenza ai familiari dei soci. Gli altri aspiranti entrano se un socio se ne fa garante.</p>
-          </li>
-          <li>
-            <h3>Quota e chiave</h3>
-            <p>L'ammissione si perfeziona con il pagamento della quota. Con la quota arriva la chiave del cancello: numerata e personale.</p>
-          </li>
+        <p class="etichetta">Giornale di bordo</p>
+        <ol class="giornale">
+          <li><span class="giornale__anno">1997</span><p>Cesare Redolfi e un gruppo di amici fondano il primo club di windsurfisti della zona.</p></li>
+          <li><span class="giornale__anno">2020</span><p>Riccardo Marchesi diventa presidente. Il club entra nella rete AICS Windsurfing.</p></li>
+          <li><span class="giornale__anno">2023</span><p>Barcolana Fun: 68 partecipanti nella gara GPS organizzata con SVBG e Kitelife.</p></li>
+          <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wingfoil in Italia.</p></li>
         </ol>
-        <div class="socio__note">
-          <p>Le quote annuali le stabilisce il Direttivo entro fine anno: chiedile a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
-          <p>Per windsurf, SUP, canoa e wing foil serve il certificato medico per attività sportiva non agonistica.</p>
-        </div>
-
-        {%- if site.data.direttivo.mostra %}
-        <div class="direttivo">
-          <p class="etichetta">Il Consiglio Direttivo</p>
-          <dl>
-            {%- for m in site.data.direttivo.membri %}{% if m.nome != "" %}
-            <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
-            {%- endif %}{% endfor %}
-          </dl>
-        </div>
-        {%- endif %}
       </div>
     </div>
-  </section>
-</div>
+
+    <figure class="foto club__foto">
+      {% include immagine.html nome="terrapieno-tavole" alt="Tavole da windsurf e vele sulla riva di sassi, con il mare del golfo dietro" w=1600 h=1067 sizes="(max-width: 1240px) 100vw, 1160px" %}
+      <figcaption>Tavole e vele pronte sulla riva.</figcaption>
+    </figure>
+
+    <div class="dotazione">
+      <p class="etichetta">In dotazione al club</p>
+      <ul class="dotazione__elenco">
+        <li>Rastrelliere per il rimessaggio dell'attrezzatura</li>
+        <li>Spogliatoio</li>
+        <li>Doccia</li>
+        <li>Acqua per sciacquare le vele</li>
+        <li>Tavole per la scuola</li>
+        <li>Zona ombreggiata</li>
+      </ul>
+      <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. All'altezza dell'unico semaforo, con parcheggio facile, la fermata dell'autobus e lo spazio camper del vicino Park Bovedo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOA 2 · LEZIONI -->
+<section class="tappa tappa--spuma" aria-labelledby="t-lezioni">
+  <div class="contenitore">
+    <p class="etichetta"><span class="boa" aria-hidden="true">2</span> Lezioni</p>
+    <h2 class="titolo" id="t-lezioni">Dai primi passi<br><em>alla prima planata</em></h2>
+    <figure class="scatto">
+      {% include immagine.html nome="andrej-windsurf-planata" alt="Andrej in planata sul windsurf, vela gialla, nel Golfo di Trieste" w=1600 h=900 sizes="(max-width: 1240px) 100vw, 1160px" %}
+      <figcaption>Andrej, che segue i corsi del club, in planata nel Golfo.</figcaption>
+    </figure>
+    <div class="discipline">
+      {%- for c in site.data.corsi.elenco %}
+      <article class="disciplina">
+        {% include vela.html tipo=c.vela %}
+        <h3 class="disciplina__nome">{{ c.nome }}</h3>
+        <p class="disciplina__sotto">{{ c.sottotitolo }}</p>
+        <p>{{ c.breve | default: c.testo }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+    <div class="lezioni__piede">
+      <a class="bottone bottone--blu" href="{{ '/lezioni/' | relative_url }}#richiesta">Chiedi una lezione</a>
+      <p>{{ site.data.corsi.stagione }} · {{ site.data.corsi.gruppi | downcase }} · attrezzatura fornita dal club.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOA 3 · LO SPOT -->
+<section class="tappa" aria-labelledby="t-spot">
+  <div class="contenitore">
+    <p class="etichetta"><span class="boa" aria-hidden="true">3</span> Meteo e spot di Barcola</p>
+    <h2 class="titolo" id="t-spot">Da terra,<br><em>raffiche al largo</em></h2>
+    <div class="spot__griglia">
+      <div class="testo">
+        <p>La costa di Barcola ha fondali sabbiosi e rive artificiali, moli e scogli. Il vento prevalente soffia da ENE, cioè da terra: per questo l'onda di solito è bassa.</p>
+        <p>Alla Bora si somma la componente catabatica: scendendo dal Carso il vento rinforza, soprattutto di primo mattino. Spesso è rafficato e da terra può sembrare debole, ma al largo aumenta. Nel dubbio, meglio una vela un po' più piccola.</p>
+      </div>
+      <div>
+        <dl class="spot__valori">
+          <div><dt>Direzione</dt><dd>ENE<small>Bora, off-shore</small></dd></div>
+          <div><dt>Onda</dt><dd>Bassa<small>vento da terra</small></dd></div>
+          <div><dt>Bordi</dt><dd>3 km<small>paralleli alla riva</small></dd></div>
+          <div><dt>Il trucco</dt><dd>Bolina<small>indispensabile stringere bene</small></dd></div>
+        </dl>
+        <div class="spot__azioni">
+          <a class="bottone bottone--boa" href="{{ '/meteo/' | relative_url }}">Vento, webcam e previsioni</a>
+        </div>
+      </div>
+    </div>
+    <figure class="foto spot__foto">
+      <picture>
+        <source type="image/webp" srcset="{{ '/assets/img/golfo-faro-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.webp' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/golfo-faro-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/golfo-faro-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.jpg' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste dall'alto con la Bora: il Faro della Vittoria, il Terrapieno di Barcola e decine di windsurf in mare">
+      </picture>
+      <figcaption>Il golfo con la Bora: i puntini bianchi in mare sono windsurf.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BOA 4 · EVENTI -->
+<section class="tappa tappa--spuma" aria-labelledby="t-eventi">
+  <div class="contenitore">
+    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> Eventi</p>
+    <h2 class="titolo" id="t-eventi">Gare, memorial<br><em>e Barcolana</em></h2>
+    <div class="eventi__griglia">
+      {%- assign primo = eventi | where_exp: "e", "e.immagine != ''" | first -%}
+      {%- if primo %}
+      <figure class="locandina">
+        <a href="{{ primo.url | relative_url }}"><img src="{{ primo.immagine | prepend: '/' | relative_url }}" width="1012" height="602" loading="lazy" alt="{{ primo.title }}: un rider in volo sul wingfoil davanti a Barcola"></a>
+        <figcaption>{{ primo.title }} · {{ primo.data_testo }}</figcaption>
+      </figure>
+      {%- endif %}
+      <div>
+        <ol class="albo">
+          {%- for e in eventi limit: 4 %}
+          <li><a href="{{ e.url | relative_url }}">
+            <span class="albo__data">{{ e.data_testo }}</span>
+            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small></span>
+            <span class="albo__freccia" aria-hidden="true">→</span>
+          </a></li>
+          {%- endfor %}
+        </ol>
+        <p style="margin-top:24px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARRIVO · DIVENTA SOCIO -->
+<section class="tappa tappa--vele" id="socio" aria-labelledby="t-socio">
+  <div class="contenitore">
+    <p class="etichetta"><span class="boa boa--arrivo" aria-hidden="true">◆</span> Arrivo · Diventa socio</p>
+    <h2 class="titolo" id="t-socio">Un posto in rastrelliera,<br><em>una chiave numerata</em></h2>
+    <ol class="socio__passi">
+      <li>
+        <h3>La domanda</h3>
+        <p>Si compila la <a href="{{ '/documenti/domanda-ammissione-socio.pdf' | relative_url }}">domanda di ammissione</a> e la si invia al Direttivo.</p>
+      </li>
+      <li>
+        <h3>Il Direttivo</h3>
+        <p>Valuta le richieste in base ai posti disponibili, con precedenza ai familiari dei soci. Gli altri aspiranti entrano se un socio se ne fa garante.</p>
+      </li>
+      <li>
+        <h3>Quota e chiave</h3>
+        <p>L'ammissione si perfeziona con il pagamento della quota. Con la quota arriva la chiave del cancello: numerata e personale.</p>
+      </li>
+    </ol>
+    <div class="socio__note">
+      <p>Le quote annuali le stabilisce il Direttivo entro fine anno: chiedile a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
+      <p>Per windsurf, SUP, canoa e wing foil serve il certificato medico per attività sportiva non agonistica.</p>
+    </div>
+
+    {%- if site.data.direttivo.mostra %}
+    <div class="direttivo">
+      <p class="etichetta">Il Consiglio Direttivo</p>
+      <dl>
+        {%- for m in site.data.direttivo.membri %}{% if m.nome != "" %}
+        <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
+        {%- endif %}{% endfor %}
+      </dl>
+    </div>
+    {%- endif %}
+  </div>
+</section>

@@ -2,8 +2,13 @@
 <footer class="arrivo" id="contatti">
   <div class="arrivo__linea" aria-hidden="true"></div>
   <div class="contenitore">
-    <p class="etichetta etichetta--chiara">Arrivo · Contatti</p>
-    <h2 class="arrivo__titolo">Ci trovi in fondo al Terrapieno.</h2>
+    <div class="arrivo__testa">
+      <div>
+        <p class="etichetta"><span class="boa boa--arrivo" aria-hidden="true">◆</span> Arrivo · Contatti</p>
+        <h2 class="arrivo__titolo">Ci trovi in fondo al Terrapieno.</h2>
+      </div>
+      <img class="arrivo__logo" src="{{ '/assets/img/logo-surf-team.svg' | relative_url }}" width="301" height="177" alt="Logo del Surf Team Trieste" loading="lazy">
+    </div>
 
     <div class="arrivo__griglia">
       <section aria-labelledby="f-contatti">
@@ -19,12 +24,15 @@
 
       <section aria-labelledby="f-dove">
         <h3 class="arrivo__voce" id="f-dove">Dove siamo</h3>
+        <a class="arrivo__mappa" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank" aria-label="Apri la mappa del club">
+          {% include immagine.html nome="mappa-terrapieno" alt="Vista aerea del Terrapieno di Barcola con il segno del club" w=1600 h=1125 sizes="(max-width: 560px) 100vw, 280px" %}
+        </a>
         <address class="arrivo__indirizzo">
           {{ club.indirizzo.luogo }}<br>
           {{ club.indirizzo.via }}<br>
           {{ club.indirizzo.cap }} {{ club.indirizzo.citta }}
         </address>
-        <a class="collegamento collegamento--chiaro" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank">Apri la mappa</a>
+        <a class="collegamento" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank">Apri la mappa</a>
         <details class="arrivo__strada">
           <summary>Come arrivare</summary>
           <dl>
@@ -51,7 +59,7 @@
           {{ club.affiliazione }} · dal {{ club.fondazione }}<br>
           C.F. {{ club.codice_fiscale }} · P.IVA {{ club.partita_iva }}
         </p>
-        <a class="collegamento collegamento--chiaro" href="{{ '/privacy/' | relative_url }}">Privacy</a>
+        <a class="collegamento" href="{{ '/privacy/' | relative_url }}">Privacy</a>
       </section>
     </div>
 
