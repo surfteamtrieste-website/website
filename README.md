@@ -73,7 +73,7 @@ percorso nel campo `immagine:` dell'evento, per esempio `assets/img/barcolana-fu
 ### Aggiornare statuto e regolamento
 
 Carica il PDF in `documenti/` e in `_data/documenti.yml` scrivi il nome del file nel campo
-`file:` (per lo statuto oggi è vuoto, quindi sul sito risulta "in aggiornamento").
+`file:`. Se `file:` è vuoto, sul sito il documento risulta "in aggiornamento".
 
 ---
 
