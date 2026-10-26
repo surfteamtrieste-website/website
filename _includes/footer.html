@@ -25,7 +25,10 @@
       <section aria-labelledby="f-dove">
         <h3 class="arrivo__voce" id="f-dove">Dove siamo</h3>
         <a class="arrivo__mappa" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank" aria-label="Apri la mappa del club">
-          {% include immagine.html nome="mappa-terrapieno" alt="Vista aerea del Terrapieno di Barcola con il segno del club" w=1600 h=1125 sizes="(max-width: 560px) 100vw, 280px" %}
+          <picture>
+            <source type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.webp' | relative_url }}">
+            <img src="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.jpg' | relative_url }}" width="900" height="853" loading="lazy" alt="Mappa LiDAR del Terrapieno di Barcola con il logo del club">
+          </picture>
         </a>
         <address class="arrivo__indirizzo">
           {{ club.indirizzo.luogo }}<br>

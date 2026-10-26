@@ -199,11 +199,11 @@ h1, h2, h3 { margin: 0; }
 .apertura__sotto { max-width: 46ch; font-size: clamp(1.05rem, .98rem + .35vw, 1.22rem); color: var(--inchiostro-2); }
 .apertura__azioni { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .apertura__foto { margin: 0; }
-.apertura__foto img { width: 100%; aspect-ratio: 1600 / 640; object-fit: cover; object-position: 50% 45%; }
+.apertura__foto img, .apertura__video { display: block; width: 100%; aspect-ratio: 1600 / 640; object-fit: cover; object-position: 50% 70%; background: var(--cielo); }
 .apertura__foto figcaption { padding-top: 10px; padding-bottom: 6px; font-size: .82rem; color: var(--inchiostro-2); }
 @media (max-width: 900px) {
   .apertura__griglia { grid-template-columns: 1fr; align-items: start; }
-  .apertura__foto img { aspect-ratio: 4 / 3; object-position: 30% 50%; }
+  .apertura__foto img, .apertura__video { aspect-ratio: 4 / 3; object-position: 50% 60%; }
 }
 @media (max-width: 400px) {
   .titolone { font-size: 3rem; }
@@ -299,7 +299,7 @@ h1, h2, h3 { margin: 0; }
 .spot__valori dd small { display: block; font-stretch: 100%; font-weight: 400; font-size: .84rem; text-transform: none; color: var(--inchiostro-2); margin-top: 4px; }
 .spot__azioni { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .spot__foto { margin-top: clamp(32px, 5vw, 56px); }
-@media (max-width: 700px) { .spot__foto img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 26% 60%; } }
+.spot__mappa img { border: 1px solid var(--linea); }
 @media (max-width: 900px) { .spot__griglia { grid-template-columns: 1fr; } }
 
 /* boa 4: eventi (albo) */
@@ -348,8 +348,9 @@ h1, h2, h3 { margin: 0; }
 .pagina-testa__titolo { font-size: clamp(3.2rem, 1.6rem + 6vw, 6.8rem); }
 .pagina-testa__sotto { max-width: 54ch; margin: 18px 0 0; font-size: clamp(1.05rem, 1rem + .3vw, 1.18rem); color: var(--inchiostro-2); }
 .pagina-testa__foto { margin: 0; }
-.pagina-testa__foto img { width: 100%; aspect-ratio: 1600 / 480; object-fit: cover; }
-@media (max-width: 700px) { .pagina-testa__foto img { aspect-ratio: 16 / 9; } }
+.pagina-testa__foto figcaption { padding-top: 10px; font-size: .82rem; color: var(--inchiostro-2); }
+.pagina-testa__foto img, .pagina-testa__video { display: block; width: 100%; aspect-ratio: 1600 / 480; object-fit: cover; object-position: 50% 60%; background: var(--cielo); }
+@media (max-width: 700px) { .pagina-testa__foto img, .pagina-testa__video { aspect-ratio: 16 / 9; } }
 .sezione { padding-block: clamp(48px, 7vw, 96px); }
 .sezione--spuma { background: var(--spuma); }
 
@@ -497,7 +498,7 @@ h1, h2, h3 { margin: 0; }
 .arrivo__strada dt { font-weight: 700; margin-top: 10px; }
 .arrivo__strada dd { margin: 2px 0 0; color: var(--inchiostro-2); }
 .arrivo__mappa { display: block; margin: 0 0 14px; }
-.arrivo__mappa img { border-radius: 8px; aspect-ratio: 16 / 10; object-fit: cover; object-position: 60% 60%; }
+.arrivo__mappa img { border-radius: 8px; }
 .arrivo .collegamento { color: var(--blu); }
 .arrivo__avviso { margin: 36px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--bianco); border: 1px solid rgba(255, 91, 20, .5); font-size: .88rem; color: var(--inchiostro); max-width: 900px; }
 .arrivo__avviso strong { color: var(--boa-testo); }

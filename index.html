@@ -23,8 +23,8 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     {% include vento.html %}
   </div>
   <figure class="apertura__foto">
-    {% include immagine.html nome="windsurf-miramare" alt="Windsurf in planata nel Golfo di Trieste, sullo sfondo il Castello di Miramare" w=1600 h=696 subito=true %}
-    <figcaption class="contenitore">Windsurf nel golfo, davanti al Castello di Miramare.</figcaption>
+    <video class="apertura__video" data-video-bora data-src-720="{{ '/assets/video/bora-miramare-720.mp4' | relative_url }}" data-src-1080="{{ '/assets/video/bora-miramare-1080.mp4' | relative_url }}" poster="{{ '/assets/video/bora-miramare-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Wing foil e windsurf con la Bora davanti al Castello di Miramare (animazione)"></video>
+    <figcaption class="contenitore">Wing foil e windsurf con la Bora davanti al Castello di Miramare. Animazione generata con l'IA da una foto del club.</figcaption>
   </figure>
 </section>
 
@@ -121,10 +121,21 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     </div>
     <figure class="foto spot__foto">
       <picture>
-        <source type="image/webp" srcset="{{ '/assets/img/golfo-faro-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.webp' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px">
-        <img src="{{ '/assets/img/golfo-faro-2000.jpg' | relative_url }}" srcset="{{ '/assets/img/golfo-faro-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.jpg' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste dall'alto con la Bora: il Faro della Vittoria, il Terrapieno di Barcola e decine di windsurf in mare">
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.webp' | relative_url }}">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.jpg' | relative_url }}">
+        <source type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-largo-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-bora-club-largo-2000.webp' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/golfo-bora-club-largo-1200.jpg' | relative_url }}" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste con la Bora visto da sopra il Faro della Vittoria: decine di windsurf in mare, il Terrapieno di Barcola in basso e il segno del Surf Team Trieste nel punto del club">
       </picture>
-      <figcaption>Il golfo con la Bora: i puntini bianchi in mare sono windsurf.</figcaption>
+      <figcaption>Il golfo con la Bora: i puntini bianchi in mare sono windsurf. Il club è in fondo al Terrapieno, sotto il Faro.</figcaption>
+    </figure>
+    <figure class="foto spot__foto spot__mappa">
+      <picture>
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/mappa-lidar-terrapieno-stretto-1500.webp' | relative_url }} 1500w" sizes="100vw">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.jpg' | relative_url }}">
+        <source type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/mappa-lidar-terrapieno-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/mappa-lidar-terrapieno-largo-1600.jpg' | relative_url }}" width="2400" height="1571" loading="lazy" alt="Mappa del Terrapieno di Barcola dal rilievo LiDAR: il Terrapieno evidenziato in azzurro, il Faro della Vittoria, Viale Miramare e il logo del Surf Team Trieste sulla punta nord-ovest, sulla riva">
+      </picture>
+      <figcaption>Dove siamo: il Terrapieno di Barcola nel rilievo LiDAR della Regione FVG (2017-2020, ombreggiatura del terreno a 0,5 m). Il club è sulla punta nord-ovest, sulla riva.</figcaption>
     </figure>
   </div>
 </section>

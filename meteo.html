@@ -15,6 +15,11 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
   </div>
 </header>
 
+<figure class="pagina-testa__foto">
+  <video class="pagina-testa__video" data-video-bora data-src-720="{{ '/assets/video/bora-golfo-720.mp4' | relative_url }}" poster="{{ '/assets/video/bora-golfo-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Il Golfo di Trieste con la Bora visto dal Faro della Vittoria, con i windsurf in mare (animazione)"></video>
+  <figcaption class="contenitore">Il golfo con la Bora dal Faro della Vittoria. Animazione generata con l'IA da una foto del vecchio sito.</figcaption>
+</figure>
+
 <section class="sezione" aria-labelledby="t-adesso">
   <div class="contenitore">
     <h2 class="solo-lettori" id="t-adesso">Adesso a Barcola</h2>
@@ -84,8 +89,10 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
       </div>
       <figure class="foto">
         <picture>
-          <source type="image/webp" srcset="{{ '/assets/img/golfo-faro-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.webp' | relative_url }} 2000w" sizes="(max-width: 900px) 100vw, 560px">
-          <img src="{{ '/assets/img/golfo-faro-1200.jpg' | relative_url }}" srcset="{{ '/assets/img/golfo-faro-1200.jpg' | relative_url }} 1200w, {{ '/assets/img/golfo-faro-2000.jpg' | relative_url }} 2000w" sizes="(max-width: 900px) 100vw, 560px" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste dall'alto con la Bora: il Faro della Vittoria, il Terrapieno di Barcola e decine di windsurf in mare">
+          <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.webp' | relative_url }}">
+          <source media="(max-width: 700px)" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.jpg' | relative_url }}">
+          <source type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-largo-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-bora-club-largo-2000.webp' | relative_url }} 2000w" sizes="(max-width: 900px) 100vw, 560px">
+          <img src="{{ '/assets/img/golfo-bora-club-largo-1200.jpg' | relative_url }}" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste con la Bora visto da sopra il Faro della Vittoria, con il segno del Surf Team Trieste in fondo al Terrapieno">
         </picture>
         <figcaption>Il golfo con la Bora: i puntini bianchi in mare sono windsurf.</figcaption>
         <div style="margin-top:14px">

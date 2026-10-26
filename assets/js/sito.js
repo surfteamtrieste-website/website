@@ -213,6 +213,27 @@
     }
   }
 
+  /* ── animazioni della Bora (Higgsfield): partono solo se servono ───
+     Niente video con «movimento ridotto» o risparmio dati: resta l'immagine di anteprima.
+     Su schermi stretti si carica la versione 720p. */
+  var videoBora = document.querySelectorAll("[data-video-bora]");
+  var fermo = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    (navigator.connection && navigator.connection.saveData);
+  if (videoBora.length && !fermo) {
+    Array.prototype.forEach.call(videoBora, function (v) {
+      var alta = v.getAttribute("data-src-1080");
+      v.src = (alta && window.innerWidth * (window.devicePixelRatio || 1) > 1400) ? alta : v.getAttribute("data-src-720");
+      var parti = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (voci) {
+          voci.forEach(function (x) { if (x.isIntersecting) parti(); else v.pause(); });
+        }).observe(v);
+      } else {
+        parti();
+      }
+    });
+  }
+
   /* ── modulo lezioni ───────────────────────────────────── */
   var modulo = document.querySelector("[data-modulo]");
   if (modulo) {
