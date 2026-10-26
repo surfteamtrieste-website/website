@@ -7,7 +7,7 @@
 title: Surf Team Trieste
 description: >-
   Windsurf club del Terrapieno di Barcola, Trieste, dal 1997.
-  Windsurf, wing foil e SUP: corsi estivi, eventi, meteo dello spot.
+  Windsurf, wing foil e SUP: corsi tutto l'anno, eventi, meteo dello spot.
 lang: it
 
 # Indirizzo del sito.
@@ -26,8 +26,8 @@ anteprima: true
 # Lasciando "" il modulo apre direttamente l'app di posta di chi scrive (vedi README).
 form_endpoint: "https://formsubmit.co/ajax/surfteamtrieste@gmail.com"
 
-# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club).
-# Mettere false per toglierlo dal fondo pagina.
+# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): finestra che compare
+# alla prima visita (e di nuovo dopo 30 giorni). Mettere false quando il problema è risolto.
 avviso_dominio: true
 
 # Vento Trieste: pagina meteo in tempo reale incorporata in /meteo/

@@ -1,7 +1,7 @@
 ---
 title: Home
 corpo: home
-description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi estivi, eventi, vento in tempo reale e webcam dello spot.
+description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi tutto l'anno, eventi, vento in tempo reale e webcam dello spot.
 ---
 {%- assign club = site.data.club -%}
 {%- assign eventi = site.eventi | sort: "date" | reverse -%}
@@ -14,7 +14,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <div>
       <p class="etichetta">A.S.D. Surf Team Trieste · dal {{ club.fondazione }}</p>
       <h1 class="titolone" id="titolo-home"><span>Bora,</span> <span>alba,</span> <span>Barcola</span></h1>
-      <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi d'estate, eventi, e un gruppo di appassionati che con la Bora esce in acqua dalle prime luci dell'alba.</p>
+      <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi tutto l'anno, eventi, e un gruppo di appassionati che con la Bora esce in acqua dalle prime luci dell'alba.</p>
       <div class="apertura__azioni">
         <a class="bottone bottone--boa" href="{{ '/lezioni/' | relative_url }}">Prenota una lezione</a>
         <a class="bottone bottone--linea" href="{{ '/meteo/' | relative_url }}">Meteo e webcam</a>
@@ -23,8 +23,8 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     {% include vento.html %}
   </div>
   <figure class="apertura__foto">
-    <video class="apertura__video" data-video-bora data-src-720="{{ '/assets/video/bora-alba-720.mp4' | relative_url }}" data-src-1080="{{ '/assets/video/bora-alba-1080.mp4' | relative_url }}" poster="{{ '/assets/video/bora-alba-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Wing foil e windsurf all'alba davanti al Castello di Miramare, in super slow motion (animazione)"></video>
-    <figcaption class="contenitore">Wing foil e windsurf all'alba davanti al Castello di Miramare. Luce e animazione generate con l'IA da una foto del club.</figcaption>
+    <video class="apertura__video" data-video-bora data-src="{{ '/assets/video/barcola-gommone-960.mp4' | relative_url }}" data-src-alta="{{ '/assets/video/barcola-gommone-1280.mp4' | relative_url }}" poster="{{ '/assets/video/barcola-gommone-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Wing foil e windsurf sullo spot di Barcola visti dal gommone, con Trieste e il Faro della Vittoria sullo sfondo"></video>
+    <figcaption class="contenitore">Lo spot di Barcola visto dal gommone: wing foil e windsurf davanti alla riva, sullo sfondo Trieste e il Faro della Vittoria.</figcaption>
   </figure>
 </section>
 
@@ -38,7 +38,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
         <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
         <p>Ottenuta la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana, negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per andare in acqua fin dalle prime luci dell'alba.</p>
         <p>Dopo oltre vent'anni di presidenza, nel 2020 Cesare lascia il posto a Riccardo Marchesi, che dà al club una nuova spinta con l'ambizione di rinnovare la sede sociale.</p>
-        <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola d'estate ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
+        <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola aperta tutto l'anno ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
       </div>
       <div>
         <p class="etichetta">Giornale di bordo</p>
@@ -145,12 +145,12 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     </figure>
     <figure class="foto spot__foto spot__mappa">
       <picture>
-        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/vista3d-spot-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/vista3d-spot-stretto-1200.webp' | relative_url }} 1200w" sizes="100vw">
-        <source media="(max-width: 700px)" srcset="{{ '/assets/img/vista3d-spot-stretto-900.jpg' | relative_url }}">
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/vista3d-spot-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/vista3d-spot-stretto-1200.webp' | relative_url }} 1200w" sizes="100vw" width="1200" height="1000">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/vista3d-spot-stretto-900.jpg' | relative_url }}" width="1200" height="1000">
         <source type="image/webp" srcset="{{ '/assets/img/vista3d-spot-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/vista3d-spot-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
-        <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D dall'alto del Carso verso ovest: la costa da Trieste a Miramare, la fascia di mare dello spot di Barcola, le frecce della Bora da terra verso il largo e il logo del Surf Team Trieste sulla punta del Terrapieno">
+        <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D da drone sulla collina sopra Barcola: il Faro della Vittoria, il Terrapieno con il logo del Surf Team Trieste, la fascia di mare dello spot fino a Miramare e le frecce della Bora che dalla riva escono verso il largo">
       </picture>
-      <figcaption>Lo spot visto dal Carso verso ovest. La Bora scende da terra, da ENE, e soffia verso il largo; la fascia chiara indica lo specchio d'acqua dove si esce, davanti alla riva fra il Terrapieno e Miramare. Modello 3D da rilievo LiDAR e ortofoto della Regione FVG e Copernicus DEM.</figcaption>
+      <figcaption>Lo spot visto da drone, dalla collina sopra Barcola. La Bora scende da terra, da ENE, e soffia verso il largo; la fascia chiara è lo specchio d'acqua dove si esce, davanti alla riva fra il Terrapieno e Miramare. Modello 3D da rilievo LiDAR e ortofoto della Regione FVG e Copernicus DEM.</figcaption>
     </figure>
   </div>
 </section>

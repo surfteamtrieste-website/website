@@ -251,16 +251,16 @@
     Array.prototype.forEach.call(discipline, function (d) { d.classList.add("da-disegnare"); ossVele.observe(d); });
   }
 
-  /* ── animazioni della Bora (Higgsfield): partono solo se servono ───
+  /* ── video di apertura e del meteo: partono solo se servono ───
      Niente video con «movimento ridotto» o risparmio dati: resta l'immagine di anteprima.
-     Su schermi stretti si carica la versione 720p. */
+     Su schermi stretti si carica la versione più leggera (data-src), sui grandi data-src-alta. */
   var videoBora = document.querySelectorAll("[data-video-bora]");
   var fermo = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
     (navigator.connection && navigator.connection.saveData);
   if (videoBora.length && !fermo) {
     Array.prototype.forEach.call(videoBora, function (v) {
-      var alta = v.getAttribute("data-src-1080");
-      v.src = (alta && window.innerWidth * (window.devicePixelRatio || 1) > 1400) ? alta : v.getAttribute("data-src-720");
+      var alta = v.getAttribute("data-src-alta");
+      v.src = (alta && window.innerWidth * (window.devicePixelRatio || 1) > 1400) ? alta : v.getAttribute("data-src");
       var parti = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
       if ("IntersectionObserver" in window) {
         new IntersectionObserver(function (voci) {
@@ -360,5 +360,18 @@
         })
         .then(function () { clearTimeout(attesa); bottone.disabled = false; });
     });
+  }
+
+  /* ── avviso sul vecchio dominio: alla prima visita, poi di nuovo dopo 30 giorni ── */
+  var avviso = document.querySelector("[data-avviso-dominio]");
+  if (avviso && typeof avviso.showModal === "function") {
+    var CHIAVE = "stt-avviso-dominio", visto = 0;
+    try { visto = Number(localStorage.getItem(CHIAVE)) || 0; } catch (e) {}
+    if (Date.now() - visto > 30 * 24 * 3600 * 1000) {
+      avviso.addEventListener("close", function () {
+        try { localStorage.setItem(CHIAVE, String(Date.now())); } catch (e) {}
+      });
+      avviso.showModal();
+    }
   }
 })();

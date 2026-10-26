@@ -1,17 +1,16 @@
 ---
 title: Lezioni
 permalink: /lezioni/
-description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole: scrivici per prenotare."
+description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole: scrivici per prenotare."
 ---
 {%- assign club = site.data.club -%}
 {%- assign corsi = site.data.corsi -%}
-{%- assign primo = club.referenti | first -%}
 
 <header class="pagina-testa">
   <div class="contenitore">
     <p class="etichetta"><span class="boa" aria-hidden="true">2</span> Scuola di windsurf, wing foil e SUP</p>
     <h1 class="pagina-testa__titolo">Lezioni</h1>
-    <p class="pagina-testa__sotto">Corsi estivi a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
+    <p class="pagina-testa__sotto">Corsi tutto l'anno a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
   </div>
 </header>
 
@@ -64,7 +63,7 @@ description: "Corsi estivi di windsurf, wing foil e SUP a Barcola, Trieste, con 
   <div class="contenitore">
       <p class="etichetta">Prenota</p>
       <h2 class="titolo" id="t-richiesta">Scrivici<br><em>per una lezione</em></h2>
-      <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli. Se preferisci, chiama {{ primo.nome }} al {% include tel.html n=primo.telefono %}.</p>
+      <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli.</p>
 
       {%- if site.form_endpoint != "" -%}
         {%- assign azione = site.form_endpoint | replace: "/ajax/", "/" -%}

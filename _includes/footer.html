@@ -10,6 +10,15 @@
       <img class="arrivo__logo" src="{{ '/assets/img/logo-surf-team.svg' | relative_url }}" width="301" height="177" alt="Logo del Surf Team Trieste" loading="lazy">
     </div>
 
+    <a class="arrivo__mappa" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank" aria-label="Apri la mappa del club">
+      <picture>
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/mappa-osm-stretto.webp' | relative_url }}" width="420" height="600">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/mappa-osm-stretto.jpg' | relative_url }}" width="420" height="600">
+        <source type="image/webp" srcset="{{ '/assets/img/mappa-osm-largo.webp' | relative_url }}">
+        <img src="{{ '/assets/img/mappa-osm-largo.jpg' | relative_url }}" width="1160" height="560" loading="lazy" alt="Mappa di Trieste con il Surf Team Trieste in fondo al Terrapieno di Barcola, a Punta Bovedo, e il centro città più a sud">
+      </picture>
+    </a>
+
     <div class="arrivo__griglia">
       <section aria-labelledby="f-contatti">
         <h3 class="arrivo__voce" id="f-contatti">Scrivi o chiama</h3>
@@ -18,18 +27,11 @@
           <li><span class="arrivo__chi">{{ r.nome }}</span> {% include tel.html n=r.telefono %}{% if r.whatsapp %} · <a href="https://wa.me/39{{ r.telefono }}">WhatsApp</a>{% endif %}<br><small>{{ r.ruolo }}</small></li>
           {%- endfor %}
           <li><span class="arrivo__chi">Email</span> <a href="mailto:{{ club.email }}">{{ club.email }}</a></li>
-          <li><span class="arrivo__chi">PEC</span> <a href="mailto:{{ club.pec }}">{{ club.pec }}</a></li>
         </ul>
       </section>
 
       <section aria-labelledby="f-dove">
         <h3 class="arrivo__voce" id="f-dove">Dove siamo</h3>
-        <a class="arrivo__mappa" href="{{ club.indirizzo.mappa }}" rel="noopener" target="_blank" aria-label="Apri la mappa del club">
-          <picture>
-            <source type="image/webp" srcset="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.webp' | relative_url }}">
-            <img src="{{ '/assets/img/mappa-lidar-terrapieno-stretto-900.jpg' | relative_url }}" width="900" height="853" loading="lazy" alt="Mappa LiDAR del Terrapieno di Barcola con il logo del club">
-          </picture>
-        </a>
         <address class="arrivo__indirizzo">
           {{ club.indirizzo.luogo }}<br>
           {{ club.indirizzo.via }}<br>
@@ -66,10 +68,14 @@
     </div>
 
     {%- if site.avviso_dominio %}
-    <p class="arrivo__avviso">
-      <strong>Attenzione:</strong> il vecchio indirizzo <span class="nowrap">windsurfclubtrieste.it</span> non è più gestito dal club
-      e oggi ospita un sito che non è nostro. Non inserite dati personali su quel sito: l'unico sito ufficiale è questo.
-    </p>
+    <dialog class="avviso-dominio" data-avviso-dominio aria-labelledby="avviso-titolo">
+      <p class="avviso-dominio__segno" aria-hidden="true">!</p>
+      <h2 class="avviso-dominio__titolo" id="avviso-titolo">Attenzione al vecchio indirizzo</h2>
+      <p>Il vecchio indirizzo <strong class="nowrap">windsurfclubtrieste.it</strong> non è più gestito dal club e oggi ospita un sito che non è nostro.
+        Non inserite dati personali su quel sito: l'unico sito ufficiale è questo.</p>
+      <p class="avviso-dominio__nota">Per qualsiasi dubbio scrivete a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
+      <form method="dialog"><button class="bottone bottone--boa" type="submit" autofocus>Ho capito</button></form>
+    </dialog>
     {%- endif %}
 
     <p class="arrivo__fondo">© {{ site.time | date: "%Y" }} {{ club.nome }} · Barcola, Trieste · Design Alberto Broggi · <a href="https://bebroggi.it" rel="noopener" target="_blank">bebroggi.it</a></p>

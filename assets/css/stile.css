@@ -513,11 +513,19 @@ h1, h2, h3 { margin: 0; }
 .arrivo__strada summary { cursor: pointer; font-weight: 650; color: var(--blu); }
 .arrivo__strada dt { font-weight: 700; margin-top: 10px; }
 .arrivo__strada dd { margin: 2px 0 0; color: var(--inchiostro-2); }
-.arrivo__mappa { display: block; margin: 0 0 14px; }
-.arrivo__mappa img { border-radius: 8px; }
+.arrivo__mappa { display: block; margin: 0 0 clamp(26px, 4vw, 40px); }
+.arrivo__mappa img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(12, 43, 75, .15); }
 .arrivo .collegamento { color: var(--blu); }
-.arrivo__avviso { margin: 36px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--bianco); border: 1px solid rgba(255, 91, 20, .5); font-size: .88rem; color: var(--inchiostro); max-width: 900px; }
-.arrivo__avviso strong { color: var(--boa-testo); }
+/* avviso sul vecchio dominio: finestra alla prima visita */
+.avviso-dominio { width: min(520px, calc(100vw - 32px)); margin: auto; padding: 30px clamp(20px, 5vw, 34px) 26px; border: 0; border-top: 6px solid var(--boa); border-radius: 14px; background: var(--bianco); color: var(--inchiostro); box-shadow: 0 24px 60px -20px rgba(12, 43, 75, .5); }
+.avviso-dominio::backdrop { background: rgba(12, 43, 75, .45); }
+.avviso-dominio__segno { width: 40px; height: 40px; margin: 0 0 14px; border-radius: 50%; background: var(--boa); color: var(--bianco); font-weight: 800; font-size: 1.3rem; line-height: 40px; text-align: center; }
+.avviso-dominio__titolo { margin: 0 0 12px; font-stretch: 112%; font-weight: 750; font-size: 1.35rem; line-height: 1.15; color: var(--blu-notte); }
+.avviso-dominio p { margin: 0 0 12px; }
+.avviso-dominio strong { color: var(--boa-testo); }
+.avviso-dominio__nota { font-size: .9rem; color: var(--inchiostro-2); }
+.avviso-dominio__nota a { color: var(--blu); }
+.avviso-dominio form { margin: 18px 0 0; }
 .arrivo__fondo { margin: 26px 0 0; font-size: .8rem; color: var(--inchiostro-2); }
 .arrivo__fondo a { color: var(--blu); text-decoration-color: var(--boa); text-underline-offset: 3px; }
 @media (max-width: 1000px) { .arrivo__griglia { grid-template-columns: 1fr 1fr; } }

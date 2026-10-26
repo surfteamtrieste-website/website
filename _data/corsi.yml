@@ -1,7 +1,7 @@
 # Corsi della scuola. Testi dal vecchio sito.
 # I prezzi non si pubblicano: sul sito c'è "chiedi a chi tiene il corso".
 
-stagione: Stagione estiva
+stagione: Tutto l'anno
 dove: Barcola, nello specchio d'acqua davanti al Terrapieno
 gruppi: Gruppi da 3–4 allievi, oppure lezioni singole
 attrezzatura: L'attrezzatura per i corsi è fornita dal club
@@ -41,4 +41,4 @@ elenco:
     testo: >-
       Uno sport molto intuitivo e di facile apprendimento, che si pratica a
       tutti i livelli: dall'uscita amatoriale fino all'agonismo.
-    contatti: [Giorgio, Andrej]
+    contatti: [Andrej]
