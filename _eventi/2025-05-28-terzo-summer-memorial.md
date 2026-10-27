@@ -8,5 +8,4 @@ immagine: ""
 riassunto: 80 rider in acqua per ricordare Summer, in una giornata di sport e ricordo.
 ---
 
-Si è svolto al Surf Team Trieste il terzo **Summer Memorial SUP**, in memoria di Summer.
-All'evento hanno partecipato 80 rider, riuniti per condividere una giornata di sport e ricordo.
+Si è svolto al Surf Team Trieste il terzo **Summer Memorial SUP**, in memoria di Summer. All'evento hanno partecipato 80 rider, riuniti per condividere una giornata di sport e ricordo.

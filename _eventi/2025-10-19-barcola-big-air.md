@@ -18,9 +18,6 @@ risultati:
     dato: 3,0 m
 ---
 
-Domenica 19 ottobre si è svolta la **Barcola Big Air**, una gara di salti in wing foil:
-la prima competizione di questo tipo in Italia. La regola era semplice: vince l'atleta
-capace di realizzare il salto più alto.
+Domenica 19 ottobre si è svolta la **Barcola Big Air**, una gara di salti in wing foil: la prima competizione di questo tipo in Italia. La regola era semplice: vince l'atleta capace di realizzare il salto più alto.
 
-La prima edizione è stata vinta da Davide Hengl, che ha raggiunto un'altezza di 7,4 metri.
-Al secondo posto Tommaso Salvi con 3,2 metri, al terzo Giulio Dal Maso con un salto di 3,0 metri.
+La prima edizione è stata vinta da Davide Hengl, che ha raggiunto un'altezza di 7,4 metri. Al secondo posto Tommaso Salvi con 3,2 metri, al terzo Giulio Dal Maso con un salto di 3,0 metri.

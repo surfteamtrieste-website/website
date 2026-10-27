@@ -8,9 +8,7 @@ immagine: ""
 riassunto: La gara GPS di velocità multidisciplinare, con classifica per disciplina e classifica generale.
 ---
 
-**Speed GPS Barcolan** è una gara GPS di velocità multidisciplinare: si partecipa con il windsurf,
-il wing foil e il SUP. Oltre alle classifiche di ogni disciplina c'è una classifica generale, che somma
-le velocità massime raggiunte in ciascuna.
+**Speed GPS Barcolan** è una gara GPS di velocità multidisciplinare: si partecipa con il windsurf, il wing foil e il SUP. Oltre alle classifiche di ogni disciplina c'è una classifica generale, che somma le velocità massime raggiunte in ciascuna.
 
 ## Regolamento in breve
 
