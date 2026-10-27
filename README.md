@@ -115,6 +115,9 @@ L'indirizzo del servizio sta in `_config.yml` alla voce `form_endpoint`. Lascian
 
 La pagina mostra al suo interno [Vento Trieste](https://ventotrieste.info), con la centralina
 del Terrapieno di Barcola. Non serve fare nulla: i dati si aggiornano da soli.
+Sotto le previsioni Windguru c'è la stazione del club (Windguru 5307) e in fondo i link alle
+guide di Vento Trieste. La centralina risulta offline quando non trasmette da 20 minuti, quando
+segna 0 nodi di media e di raffica o quando Vento Trieste non risponde.
 
 ---
 
@@ -139,6 +142,7 @@ rinnovo automatico). I passaggi:
 
 Sito [Jekyll](https://jekyllrb.com) costruito da GitHub Pages (Settings → Pages →
 *Deploy from a branch*, `main`, cartella `/`). Nessuna dipendenza esterna: caratteri
-(Archivo, licenza OFL in `assets/fonts/`), stile e script sono tutti nel repository.
+(Archivo per i titoli, Manrope per i testi, licenza OFL in `assets/fonts/`), stile e script
+sono tutti nel repository.
 
 Anteprima in locale: `jekyll serve` e poi http://127.0.0.1:4000/website/

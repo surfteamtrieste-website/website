@@ -4,7 +4,8 @@ permalink: /meteo/
 description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni Windguru e Vento Trieste. Come funziona lo spot di Barcola e cosa controllare prima di uscire.
 ---
 {%- assign vt = site.ventotrieste -%}
-{%- assign utm = "utm_source=surfteamtrieste&utm_medium=sito-club&utm_campaign=meteo-barcola" -%}
+{%- comment -%} utm_meteo, non utm: vento.html riassegna utm per il suo badge {%- endcomment -%}
+{%- assign utm_meteo = "utm_source=surfteamtrieste&utm_medium=sito-club&utm_campaign=meteo-barcola" -%}
 {%- assign webcam = "https://content.meteobridge.com/cam/98c72e78ea6476e8074295ab40c6a429/camplus.jpg" -%}
 
 <header class="pagina-testa">
@@ -30,13 +31,33 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
           <img src="{{ webcam }}" width="1790" height="1036" alt="Webcam di Barcola: il mare davanti al Terrapieno verso Miramare, in questo momento">
           <span>Webcam Barcola</span>
         </div>
-        <figcaption>Webcam sul Terrapieno, si aggiorna da sola ogni minuto<span data-webcam-ora></span>. Altre webcam live del golfo su <a href="{{ vt }}?{{ utm }}&utm_content=webcam#webcam" target="_blank" rel="noopener">Vento Trieste</a>.</figcaption>
+        <figcaption>Webcam sul Terrapieno, si aggiorna da sola ogni minuto<span data-webcam-ora></span>. Altre webcam live del golfo su <a href="{{ vt }}?{{ utm_meteo }}&utm_content=webcam#webcam" target="_blank" rel="noopener">Vento Trieste</a>.</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="sezione sezione--spuma" aria-labelledby="t-previsioni">
+<section class="sezione sezione--spuma" aria-labelledby="t-vt">
+  <div class="contenitore">
+    <p class="etichetta">Vento Trieste</p>
+    <h2 class="titolo" id="t-vt">Tutto il golfo<br><em>in tempo reale</em></h2>
+    <div class="finestra">
+      <div class="finestra__barra">
+        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
+        <a class="collegamento" href="{{ vt }}?{{ utm_meteo }}&utm_content=barra" target="_blank" rel="noopener">Apri a schermo intero</a>
+      </div>
+      <iframe src="{{ vt }}?{{ utm_meteo }}&utm_content=iframe" title="Vento Trieste: surfometro di Barcola e vento in tempo reale nel Golfo di Trieste" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen"></iframe>
+      <div class="finestra__piede">Surfometro, centraline, Spinta della Bora, webcam e previsioni da <a href="{{ vt }}?{{ utm_meteo }}&utm_content=piede" target="_blank" rel="noopener">ventotrieste.info</a>, gratuito e senza pubblicità.</div>
+    </div>
+    <ul class="strumenti" style="margin-top:28px">
+      <li><a href="{{ vt }}mappa/?{{ utm_meteo }}&utm_content=mappa" target="_blank" rel="noopener">Mappa live del Golfo <span>tutte le centraline</span></a></li>
+      <li><a href="{{ vt }}registro/?{{ utm_meteo }}&utm_content=registro" target="_blank" rel="noopener">Registro del vento <span>com'era ieri e i giorni scorsi</span></a></li>
+      <li><a href="https://www.meteo.fvg.it/" target="_blank" rel="noopener">Meteo FVG <span>previsioni ufficiali della Regione</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sezione" aria-labelledby="t-previsioni">
   <div class="contenitore">
     <p class="etichetta">Previsioni</p>
     <h2 class="titolo" id="t-previsioni">Windguru<br><em>per Trieste</em></h2>
@@ -47,37 +68,39 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
         <button type="button" role="tab" aria-selected="false" data-wg-spot="49156" data-wg-model="104">ICON-2I</button>
       </div>
       <div class="windguru__palco" data-wg-palco role="tabpanel"><p data-wg-attesa>Le previsioni compaiono qui tra un attimo.</p></div>
-      <p class="windguru__nota">WG è la sintesi di più modelli fatta da Windguru; ALADIN e ICON-2I sono i modelli ad alta risoluzione, più affidabili con la Bora. Vento in nodi. Previsioni di <a href="https://www.windguru.cz/49156" target="_blank" rel="noopener">windguru.cz</a>.</p>
+      <p class="windguru__nota">WG è la sintesi di più modelli fatta da Windguru; ALADIN e ICON-2I sono i modelli ad alta risoluzione, più affidabili con la Bora. Vento in nodi. Previsioni di <a href="https://www.windguru.cz/49156" target="_blank" rel="noopener">windguru.cz</a>. Come si legge la tabella: <a href="{{ vt }}guida/windguru/?{{ utm_meteo }}&utm_content=guida-windguru" target="_blank" rel="noopener">la guida di Vento Trieste</a>.</p>
     </div>
-  </div>
-</section>
 
-<section class="sezione" aria-labelledby="t-vt">
-  <div class="contenitore">
-    <p class="etichetta">Vento Trieste</p>
-    <h2 class="titolo" id="t-vt">Tutto il golfo<br><em>in tempo reale</em></h2>
-    <div class="finestra">
+    <div class="finestra finestra--stazione" data-stazione>
       <div class="finestra__barra">
-        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
-        <a class="collegamento" href="{{ vt }}?{{ utm }}&utm_content=barra" target="_blank" rel="noopener">Apri a schermo intero</a>
+        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> La nostra stazione · Barcola <span class="finestra__stato" data-stazione-stato></span></span>
+        <a class="collegamento" href="https://www.windguru.cz/station/5307" target="_blank" rel="noopener">Apri su Windguru</a>
       </div>
-      <iframe src="{{ vt }}?{{ utm }}&utm_content=iframe" title="Vento Trieste: vento in tempo reale a Barcola e nel Golfo di Trieste" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen"></iframe>
-      <div class="solo-telefono">
-        <p>Surfometro, centraline di tutto il golfo, Bora, webcam live e previsioni: su telefono si legge meglio a pagina intera.</p>
-        <a class="bottone bottone--blu" href="{{ vt }}?{{ utm }}&utm_content=telefono" target="_blank" rel="noopener">Apri Vento Trieste</a>
-      </div>
-      <div class="finestra__piede">Tutto da <a href="{{ vt }}?{{ utm }}&utm_content=piede" target="_blank" rel="noopener">ventotrieste.info</a>, gratuito e senza pubblicità. Fonti dei dati e crediti sul sito di Vento Trieste.</div>
+      <iframe src="https://www.windguru.cz/wglive-iframe.php?s=5307&amp;wj=knots&amp;tj=c&amp;m=3&amp;show=n,g,c&amp;direct=1" title="Stazione Windguru del Surf Team Trieste sul Terrapieno di Barcola: vento delle ultime 24 ore e valore attuale" loading="lazy" scrolling="no"></iframe>
+      <div class="finestra__piede">La centralina del club sul Terrapieno: vento e raffiche delle ultime 24 ore, in nodi. È quella da cui arrivano i dati del vento in tempo reale qui e su Vento Trieste. Quando smette di trasmettere o segna 0 nodi la segniamo offline.</div>
     </div>
-    <ul class="strumenti" style="margin-top:28px">
-      <li><a href="{{ vt }}mappa/?{{ utm }}&utm_content=mappa" target="_blank" rel="noopener">Mappa live del Golfo <span>tutte le centraline</span></a></li>
-      <li><a href="{{ vt }}bora-trieste/?{{ utm }}&utm_content=bora" target="_blank" rel="noopener">La Bora a Trieste <span>come nasce e come si legge</span></a></li>
-      <li><a href="{{ vt }}registro/?{{ utm }}&utm_content=registro" target="_blank" rel="noopener">Registro del vento <span>com'era ieri e i giorni scorsi</span></a></li>
-      <li><a href="https://www.meteo.fvg.it/" target="_blank" rel="noopener">Meteo FVG <span>previsioni ufficiali della Regione</span></a></li>
-    </ul>
   </div>
 </section>
 
-<section class="sezione sezione--spuma" aria-labelledby="t-spot">
+<section class="sezione sezione--spuma" aria-labelledby="t-guide">
+  <div class="contenitore">
+    <p class="etichetta">Dal blog di Vento Trieste</p>
+    <h2 class="titolo" id="t-guide">Impara a leggere<br><em>il vento</em></h2>
+    <ul class="guide">
+      <li><a class="guida" href="{{ vt }}bora-trieste/?{{ utm_meteo }}&utm_content=guida-bora" target="_blank" rel="noopener"><span class="guida__tema">Bora</span><strong class="guida__titolo">La Bora a Trieste</strong><span class="guida__testo">Come nasce, da dove soffia, come si leggono raffiche e segnali live.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/spinta-bora/?{{ utm_meteo }}&utm_content=guida-spinta-bora" target="_blank" rel="noopener"><span class="guida__tema">Bora</span><strong class="guida__titolo">Spinta della Bora</strong><span class="guida__testo">La differenza di pressione tra Maribor e Trieste: sopra 3,5 hPa la Bora si accende.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/pressione/?{{ utm_meteo }}&utm_content=guida-pressione" target="_blank" rel="noopener"><span class="guida__tema">Pressione</span><strong class="guida__titolo">Barometro e vento</strong><span class="guida__testo">Con la Bora il vento forte arriva quando la pressione sale, non quando scende.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/surfometro/?{{ utm_meteo }}&utm_content=guida-surfometro" target="_blank" rel="noopener"><span class="guida__tema">Strumenti</span><strong class="guida__titolo">Come si legge il surfometro</strong><span class="guida__testo">Vento medio e raffica degli ultimi 10 minuti, la scala da bavisela a buriana.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/windguru/?{{ utm_meteo }}&utm_content=guida-windguru" target="_blank" rel="noopener"><span class="guida__tema">Previsioni</span><strong class="guida__titolo">Windguru: WG, ALADIN e ICON-2I</strong><span class="guida__testo">Come si legge la tabella e quale modello guardare per Trieste.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/previsioni/?{{ utm_meteo }}&utm_content=guida-previsioni" target="_blank" rel="noopener"><span class="guida__tema">Previsioni</span><strong class="guida__titolo">OSMER, ALADIN e Grafico della Bora</strong><span class="guida__testo">Il bollettino della Regione e le mappe del vento sul golfo ogni 3 ore.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/boe-onde/?{{ utm_meteo }}&utm_content=guida-boe" target="_blank" rel="noopener"><span class="guida__tema">Mare</span><strong class="guida__titolo">Boe e onde del golfo</strong><span class="guida__testo">MAMBO1 davanti a Miramare, Paloma e Vida di Pirano: vento, onda e mare.</span></a></li>
+      <li><a class="guida" href="{{ vt }}guida/parole-del-vento/?{{ utm_meteo }}&utm_content=guida-glossario" target="_blank" rel="noopener"><span class="guida__tema">Glossario</span><strong class="guida__titolo">Le parole del vento</strong><span class="guida__testo">Nodi, raffica, hPa, bora, scirocco e maestrale spiegati semplici.</span></a></li>
+    </ul>
+    <p style="margin:24px 0 0"><a class="collegamento" href="{{ vt }}guida/?{{ utm_meteo }}&utm_content=guida-tutte" target="_blank" rel="noopener">Tutte le guide di Vento Trieste</a></p>
+  </div>
+</section>
+
+<section class="sezione" aria-labelledby="t-spot">
   <div class="contenitore">
     <p class="etichetta">Lo spot</p>
     <h2 class="titolo" id="t-spot">Barcola<br><em>di bolina</em></h2>
@@ -94,7 +117,7 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
   </div>
 </section>
 
-<section class="sezione" aria-labelledby="t-regole">
+<section class="sezione sezione--spuma" aria-labelledby="t-regole">
   <div class="contenitore">
     <p class="etichetta">Dal regolamento del club</p>
     <h2 class="titolo" id="t-regole">Prima<br><em>di uscire</em></h2>

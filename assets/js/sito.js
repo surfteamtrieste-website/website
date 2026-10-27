@@ -22,7 +22,9 @@
   /* ── vento ora a Barcola, dai dati di Vento Trieste ─────
      Il worker di ventotrieste.info tiene una copia dei dati aggiornata ogni minuto.
      Barcola = centralina Windguru sul Terrapieno: media e raffica degli ultimi 10 minuti, in nodi.
-     Se è ferma da più di 20 minuti si mostra Trieste molo (Protezione Civile FVG).
+     È offline se è ferma da più di 20 minuti o se segna 0 nodi sia di media sia di raffica
+     (la centralina a volte resta accesa ma non misura): allora si mostra Trieste molo
+     (Protezione Civile FVG). Se non risponde Vento Trieste, tutto offline.
      Le parole sono quelle del surfometro di Vento Trieste; a Barcola seguono la raffica
      perché la centralina è al riparo (vedi il commento in ventotrieste.info). */
   var DATI_VENTO = "https://ventotrieste-dati.bebroggi.workers.dev/";
@@ -66,7 +68,8 @@
     if (b && typeof b.wind_avg === "number" && b.unixtime) {
       out.barcola = {
         luogo: "Barcola", media: b.wind_avg, raffica: b.wind_max, deg: b.wind_direction,
-        ora: oraDa(b.unixtime), eta: (Date.now() / 1000 - b.unixtime) / 60, parolaSu: b.wind_max
+        ora: oraDa(b.unixtime), eta: (Date.now() / 1000 - b.unixtime) / 60, parolaSu: b.wind_max,
+        zero: b.wind_avg === 0 && !(b.wind_max > 0)
       };
     }
     var t = d && d.trieste && d.trieste[0];
@@ -77,14 +80,16 @@
     return out;
   }
 
+  function barcolaViva(b) { return !!b && b.eta <= VECCHIO_MIN && !b.zero; }
+
   function mostraVento(box, l) {
     var q = function (s) { return box.querySelector(s); };
-    var b = l.barcola, viva = b && b.eta <= VECCHIO_MIN;
+    var b = l.barcola, viva = barcolaViva(b);
     var scelta = viva ? b : l.trieste;
-    if (!scelta || isNaN(scelta.media)) return erroreVento(box);
+    if (!scelta || isNaN(scelta.media)) return erroreVento(box, "Barcola offline");
 
-    box.setAttribute("data-stato", "ok");
-    q("[data-v-luogo]").textContent = viva ? "Vento ora a Barcola" : "Vento ora a Trieste (molo)";
+    box.setAttribute("data-stato", viva ? "ok" : "offline");
+    q("[data-v-luogo]").textContent = viva ? "Vento ora a Barcola" : "Barcola offline · vento al molo";
     q("[data-v-kt]").textContent = nodi(scelta.media, scelta.raffica);
     q("[data-v-dir]").textContent = [direzione(scelta.deg), "ore " + scelta.ora].filter(Boolean).join(" · ");
     var freccia = q("[data-v-freccia]");
@@ -101,7 +106,7 @@
     parola.hidden = false;
     q("[data-v-fonte]").textContent = viva
       ? "Media e raffica degli ultimi 10 minuti dalla centralina sul Terrapieno."
-      : "La centralina di Barcola ora non trasmette: dati della Protezione Civile FVG al molo di Trieste.";
+      : "La centralina di Barcola è offline (non trasmette o segna 0 nodi): qui il vento al molo di Trieste, dati della Protezione Civile FVG.";
 
     var righe = q("[data-v-righe]");
     if (righe) {
@@ -113,7 +118,7 @@
         nome.textContent = r.luogo === "Barcola" ? "Barcola, Terrapieno" : "Trieste molo";
         var val = document.createElement("b");
         val.textContent = (r === b && !viva)
-          ? "ferma dalle " + r.ora
+          ? (r.zero ? "offline · segna 0 nodi" : "offline dalle " + r.ora)
           : nodi(r.media, r.raffica) + " kt · " + (direzione(r.deg) || "–") + " · " + r.ora;
         li.appendChild(nome); li.appendChild(val); righe.appendChild(li);
       });
@@ -122,11 +127,25 @@
     }
   }
 
-  function erroreVento(box) {
-    box.setAttribute("data-stato", "errore");
-    box.querySelector("[data-v-kt]").textContent = "–";
-    box.querySelector("[data-v-dir]").textContent = "Dati non disponibili in questo momento.";
-    box.querySelector("[data-v-parola]").hidden = true;
+  function erroreVento(box, titolo) {
+    var q = function (s) { return box.querySelector(s); };
+    box.setAttribute("data-stato", "offline");
+    q("[data-v-luogo]").textContent = titolo || "Vento Trieste offline";
+    q("[data-v-kt]").textContent = "–";
+    q("[data-v-dir]").textContent = "Dati non disponibili in questo momento.";
+    q("[data-v-freccia]").hidden = true;
+    q("[data-v-parola]").hidden = true;
+    q("[data-v-fonte]").textContent = "Riprovo da solo tra due minuti.";
+    if (q("[data-v-righe]")) q("[data-v-righe]").hidden = true;
+  }
+
+  /* la stazione Windguru del club nella pagina meteo: online solo se Vento Trieste la vede misurare */
+  function statoStazione(l) {
+    var st = document.querySelector("[data-stazione]");
+    if (!st) return;
+    var viva = barcolaViva(l && l.barcola);
+    st.setAttribute("data-stato", viva ? "ok" : "offline");
+    st.querySelector("[data-stazione-stato]").textContent = viva ? "online" : "offline";
   }
 
   var boxVento = document.querySelectorAll("[data-vento]");
@@ -139,8 +158,12 @@
         .then(function (d) {
           var l = letture(d);
           Array.prototype.forEach.call(boxVento, function (box) { mostraVento(box, l); });
+          statoStazione(l);
         })
-        .catch(function () { Array.prototype.forEach.call(boxVento, erroreVento); })
+        .catch(function () {
+          Array.prototype.forEach.call(boxVento, function (box) { erroreVento(box); });
+          statoStazione(null);
+        })
         .then(function () { clearTimeout(timer); });
     };
     leggi();
