@@ -1,14 +1,8 @@
-# Consiglio Direttivo — sezione pronta ma NASCOSTA (riunione 21/10/2026: "da decidere").
-# Per mostrarla in home mettere  mostra: true  e completare i nomi (compare in fondo alla sezione «Il club»).
-
-mostra: false
-
+mostra: true
 membri:
   - carica: Presidente
     nome: Riccardo Marchesi
   - carica: Vicepresidente
-    nome: ""
   - carica: Segretario
     nome: Andrej Prassel
   - carica: Tesoriere
-    nome: ""
