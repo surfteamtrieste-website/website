@@ -52,7 +52,7 @@
         <h3 class="arrivo__voce" id="f-doc">Statuto e regolamento</h3>
         <ul class="arrivo__lista arrivo__lista--doc">
           {%- for d in site.data.documenti %}
-          <li>{% if d.file != "" %}<a href="{{ d.file | prepend: '/' | relative_url }}">{{ d.titolo }}</a>{% else %}<span>{{ d.titolo }}</span>{% endif %} <small>{{ d.nota }}</small></li>
+          <li>{% if d.file != "" %}<a href="{{ d.file | relative_url }}">{{ d.titolo }}</a>{% else %}<span>{{ d.titolo }}</span>{% endif %} <small>{{ d.nota }}</small></li>
           {%- endfor %}
         </ul>
       </section>
@@ -72,8 +72,8 @@
       <p class="avviso-dominio__segno" aria-hidden="true">!</p>
       <h2 class="avviso-dominio__titolo" id="avviso-titolo">Attenzione al vecchio indirizzo</h2>
       <p>Il vecchio indirizzo <strong class="nowrap">windsurfclubtrieste.it</strong> non è più gestito dal club e oggi ospita un sito che non è nostro.
-        Non inserite dati personali su quel sito: l'unico sito ufficiale è questo.</p>
-      <p class="avviso-dominio__nota">Per qualsiasi dubbio scrivete a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
+        Non inserire dati personali su quel sito: l'unico sito ufficiale del club è questo.</p>
+      <p class="avviso-dominio__nota">Per qualsiasi dubbio scrivi a <a href="mailto:{{ club.email }}">{{ club.email }}</a>.</p>
       <form method="dialog"><button class="bottone bottone--boa" type="submit" autofocus>Ho capito</button></form>
     </dialog>
     {%- endif %}

@@ -4,17 +4,17 @@
 # file: "" = documento non ancora disponibile (si vede "in aggiornamento").
 
 - titolo: Statuto
-  file: documenti/statuto-surf-team-trieste.pdf
+  file: /documenti/statuto-surf-team-trieste.pdf
   nota: atto notarile del 2024
 
 - titolo: Regolamento del club
-  file: documenti/regolamento-surf-team-trieste.pdf
+  file: /documenti/regolamento-surf-team-trieste.pdf
   nota: approvato il 22 marzo 2020
 
 - titolo: Affiliazione CONI
-  file: documenti/certificato-affiliazione-coni.pdf
+  file: /documenti/certificato-affiliazione-coni.pdf
   nota: certificato
 
 - titolo: Adesione AICS
-  file: documenti/certificato-adesione-aics.pdf
+  file: /documenti/certificato-adesione-aics.pdf
   nota: certificato

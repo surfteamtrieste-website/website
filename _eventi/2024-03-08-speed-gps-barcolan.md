@@ -3,13 +3,13 @@ title: Speed GPS Barcolan
 date: 2024-03-08
 data_testo: Per tutto il 2024
 luogo: Spot di Barcola
-disciplina: Windsurf · Wing foil · SUP
+disciplina: [Windsurf, Wing foil, SUP]
 immagine: ""
 riassunto: La gara GPS di velocità multidisciplinare, con classifica per disciplina e classifica generale.
 ---
 
 **Speed GPS Barcolan** è una gara GPS di velocità multidisciplinare: si partecipa con il windsurf,
-il wingfoil e il SUP. Oltre alle classifiche di ogni disciplina c'è una classifica generale, che somma
+il wing foil e il SUP. Oltre alle classifiche di ogni disciplina c'è una classifica generale, che somma
 le velocità massime raggiunte in ciascuna.
 
 ## Regolamento in breve

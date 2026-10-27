@@ -1,0 +1,318 @@
+# ─────────────────────────────────────────────────────────────
+#  Pannello di modifica del sito: Pages CMS (https://app.pagescms.org)
+#  Ogni «Salva» nel pannello è un commit su main: il sito si aggiorna
+#  da solo in 1-2 minuti. Come si attiva e come si invitano i soci: README.
+# ─────────────────────────────────────────────────────────────
+
+media:
+  - name: foto
+    label: Foto degli eventi
+    input: assets/img/eventi
+    output: /assets/img/eventi
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: documenti
+    label: Documenti PDF
+    input: documenti
+    output: /documenti
+    extensions: [pdf]
+    rename: safe
+
+content:
+  - name: eventi
+    label: Eventi
+    type: collection
+    path: _eventi
+    format: yaml-frontmatter
+    filename:
+      template: "{fields.date}-{fields.title}.md"
+      field: false
+    view:
+      fields: [title, date, luogo]
+      primary: title
+      sort: [date, title]
+      search: [title, riassunto]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titolo
+        type: string
+        required: true
+      - name: date
+        label: Data dell'evento
+        description: Serve per l'ordine degli eventi. Se la data è futura l'evento compare in «Prossimi appuntamenti».
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: data_testo
+        label: Data scritta per esteso (facoltativa)
+        description: "Come si legge sul sito, per esempio «Sabato 12 giugno 2027» o «Per tutto il 2027». Se resta vuota si usa la data qui sopra (12 giugno 2027)."
+        type: string
+      - name: luogo
+        label: Dove
+        type: string
+        default: Surf Team Trieste, Barcola
+      - name: disciplina
+        label: Disciplina
+        type: select
+        options:
+          multiple: true
+          values: [Windsurf, Wing foil, SUP, Megasup, Kite, Kitefoil, Canoa, Club]
+      - name: riassunto
+        label: Riassunto
+        description: Una o due frasi che compaiono nell'elenco degli eventi e nelle anteprime sui social.
+        type: text
+        required: true
+      - name: immagine
+        label: Foto principale
+        description: Compare accanto al testo e nelle anteprime sui social. Le foto grandi vengono rimpicciolite da sole dopo il salvataggio.
+        type: image
+        options:
+          media: foto
+      - name: body
+        label: Testo
+        description: Il racconto dell'evento. Con il pulsante dell'immagine puoi inserire foto in mezzo al testo.
+        type: rich-text
+        options:
+          format: markdown
+          media: foto
+      - name: galleria
+        label: Galleria di foto
+        description: Le foto compaiono in griglia sotto il testo, nell'ordine scelto qui.
+        type: image
+        options:
+          media: foto
+          multiple:
+            max: 30
+      - name: risultati
+        label: Risultati e classifica
+        description: "Facoltativo. In «Posto» scrivi 1, 2, 3… oppure il nome della categoria (es. Windsurf)."
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{posto} · {nome}"
+        fields:
+          - name: posto
+            label: Posto o categoria
+            type: string
+          - name: nome
+            label: Nome
+            type: string
+          - name: dato
+            label: Risultato
+            description: Per esempio «7,4 m» o «37,7 nodi».
+            type: string
+      - name: in_cima
+        label: Tieni in cima agli elenchi
+        description: Resta primo negli elenchi anche se ci sono eventi più recenti.
+        type: boolean
+
+  - name: corsi
+    label: Corsi
+    type: file
+    path: _data/corsi.yml
+    format: yaml
+    fields:
+      - name: stagione
+        label: Quando
+        type: string
+      - name: dove
+        label: Dove
+        type: string
+      - name: gruppi
+        label: Come (gruppi o lezioni singole)
+        type: string
+      - name: attrezzatura
+        label: Attrezzatura
+        type: string
+      - name: sconti
+        label: Sconti
+        description: I prezzi non si pubblicano.
+        type: string
+        list: true
+      - name: elenco
+        label: Corsi
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nome}"
+        fields:
+          - name: id
+            label: Codice per il link
+            description: Solo lettere minuscole e trattini (es. wing-foil). Non cambiarlo per i corsi esistenti.
+            type: string
+            pattern: "^[a-z0-9-]+$"
+          - name: nome
+            label: Nome
+            type: string
+          - name: vela
+            label: Disegno
+            type: select
+            options:
+              values:
+                - name: windsurf
+                  label: Vela da windsurf
+                - name: wing
+                  label: Ala da wing foil
+                - name: sup
+                  label: Pagaia da SUP
+          - name: sottotitolo
+            label: Sottotitolo
+            type: string
+          - name: breve
+            label: Testo breve (home)
+            type: text
+          - name: testo
+            label: Testo completo (pagina Lezioni)
+            type: text
+          - name: contatti
+            label: Contatti
+            description: Nomi dei referenti, uguali a quelli in «Contatti del club».
+            type: string
+            list: true
+
+  - name: club
+    label: Contatti del club
+    type: file
+    path: _data/club.yml
+    format: yaml
+    fields:
+      - name: nome
+        label: Nome breve
+        type: string
+      - name: ragione_sociale
+        label: Ragione sociale
+        type: string
+      - name: affiliazione
+        label: Affiliazioni
+        type: string
+      - name: fondazione
+        label: Anno di fondazione
+        type: number
+      - name: indirizzo
+        label: Indirizzo
+        type: object
+        fields:
+          - name: luogo
+            label: Luogo
+            type: string
+          - name: via
+            label: Via
+            type: string
+          - name: cap
+            label: CAP
+            type: string
+          - name: citta
+            label: Città
+            type: string
+          - name: mappa
+            label: Link alla mappa
+            type: string
+      - name: email
+        label: Email
+        type: string
+      - name: pec
+        label: PEC (non compare sul sito)
+        type: string
+      - name: codice_fiscale
+        label: Codice fiscale
+        type: string
+      - name: partita_iva
+        label: Partita IVA
+        type: string
+      - name: referenti
+        label: Referenti per corsi e informazioni
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nome}"
+        fields:
+          - name: nome
+            label: Nome
+            type: string
+          - name: ruolo
+            label: Di cosa si occupa
+            type: string
+          - name: telefono
+            label: Telefono
+            description: Senza spazi e senza +39 (es. 3241234567).
+            type: string
+            pattern: "^[0-9]+$"
+          - name: whatsapp
+            label: Mostra anche il link WhatsApp
+            type: boolean
+      - name: come_arrivare
+        label: Come arrivare
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{modo}"
+        fields:
+          - name: modo
+            label: Come
+            type: string
+          - name: testo
+            label: Indicazioni
+            type: text
+      - name: social
+        label: Profili social
+        description: Lascia vuoto se il profilo non c'è.
+        type: object
+        fields:
+          - name: instagram
+            label: Instagram (link)
+            type: string
+          - name: facebook
+            label: Facebook (link)
+            type: string
+
+  - name: documenti
+    label: Statuto e documenti
+    type: file
+    path: _data/documenti.yml
+    format: yaml
+    list: true
+    fields:
+      - name: titolo
+        label: Titolo
+        type: string
+      - name: file
+        label: PDF
+        type: file
+        options:
+          media: documenti
+      - name: nota
+        label: Nota
+        description: Per esempio «approvato il 22 marzo 2020».
+        type: string
+
+  - name: direttivo
+    label: Consiglio Direttivo
+    type: file
+    path: _data/direttivo.yml
+    format: yaml
+    fields:
+      - name: mostra
+        label: Mostra il Direttivo in home
+        type: boolean
+      - name: membri
+        label: Membri
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{carica} · {nome}"
+        fields:
+          - name: carica
+            label: Carica
+            type: string
+          - name: nome
+            label: Nome
+            type: string

@@ -1,14 +1,21 @@
 ---
 layout: default
 ---
+{%- assign disciplina = page.disciplina | join: " · " -%}
+{%- comment -%} Le foto inserite dal pannello iniziano con /assets/: qui si aggiunge il baseurl dell'anteprima. {%- endcomment -%}
+{%- assign base = "/" | relative_url -%}
+{%- assign src_foto = 'src="' | append: base | append: 'assets/' -%}
+{%- assign href_foto = 'href="' | append: base | append: 'assets/' -%}
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> <a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a> · {{ page.disciplina }}</p>
+    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> <a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a>{% if disciplina != "" %} · {{ disciplina }}{% endif %}</p>
     <h1 class="pagina-testa__titolo" style="font-size:clamp(2.6rem, 1.4rem + 5vw, 5.6rem)">{{ page.title }}</h1>
     <dl class="evento__meta">
-      <div><dt>Quando</dt><dd>{{ page.data_testo }}</dd></div>
+      <div><dt>Quando</dt><dd>{% include data-evento.html evento=page %}</dd></div>
       <div><dt>Dove</dt><dd>{{ page.luogo }}</dd></div>
-      <div><dt>Disciplina</dt><dd>{{ page.disciplina }}</dd></div>
+      {%- if disciplina != "" %}
+      <div><dt>Disciplina</dt><dd>{{ disciplina }}</dd></div>
+      {%- endif %}
     </dl>
   </div>
 </header>
@@ -17,16 +24,16 @@ layout: default
   <div class="contenitore">
     <div class="evento__corpo">
       <div class="testo">
-        {{ content }}
+        {{ content | replace: 'src="/assets/', src_foto | replace: 'href="/assets/', href_foto }}
         <p style="margin-top:32px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
       </div>
       <div>
         {%- if page.immagine and page.immagine != "" %}
         <figure class="locandina" style="margin-bottom:32px">
-          <img src="{{ page.immagine | prepend: '/' | relative_url }}" alt="{{ page.title }}" loading="lazy">
+          <img src="{{ page.immagine | relative_url }}" alt="{{ page.title }}" loading="lazy">
         </figure>
         {%- endif %}
-        {%- if page.risultati %}
+        {%- if page.risultati and page.risultati.size > 0 %}
         <p class="etichetta">Risultati</p>
         <dl class="podio">
           {%- for r in page.risultati %}
@@ -37,5 +44,13 @@ layout: default
         {%- endif %}
       </div>
     </div>
+    {%- if page.galleria and page.galleria.size > 0 %}
+    <h2 class="solo-lettori">Foto</h2>
+    <ul class="galleria">
+      {%- for foto in page.galleria %}
+      <li><a href="{{ foto | relative_url }}"><img src="{{ foto | relative_url }}" alt="{{ page.title }}, foto {{ forloop.index }}" loading="lazy"></a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
   </div>
 </section>

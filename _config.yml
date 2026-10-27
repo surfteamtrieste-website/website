@@ -43,6 +43,9 @@ collections:
     output: true
     permalink: /eventi/:name/
 
+# Pubblica anche gli eventi con data futura (vanno in «Prossimi appuntamenti»).
+future: true
+
 defaults:
   - scope: { path: "", type: eventi }
     values: { layout: evento }

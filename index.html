@@ -14,7 +14,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <div>
       <p class="etichetta">A.S.D. Surf Team Trieste · dal {{ club.fondazione }}</p>
       <h1 class="titolone" id="titolo-home"><span>Bora,</span> <span>alba,</span> <span>Barcola</span></h1>
-      <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi tutto l'anno, eventi, e un gruppo di appassionati che con la Bora esce in acqua dalle prime luci dell'alba.</p>
+      <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi tutto l'anno, eventi e un gruppo di appassionati che con la Bora esce in acqua fin dalle prime luci dell'alba.</p>
       <div class="apertura__azioni">
         <a class="bottone bottone--boa" href="{{ '/lezioni/' | relative_url }}">Prenota una lezione</a>
         <a class="bottone bottone--linea" href="{{ '/meteo/' | relative_url }}">Meteo e webcam</a>
@@ -35,8 +35,8 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <h2 class="titolo" id="t-club">Un pezzo di spiaggia<br><em>e tanta Bora</em></h2>
     <div class="club__griglia">
       <div class="club__storia testo">
-        <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
-        <p>Ottenuta la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana, negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per andare in acqua fin dalle prime luci dell'alba.</p>
+        <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc e appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
+        <p>Il club ottiene la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana e negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per uscire in acqua fin dalle prime luci dell'alba.</p>
         <p>Dopo oltre vent'anni di presidenza, nel 2020 Cesare lascia il posto a Riccardo Marchesi, che dà al club una nuova spinta con l'ambizione di rinnovare la sede sociale.</p>
         <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola aperta tutto l'anno ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
       </div>
@@ -49,7 +49,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
           <li><span class="giornale__anno">1997</span><p>Cesare Redolfi e un gruppo di amici fondano il primo club di windsurfisti della zona.</p></li>
           <li><span class="giornale__anno">2020</span><p>Riccardo Marchesi diventa presidente. Il club entra nella rete AICS Windsurfing.</p></li>
           <li><span class="giornale__anno">2023</span><p>Barcolana Fun: 68 partecipanti nella gara GPS organizzata con SVBG e Kitelife.</p></li>
-          <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wingfoil in Italia.</p></li>
+          <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wing foil in Italia.</p></li>
         </ol>
         </div>
       </div>
@@ -70,7 +70,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
         <li>Tavole per la scuola</li>
         <li>Zona ombreggiata</li>
       </ul>
-      <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. All'altezza dell'unico semaforo, con parcheggio facile, la fermata dell'autobus e lo spazio camper del vicino Park Bovedo.</p>
+      <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. Ci trovi all'altezza dell'unico semaforo, vicino alla fermata dell'autobus, con parcheggio comodo e l'area camper del Park Bovedo.</p>
     </div>
 
     {%- if site.data.direttivo.mostra %}
@@ -93,7 +93,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <h2 class="titolo" id="t-lezioni">Dai primi passi<br><em>alla prima planata</em></h2>
     <figure class="scatto">
       {% include immagine.html nome="andrej-windsurf-planata" alt="Andrej in planata sul windsurf, vela gialla, nel Golfo di Trieste" w=1600 h=900 sizes="(max-width: 1240px) 100vw, 1160px" %}
-      <figcaption>Andrej, che segue i corsi del club, in planata nel Golfo.</figcaption>
+      <figcaption>Andrej, referente dei corsi del club, in planata nel Golfo.</figcaption>
     </figure>
     <div class="discipline">
       {%- for c in site.data.corsi.elenco %}
@@ -169,7 +169,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
         <ol class="albo">
           {%- for e in eventi limit: 4 %}
           <li><a href="{{ e.url | relative_url }}">
-            <span class="albo__data">{{ e.data_testo }}</span>
+            <span class="albo__data">{% include data-evento.html evento=e %}</span>
             <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small></span>
             <span class="albo__freccia" aria-hidden="true">→</span>
           </a></li>

@@ -3,7 +3,7 @@ title: Entriamo nella rete AICS Windsurfing
 date: 2020-05-16
 data_testo: 16 maggio 2020
 luogo: Trieste
-disciplina: Club
+disciplina: [Club]
 immagine: ""
 riassunto: Il club entra nel Settore Nazionale Windsurf AICS, con progetti comuni su formazione, gare amatoriali e ambiente.
 ---

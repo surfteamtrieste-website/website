@@ -95,6 +95,10 @@ h1, h2, h3 { margin: 0; }
 .testo li { margin-bottom: .4em; }
 .testo li::marker { color: var(--boa); }
 .testo a { color: var(--blu); text-decoration-color: var(--boa); text-underline-offset: 3px; }
+.testo h3 { font-weight: 750; font-size: 1.15rem; margin: 1.6em 0 .4em; color: var(--blu-notte); }
+.testo ol { padding-left: 1.4em; }
+.testo blockquote { margin: 1.4em 0; padding-left: 18px; border-left: 3px solid var(--boa); color: var(--inchiostro-2); }
+.testo img { border-radius: 6px; margin: 1.4em 0; }
 
 /* boa numerata: il segno del percorso */
 .boa {
@@ -490,6 +494,11 @@ h1, h2, h3 { margin: 0; }
 .podio dd { margin: 0; font-weight: 650; }
 .podio dd span { display: block; font-weight: 400; color: var(--inchiostro-2); }
 @media (max-width: 860px) { .evento__corpo { grid-template-columns: 1fr; } }
+.galleria { list-style: none; margin: clamp(36px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 12px; }
+.galleria a { display: block; border-radius: 6px; overflow: hidden; background: var(--spuma); }
+.galleria img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .4s ease; }
+.galleria a:hover img, .galleria a:focus-visible img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .galleria img { transition: none; } .galleria a:hover img { transform: none; } }
 
 /* ── arrivo (piè di pagina) ───────────────────────────────── */
 .arrivo { background: var(--cielo); color: var(--inchiostro); padding-bottom: 26px; }

@@ -19,7 +19,7 @@ description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer
   <div class="contenitore">
     <p class="etichetta"><span class="boa" aria-hidden="true">4</span> Eventi</p>
     <h1 class="pagina-testa__titolo">Eventi</h1>
-    <p class="pagina-testa__sotto">Gare GPS di velocità, salti in wingfoil, regate di megasup e la settimana della Barcolana: l'albo del club, dal più recente.</p>
+    <p class="pagina-testa__sotto">Gare GPS di velocità, salti in wing foil, regate di megasup e la settimana della Barcolana: l'albo del club, dal più recente.</p>
   </div>
 </header>
 
@@ -33,8 +33,8 @@ description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer
         {%- assign prossimi = prossimi | reverse -%}
         {%- for e in prossimi %}
         <li><a href="{{ e.url | relative_url }}">
-          <span class="albo__data">{{ e.data_testo }}</span>
-          <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{{ e.disciplina }} · {{ e.luogo }}</span></span>
+          <span class="albo__data">{% include data-evento.html evento=e %}</span>
+          <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{% assign d = e.disciplina | join: " · " %}{% if d != "" %}{{ d }} · {% endif %}{{ e.luogo }}</span></span>
           <span class="albo__freccia" aria-hidden="true">→</span>
         </a></li>
         {%- endfor %}
@@ -61,8 +61,8 @@ description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer
         <ol class="albo">
           {%- for e in gruppo.items %}
           <li><a href="{{ e.url | relative_url }}">
-            <span class="albo__data">{{ e.data_testo }}</span>
-            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{{ e.disciplina }} · {{ e.luogo }}</span></span>
+            <span class="albo__data">{% include data-evento.html evento=e %}</span>
+            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{% assign d = e.disciplina | join: " · " %}{% if d != "" %}{{ d }} · {% endif %}{{ e.luogo }}</span></span>
             <span class="albo__freccia" aria-hidden="true">→</span>
           </a></li>
           {%- endfor %}

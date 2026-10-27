@@ -1,0 +1,36 @@
+# Dopo ogni foto caricata dal pannello: la rimpicciolisce e toglie i dati GPS,
+# poi salva la versione leggera (lo script è in .github/scripts/foto-eventi.py).
+name: Foto eventi leggere
+
+on:
+  push:
+    branches: [main]
+    paths: ["assets/img/eventi/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: foto-eventi
+  cancel-in-progress: false
+
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pillow
+      - run: python .github/scripts/foto-eventi.py assets/img/eventi
+      - name: Salva le foto ridotte
+        run: |
+          git add assets/img/eventi
+          if git diff --cached --quiet; then echo "Foto già a posto"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Foto degli eventi ridotte per il sito"
+          git pull --rebase
+          git push

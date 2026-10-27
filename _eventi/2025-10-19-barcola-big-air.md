@@ -3,9 +3,9 @@ title: Barcola Big Air — wingfoil edition
 date: 2025-10-19
 data_testo: Domenica 19 ottobre 2025
 luogo: Barcola, Trieste
-disciplina: Wing foil
+disciplina: [Wing foil]
 immagine: ""
-riassunto: La prima gara di salti in wingfoil in Italia. Vince chi salta più in alto.
+riassunto: La prima gara di salti in wing foil in Italia. Vince chi salta più in alto.
 risultati:
   - posto: 1
     nome: Davide Hengl
@@ -18,7 +18,7 @@ risultati:
     dato: 3,0 m
 ---
 
-Domenica 19 ottobre si è svolta la **Barcola Big Air**, una gara di salti in wingfoil:
+Domenica 19 ottobre si è svolta la **Barcola Big Air**, una gara di salti in wing foil:
 la prima competizione di questo tipo in Italia. La regola era semplice: vince l'atleta
 capace di realizzare il salto più alto.
 

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Data di un evento: il testo di data_testo, se c'è, altrimenti la data in italiano (12 giugno 2027).
+  Uso: {% include data-evento.html evento=e %}
+{%- endcomment -%}
+{%- assign e = include.evento -%}
+{%- if e.data_testo and e.data_testo != "" -%}
+{{ e.data_testo }}
+{%- else -%}
+{%- assign mesi = "gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ottobre novembre dicembre" | split: " " -%}
+{%- assign m = e.date | date: "%-m" | minus: 1 -%}
+{{ e.date | date: "%-d" }} {{ mesi[m] }} {{ e.date | date: "%Y" }}
+{%- endif -%}
