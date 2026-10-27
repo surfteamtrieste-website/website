@@ -77,7 +77,7 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
     <div class="direttivo">
       <p class="etichetta">Il Consiglio Direttivo</p>
       <dl>
-        {%- for m in site.data.direttivo.membri %}{% if m.nome != "" %}
+        {%- for m in site.data.direttivo.membri %}{% if m.nome and m.nome != "" %}
         <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
         {%- endif %}{% endfor %}
       </dl>

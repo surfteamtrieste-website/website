@@ -52,7 +52,7 @@
         <h3 class="arrivo__voce" id="f-doc">Statuto e regolamento</h3>
         <ul class="arrivo__lista arrivo__lista--doc">
           {%- for d in site.data.documenti %}
-          <li>{% if d.file != "" %}<a href="{{ d.file | relative_url }}">{{ d.titolo }}</a>{% else %}<span>{{ d.titolo }}</span>{% endif %} <small>{{ d.nota }}</small></li>
+          <li>{% if d.file and d.file != "" %}<a href="{{ d.file | relative_url }}">{{ d.titolo }}</a>{% else %}<span>{{ d.titolo }}</span>{% endif %} <small>{{ d.nota }}</small></li>
           {%- endfor %}
         </ul>
       </section>
