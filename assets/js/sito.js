@@ -299,6 +299,22 @@
     });
   }
 
+  /* ── video degli eventi: copertina nostra, al clic il video di YouTube parte nella pagina ── */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-youtube]"), function (box) {
+    var link = box.querySelector("a");
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + box.getAttribute("data-youtube") + "?autoplay=1&rel=0";
+      f.title = link.getAttribute("aria-label");
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allowFullscreen = true;
+      box.replaceChild(f, link);
+      f.focus();
+    });
+  });
+
   /* ── avviso sul vecchio dominio: alla prima visita, poi di nuovo dopo 30 giorni ── */
   var avviso = document.querySelector("[data-avviso-dominio]");
   if (avviso && typeof avviso.showModal === "function") {

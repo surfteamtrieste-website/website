@@ -6,6 +6,7 @@ luogo: Surf Team Trieste, Barcola
 disciplina: [SUP]
 immagine: ""
 video: https://www.youtube.com/watch?v=WW9zpxBL2Og
+video_copertina: /assets/img/eventi/summer-memorial-2025-copertina.jpg
 riassunto: 80 rider in acqua per ricordare Summer, in una giornata di sport e ricordo.
 ---
 

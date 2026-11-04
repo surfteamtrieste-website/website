@@ -70,6 +70,12 @@ content:
         label: Video YouTube
         description: "Facoltativo. Il link del video su YouTube (es. https://www.youtube.com/watch?v=…): si guarda dentro il sito, sotto l'evento nell'albo e nella sua pagina. Se c'è il video, al posto della foto principale si vede il video."
         type: string
+      - name: video_copertina
+        label: Copertina del video
+        description: Facoltativa. L'immagine che si vede prima di far partire il video. Se resta vuota si usa quella di YouTube.
+        type: image
+        options:
+          media: foto
       - name: immagine
         label: Foto principale
         description: Compare sotto l'evento nell'albo (se non c'è un video), nella sua pagina e nelle anteprime sui social. Le foto grandi vengono rimpicciolite da sole dopo il salvataggio.

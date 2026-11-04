@@ -7,6 +7,8 @@
 {%- assign descrizione = page.description | default: page.riassunto | default: site.description | strip_newlines | strip -%}
 {%- if page.immagine and page.immagine != "" -%}
   {%- assign og = page.immagine | absolute_url -%}
+{%- elsif page.video_copertina and page.video_copertina != "" -%}
+  {%- assign og = page.video_copertina | absolute_url -%}
 {%- else -%}
   {%- assign og = "/assets/img/og-surf-team-trieste.jpg" | absolute_url -%}
 {%- endif -%}

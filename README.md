@@ -43,7 +43,8 @@ galleria e risultati sono facoltativi → salva.
   evento con un video o una foto, e accanto i quattro eventi più recenti.
 - **Video YouTube:** basta incollare il link del video (es. `https://www.youtube.com/watch?v=…`).
   Il video si guarda dentro il sito, sotto l'evento nell'albo e nella sua pagina. Se non c'è un video,
-  sotto l'evento compare la foto principale.
+  sotto l'evento compare la foto principale. Con **Copertina del video** si sceglie l'immagine che si vede
+  prima di far partire il video (se resta vuota si usa quella di YouTube).
 - Nel **testo** il pulsante dell'immagine inserisce foto tra un paragrafo e l'altro; la
   **galleria** mette le foto in griglia sotto il testo.
 - Le foto finiscono in `assets/img/eventi/`. Subito dopo il salvataggio un'azione automatica
@@ -90,6 +91,7 @@ luogo: Surf Team Trieste, Barcola
 disciplina: [SUP]
 riassunto: Una riga che compare nell'elenco degli eventi.
 video: https://www.youtube.com/watch?v=…         # facoltativo
+video_copertina: /assets/img/eventi/memorial-2027-copertina.jpg  # facoltativo
 immagine: /assets/img/eventi/memorial-2027.jpg   # facoltativo
 galleria:                                        # facoltativo
   - /assets/img/eventi/memorial-2027-arrivo.jpg

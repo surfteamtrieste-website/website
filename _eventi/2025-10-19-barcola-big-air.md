@@ -6,6 +6,14 @@ luogo: Barcola, Trieste
 disciplina: [Wing foil]
 immagine: ""
 video: https://www.youtube.com/watch?v=-KrQW1C3ftA
+video_copertina: /assets/img/eventi/big-air-2025-copertina.jpg
+galleria:
+  - /assets/img/eventi/big-air-2025-1.jpg
+  - /assets/img/eventi/big-air-2025-2.jpg
+  - /assets/img/eventi/big-air-2025-3.jpg
+  - /assets/img/eventi/big-air-2025-4.jpg
+  - /assets/img/eventi/big-air-2025-5.jpg
+  - /assets/img/eventi/big-air-2025-6.jpg
 riassunto: La prima gara di salti in wing foil in Italia. Vince chi salta più in alto.
 risultati:
   - posto: 1

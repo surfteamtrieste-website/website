@@ -1,13 +1,23 @@
 {%- comment -%}
-  Video o foto di un evento: il video YouTube se c'è (si guarda dentro il sito), altrimenti la foto principale.
+  Video o foto di un evento: il video YouTube se c'è, altrimenti la foto principale.
+  Il video si presenta con la sua copertina (video_copertina, un fotogramma scelto da noi; se manca quella
+  di YouTube) e parte dentro la pagina al clic (sito.js); senza JavaScript il link apre YouTube.
   Il campo video accetta il link YouTube in qualsiasi forma (watch?v=, youtu.be/, shorts/) o solo il codice.
   Uso: {% include media-evento.html evento=e %}
 {%- endcomment -%}
 {%- assign e = include.evento -%}
 {%- if e.video and e.video != "" -%}
   {%- assign yt = e.video | strip | split: "v=" | last | split: "&" | first | split: "youtu.be/" | last | split: "embed/" | last | split: "shorts/" | last | split: "?" | first | split: "/" | first -%}
-<div class="video-evento">
-  <iframe src="https://www.youtube-nocookie.com/embed/{{ yt }}?rel=0" title="Video: {{ e.title | escape }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  {%- if e.video_copertina and e.video_copertina != "" -%}
+    {%- assign copertina = e.video_copertina | relative_url -%}
+  {%- else -%}
+    {%- assign copertina = "https://i.ytimg.com/vi/" | append: yt | append: "/hqdefault.jpg" -%}
+  {%- endif -%}
+<div class="video-evento" data-youtube="{{ yt }}">
+  <a class="video-evento__avvia" href="https://www.youtube.com/watch?v={{ yt }}" target="_blank" rel="noopener" aria-label="Guarda il video: {{ e.title | escape }}">
+    <img src="{{ copertina }}" alt="" loading="lazy">
+    <span class="video-evento__play" aria-hidden="true"></span>
+  </a>
 </div>
 {%- elsif e.immagine and e.immagine != "" -%}
 <figure class="foto foto-evento">

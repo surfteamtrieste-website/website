@@ -6,6 +6,7 @@ luogo: Golfo di Trieste
 disciplina: [Wing foil]
 immagine: ""
 video: https://www.youtube.com/watch?v=ij702n6jZzQ
+video_copertina: /assets/img/eventi/foil-academy-2024-copertina.jpg
 riassunto: Grande partecipazione dei nostri atleti nella categoria wing foil, piazzati al 2°, 4°, 7° e 8° posto.
 ---
 
