@@ -133,7 +133,7 @@ rinnovo automatico). I passaggi:
 
 Sito [Jekyll](https://jekyllrb.com) costruito da GitHub Pages (Settings → Pages →
 *Deploy from a branch*, `main`, cartella `/`). Nessuna dipendenza esterna: caratteri
-(Archivo per i titoli, Manrope per i testi, licenza OFL in `assets/fonts/`), stile e script
+(Bricolage Grotesque per i titoli, Instrument Sans per i testi, licenza OFL in `assets/fonts/`), stile e script
 sono tutti nel repository.
 
 Anteprima in locale: `jekyll serve` e poi http://127.0.0.1:4000/website/

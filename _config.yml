@@ -20,9 +20,8 @@ baseurl: "/website"
 # Mettere false solo quando il sito va su surfteamtrieste.com.
 anteprima: true
 
-# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): fascia fissa in cima a ogni
-# pagina e finestra che compare
-# alla prima visita (e di nuovo dopo 30 giorni). Mettere false quando il problema è risolto.
+# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): riquadro in fondo a ogni
+# pagina e finestra che compare alla prima visita (e di nuovo dopo 30 giorni). Mettere false quando il problema è risolto.
 avviso_dominio: true
 
 # Vento Trieste: pagina meteo in tempo reale incorporata in /meteo/
@@ -38,7 +37,7 @@ collections:
     output: true
     permalink: /eventi/:name/
 
-# Pubblica anche gli eventi con data futura (vanno in «Prossimi appuntamenti»).
+# Pubblica anche gli eventi con data futura (compaiono in cima all'albo).
 future: true
 
 defaults:

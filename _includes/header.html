@@ -1,10 +1,5 @@
 {%- assign voci = "Home|/,Meteo e webcam|/meteo/,Lezioni|/lezioni/,Eventi|/eventi/" | split: "," -%}
 <a class="salta" href="#contenuto">Vai al contenuto</a>
-{%- if site.avviso_dominio %}
-<div class="avviso-banner" role="note">
-  <p class="contenitore"><span class="avviso-banner__segno" aria-hidden="true">!</span> <span><strong>Attenzione:</strong> il vecchio indirizzo <strong class="nowrap">windsurfclubtrieste.it</strong> non è più del club e oggi ospita un sito che non è nostro. Non inserire dati personali su quel sito: il sito ufficiale è questo.</span></p>
-</div>
-{%- endif %}
 <header class="testata">
   <div class="contenitore testata__riga">
     <a class="marchio" href="{{ '/' | relative_url }}" aria-label="Surf Team Trieste, torna alla home">

@@ -174,7 +174,6 @@
   var webcam = document.querySelector("[data-webcam]");
   if (webcam) {
     var img = webcam.querySelector("img");
-    var ora = webcam.querySelector("[data-webcam-ora]");
     var base = webcam.getAttribute("data-src");
     // il riquadro resta anche quando la webcam non trasmette: al posto dell'immagine compare un avviso
     var offline = function () { webcam.setAttribute("data-stato", "offline"); };
@@ -185,7 +184,6 @@
       nuova.onload = function () {
         img.src = nuova.src;
         webcam.removeAttribute("data-stato");
-        if (ora) ora.textContent = " (ultima alle " + new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" }) + ")";
       };
       nuova.onerror = offline;
       nuova.src = base + "?t=" + Date.now();
