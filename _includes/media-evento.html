@@ -1,0 +1,16 @@
+{%- comment -%}
+  Video o foto di un evento: il video YouTube se c'è (si guarda dentro il sito), altrimenti la foto principale.
+  Il campo video accetta il link YouTube in qualsiasi forma (watch?v=, youtu.be/, shorts/) o solo il codice.
+  Uso: {% include media-evento.html evento=e %}
+{%- endcomment -%}
+{%- assign e = include.evento -%}
+{%- if e.video and e.video != "" -%}
+  {%- assign yt = e.video | strip | split: "v=" | last | split: "&" | first | split: "youtu.be/" | last | split: "embed/" | last | split: "shorts/" | last | split: "?" | first | split: "/" | first -%}
+<div class="video-evento">
+  <iframe src="https://www.youtube-nocookie.com/embed/{{ yt }}?rel=0" title="Video: {{ e.title | escape }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+{%- elsif e.immagine and e.immagine != "" -%}
+<figure class="foto foto-evento">
+  <img src="{{ e.immagine | relative_url }}" alt="{{ e.title | escape }}" loading="lazy">
+</figure>
+{%- endif -%}

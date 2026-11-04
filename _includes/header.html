@@ -1,25 +1,27 @@
-{%- assign voci = "club|Il club|/#club,lezioni|Lezioni|/lezioni/,meteo|Meteo|/meteo/,eventi|Eventi|/eventi/" | split: "," -%}
+{%- assign voci = "Home|/,Meteo e webcam|/meteo/,Lezioni|/lezioni/,Eventi|/eventi/" | split: "," -%}
 <a class="salta" href="#contenuto">Vai al contenuto</a>
 <header class="testata">
   <div class="contenitore testata__riga">
     <a class="marchio" href="{{ '/' | relative_url }}" aria-label="Surf Team Trieste, torna alla home">
-      <img src="{{ '/assets/img/favicon.svg' | relative_url }}" width="46" height="46" alt="">
-      <span class="marchio__nome" aria-hidden="true">Surf Team<small>Trieste</small></span>
+      <img src="{{ '/assets/img/logo-surf-team.svg' | relative_url }}" width="301" height="177" alt="">
     </a>
     <button class="testata__menu" type="button" aria-expanded="false" aria-controls="navigazione">
       <span class="testata__menu-linee" aria-hidden="true"></span>
       <span class="testata__menu-testo">Menu</span>
     </button>
-    <nav class="navigazione" id="navigazione" aria-label="Sezioni del sito">
-      <ol>
+    <nav class="navigazione" id="navigazione" aria-label="Pagine del sito">
+      <ul>
         {%- for voce in voci -%}
           {%- assign v = voce | split: "|" -%}
           {%- assign corrente = false -%}
-          {%- if page.url contains v[2] and v[2] != "/#club" -%}{%- assign corrente = true -%}{%- endif -%}
-          <li><a href="{{ v[2] | relative_url }}"{% if corrente %} aria-current="page"{% endif %}><span class="navigazione__boa" aria-hidden="true">{{ forloop.index }}</span>{{ v[1] }}</a></li>
+          {%- if v[1] == "/" -%}
+            {%- if page.url == "/" or page.url == "/index.html" -%}{%- assign corrente = true -%}{%- endif -%}
+          {%- elsif page.url contains v[1] -%}
+            {%- assign corrente = true -%}
+          {%- endif -%}
+          <li><a href="{{ v[1] | relative_url }}"{% if corrente %} aria-current="page"{% endif %}>{{ v[0] }}</a></li>
         {%- endfor -%}
-        <li><a href="#contatti" class="navigazione__arrivo">Contatti</a></li>
-      </ol>
+      </ul>
     </nav>
   </div>
 </header>

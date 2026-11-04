@@ -1,7 +1,7 @@
 ---
-title: Meteo e spot di Barcola
+title: Meteo e webcam
 permalink: /meteo/
-description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni Windguru e Vento Trieste. Come funziona lo spot di Barcola e cosa controllare prima di uscire.
+description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, previsioni Windguru e Vento Trieste.
 ---
 {%- assign vt = site.ventotrieste -%}
 {%- comment -%} utm_meteo, non utm: vento.html riassegna utm per il suo badge {%- endcomment -%}
@@ -10,18 +10,39 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
 
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">3</span> Meteo e spot di Barcola</p>
-    <h1 class="pagina-testa__titolo">Vento ora</h1>
-    <p class="pagina-testa__sotto">Vento, webcam e previsioni per lo spot di Barcola. La centralina e la webcam si trovano sul Terrapieno, a pochi metri dal club.</p>
+    <p class="etichetta">Lo spot di Barcola</p>
+    <h1 class="pagina-testa__titolo">Meteo e webcam</h1>
   </div>
 </header>
 
-<figure class="pagina-testa__foto">
-  <video class="pagina-testa__video" data-video-bora data-src="{{ '/assets/video/bora-golfo-720.mp4' | relative_url }}" poster="{{ '/assets/video/bora-golfo-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Il Golfo di Trieste con la Bora visto dal Faro della Vittoria, con i windsurf in mare (animazione)"></video>
-  <figcaption class="contenitore">Il golfo con la Bora dal Faro della Vittoria. Animazione generata con l'IA da una foto del vecchio sito.</figcaption>
-</figure>
+<section class="sezione" aria-labelledby="t-spot">
+  <div class="contenitore">
+    <h2 class="solo-lettori" id="t-spot">Lo spot</h2>
+    <div class="spot__griglia">
+      <div class="testo">
+        <p>La costa barcolana è caratterizzata da fondali sabbiosi e rive artificiali, tipicamente moli e scogli. Il vento prevalente soffia da ENE, quindi da terra (off-shore): per questo le onde sono di solito basse.</p>
+        <p>Alla Bora si somma la componente catabatica: per la conformazione dei rilievi carsici il vento aumenta d'intensità scendendo al mare, specialmente di primo mattino, quando il mare è più caldo dell'entroterra sloveno. È spesso rafficato e da terra può sembrare meno forte di quanto sia, ma al largo aumenta. Nel dubbio è sempre meglio scegliere una vela un po' più piccola. È indispensabile saper stringere bene di bolina.</p>
+        <p>Intorno al Castello di Miramare la navigazione è interdetta e il vento cala un po', ma la costa permette comunque di fare bordi di tre chilometri paralleli alla riva. Quando l'intensità comincia a calare conviene riavvicinarsi alla costa.</p>
+      </div>
+      <dl class="spot__valori">
+        <div><dt>Direzione</dt><dd>ENE<small>Bora, off-shore</small></dd></div>
+        <div><dt>Onda</dt><dd>Bassa<small>vento da terra</small></dd></div>
+        <div><dt>Bordi</dt><dd>3 km<small>paralleli alla riva</small></dd></div>
+        <div><dt>Il trucco</dt><dd>Bolina<small>indispensabile stringere bene</small></dd></div>
+      </dl>
+    </div>
+    <figure class="foto foto-golfo">
+      <picture>
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/golfo-bora-stretto-820.webp' | relative_url }}">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/golfo-bora-stretto-820.jpg' | relative_url }}">
+        <source type="image/webp" srcset="{{ '/assets/img/golfo-bora-largo-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-bora-largo-2000.webp' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/golfo-bora-largo-1200.jpg' | relative_url }}" width="2000" height="634" alt="Il Golfo di Trieste con la Bora visto da sopra il Faro della Vittoria: decine di windsurf in mare e, in basso, il Terrapieno di Barcola">
+      </picture>
+    </figure>
+  </div>
+</section>
 
-<section class="sezione" aria-labelledby="t-adesso">
+<section class="sezione sezione--spuma" aria-labelledby="t-adesso">
   <div class="contenitore">
     <h2 class="solo-lettori" id="t-adesso">Adesso a Barcola</h2>
     <div class="adesso">
@@ -37,10 +58,10 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
   </div>
 </section>
 
-<section class="sezione sezione--spuma" aria-labelledby="t-vt">
+<section class="sezione" aria-labelledby="t-vt">
   <div class="contenitore">
     <p class="etichetta">Vento Trieste</p>
-    <h2 class="titolo" id="t-vt">Tutto il golfo<br><em>in tempo reale</em></h2>
+    <h2 class="titolo" id="t-vt">Tutto il golfo <em>in tempo reale</em></h2>
     <div class="finestra">
       <div class="finestra__barra">
         <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
@@ -57,10 +78,10 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
   </div>
 </section>
 
-<section class="sezione" aria-labelledby="t-previsioni">
+<section class="sezione sezione--spuma" aria-labelledby="t-previsioni">
   <div class="contenitore">
     <p class="etichetta">Previsioni</p>
-    <h2 class="titolo" id="t-previsioni">Windguru<br><em>per Trieste</em></h2>
+    <h2 class="titolo" id="t-previsioni">Windguru <em>per Trieste</em></h2>
     <div class="windguru" data-windguru>
       <div class="windguru__schede" role="tablist" aria-label="Modelli di previsione Windguru">
         <button type="button" role="tab" aria-selected="true" data-wg-spot="49156" data-wg-model="100">WG</button>
@@ -82,10 +103,10 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
   </div>
 </section>
 
-<section class="sezione sezione--spuma" aria-labelledby="t-guide">
+<section class="sezione" aria-labelledby="t-guide">
   <div class="contenitore">
     <p class="etichetta">Dal blog di Vento Trieste</p>
-    <h2 class="titolo" id="t-guide">Impara a leggere<br><em>il vento</em></h2>
+    <h2 class="titolo" id="t-guide">Impara a leggere <em>il vento</em></h2>
     <ul class="guide">
       <li><a class="guida" href="{{ vt }}bora-trieste/?{{ utm_meteo }}&utm_content=guida-bora" target="_blank" rel="noopener"><span class="guida__tema">Bora</span><strong class="guida__titolo">La Bora a Trieste</strong><span class="guida__testo">Come nasce, da dove soffia, come si leggono raffiche e segnali live.</span></a></li>
       <li><a class="guida" href="{{ vt }}guida/spinta-bora/?{{ utm_meteo }}&utm_content=guida-spinta-bora" target="_blank" rel="noopener"><span class="guida__tema">Bora</span><strong class="guida__titolo">Spinta della Bora</strong><span class="guida__testo">La differenza di pressione tra Maribor e Trieste: sopra 3,5 hPa la Bora si accende.</span></a></li>
@@ -97,37 +118,5 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, previsioni
       <li><a class="guida" href="{{ vt }}guida/parole-del-vento/?{{ utm_meteo }}&utm_content=guida-glossario" target="_blank" rel="noopener"><span class="guida__tema">Glossario</span><strong class="guida__titolo">Le parole del vento</strong><span class="guida__testo">Nodi, raffica, hPa, bora, scirocco e maestrale spiegati semplici.</span></a></li>
     </ul>
     <p style="margin:24px 0 0"><a class="collegamento" href="{{ vt }}guida/?{{ utm_meteo }}&utm_content=guida-tutte" target="_blank" rel="noopener">Tutte le guide di Vento Trieste</a></p>
-  </div>
-</section>
-
-<section class="sezione" aria-labelledby="t-spot">
-  <div class="contenitore">
-    <p class="etichetta">Lo spot</p>
-    <h2 class="titolo" id="t-spot">Barcola<br><em>di bolina</em></h2>
-    <div class="spot__griglia">
-      <div class="testo">
-        <p>La costa barcolana è caratterizzata da fondali sabbiosi e rive artificiali, tipicamente moli e scogli. Il vento prevalente soffia da ENE, quindi da terra (off-shore): per questo le onde sono di solito basse.</p>
-        <p>Alla Bora si somma la componente catabatica: per la conformazione dei rilievi carsici il vento aumenta d'intensità scendendo al mare, specialmente di primo mattino, quando il mare è più caldo dell'entroterra sloveno. È spesso rafficato e da terra può sembrare meno forte di quanto sia, ma al largo aumenta. Nel dubbio è sempre meglio scegliere una vela un po' più piccola. È indispensabile saper stringere bene di bolina.</p>
-        <p>Intorno al Castello di Miramare la navigazione è interdetta e il vento cala un po', ma la costa permette comunque di fare bordi di tre chilometri paralleli alla riva. Quando l'intensità comincia a calare conviene riavvicinarsi alla costa.</p>
-      </div>
-      <figure class="foto">
-        {% include immagine.html nome="faro-golfo" alt="Il Faro della Vittoria tra il verde, con il golfo alle spalle" w=1600 h=529 sizes="(max-width: 900px) 100vw, 560px" %}
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="sezione sezione--spuma" aria-labelledby="t-regole">
-  <div class="contenitore">
-    <p class="etichetta">Dal regolamento del club</p>
-    <h2 class="titolo" id="t-regole">Prima<br><em>di uscire</em></h2>
-    <ol class="prima-di-uscire">
-      <li><span><strong>Guarda il vento al largo, non a riva.</strong> Con la Bora, da riva il vento sembra meno forte di quello che trovi fuori.</span></li>
-      <li><span><strong>Nel dubbio, vela più piccola.</strong> Le raffiche scendono dal Carso, soprattutto al mattino presto.</span></li>
-      <li><span><strong>Mai con mare e meteo avversi.</strong> Ed è meglio non uscire da soli.</span></li>
-      <li><span><strong>Scrivi il tuo nome sulla lavagna</strong> con l'ora di uscita e il rig, e cancellalo al rientro. Chi resta a terra tiene d'occhio chi è in acqua.</span></li>
-      <li><span><strong>Rispetta le norme della Capitaneria di Porto di Trieste</strong>: mezzi di galleggiamento adeguati e sistemi di sicurezza.</span></li>
-      <li><span><strong>Attorno al Castello di Miramare</strong> la navigazione è vietata. Quando il vento cala, riavvicinati alla costa.</span></li>
-    </ol>
   </div>
 </section>

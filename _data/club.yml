@@ -14,14 +14,13 @@ indirizzo:
   mappa: "https://www.google.com/maps/search/?api=1&query=Surf+Team+Trieste+Viale+Miramare+32+Trieste"
 
 email: surfteamtrieste@gmail.com
-pec: asdsurfteamtrieste@pec.it   # non compare sul sito
+pec: asdsurfteamtrieste@pec.it
 codice_fiscale: "90075540329"
 partita_iva: "01340290327"
 
-# Persone da chiamare per corsi e informazioni (telefono senza spazi: serve ai link).
+# L'istruttore: il primo della lista compare in «Prenota» nella pagina Lezioni (telefono senza spazi: serve ai link).
 referenti:
   - nome: Andrej
-    ruolo: Corsi windsurf, wing foil e SUP
     telefono: "3248809908"
     whatsapp: false   # true = compare anche il link WhatsApp
 

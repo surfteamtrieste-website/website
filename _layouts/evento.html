@@ -8,8 +8,8 @@ layout: default
 {%- assign href_foto = 'href="' | append: base | append: 'assets/' -%}
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> <a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a>{% if disciplina != "" %} · {{ disciplina }}{% endif %}</p>
-    <h1 class="pagina-testa__titolo" style="font-size:clamp(2.6rem, 1.4rem + 5vw, 5.6rem)">{{ page.title }}</h1>
+    <p class="etichetta"><a href="{{ '/eventi/' | relative_url }}" style="color:inherit">Eventi</a>{% if disciplina != "" %} · {{ disciplina }}{% endif %}</p>
+    <h1 class="pagina-testa__titolo">{{ page.title }}</h1>
     <dl class="evento__meta">
       <div><dt>Quando</dt><dd>{% include data-evento.html evento=page %}</dd></div>
       <div><dt>Dove</dt><dd>{{ page.luogo }}</dd></div>
@@ -28,10 +28,9 @@ layout: default
         <p style="margin-top:32px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
       </div>
       <div>
-        {%- if page.immagine and page.immagine != "" %}
-        <figure class="locandina" style="margin-bottom:32px">
-          <img src="{{ page.immagine | relative_url }}" alt="{{ page.title }}" loading="lazy">
-        </figure>
+        {%- capture media %}{% include media-evento.html evento=page %}{% endcapture %}
+        {%- if media != "" %}
+        <div class="evento__media">{{ media }}</div>
         {%- endif %}
         {%- if page.risultati and page.risultati.size > 0 %}
         <p class="etichetta">Risultati</p>

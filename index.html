@@ -3,180 +3,48 @@ title: Home
 corpo: home
 description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi tutto l'anno, eventi, vento in tempo reale e webcam dello spot.
 ---
-{%- assign club = site.data.club -%}
-{%- assign eventi = site.eventi | sort: "date" | reverse -%}
-{%- assign in_cima = eventi | where: "in_cima", true -%}
-{%- assign altri = eventi | where_exp: "e", "e.in_cima != true" -%}
-{%- assign eventi = in_cima | concat: altri -%}
+{%- for d in site.data.documenti -%}
+  {%- if d.file contains "regolamento" -%}{%- assign regolamento = d -%}{%- endif -%}
+{%- endfor -%}
 
-<section class="apertura" aria-labelledby="titolo-home">
-  <div class="contenitore apertura__griglia">
-    <div>
-      <p class="etichetta">A.S.D. Surf Team Trieste · dal {{ club.fondazione }}</p>
-      <h1 class="titolone" id="titolo-home"><span>Bora,</span> <span>alba,</span> <span>Barcola</span></h1>
-      <p class="apertura__sotto">Il windsurf club del Terrapieno di Barcola. Windsurf, wing foil e SUP nel Golfo di Trieste: corsi tutto l'anno, eventi e un gruppo di appassionati che con la Bora esce in acqua fin dalle prime luci dell'alba.</p>
-      <div class="apertura__azioni">
-        <a class="bottone bottone--boa" href="{{ '/lezioni/' | relative_url }}">Prenota una lezione</a>
-        <a class="bottone bottone--linea" href="{{ '/meteo/' | relative_url }}">Meteo e webcam</a>
-      </div>
-    </div>
-    {% include vento.html %}
-  </div>
-  <figure class="apertura__foto">
-    <video class="apertura__video" data-video-bora data-src="{{ '/assets/video/barcola-azione-960.mp4' | relative_url }}" data-src-alta="{{ '/assets/video/barcola-azione-1280.mp4' | relative_url }}" poster="{{ '/assets/video/barcola-azione-poster.jpg' | relative_url }}" muted loop playsinline preload="none" aria-label="Windsurf e wing foil nel Golfo di Trieste: planate tra gli spruzzi, un salto in wing foil davanti alla costiera e le vele davanti al Castello di Miramare"></video>
-    <figcaption class="contenitore">Windsurf e wing foil nel Golfo di Trieste, tra Barcola e il Castello di Miramare.</figcaption>
-  </figure>
-</section>
-
-<!-- BOA 1 · IL CLUB -->
-<section class="tappa" id="club" aria-labelledby="t-club">
+<section class="sezione home" aria-labelledby="titolo-home">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">1</span> Storia, chi siamo, il club</p>
-    <h2 class="titolo" id="t-club">Un pezzo di spiaggia<br><em>e tanta Bora</em></h2>
-    <div class="club__griglia">
-      <div class="club__storia testo">
-        <p>La nostra associazione nasce nel 1997 da un'idea di Cesare Redolfi, triestino doc e appassionato di sport, che con un gruppo di amici fonda il primo club di windsurfisti della zona.</p>
-        <p>Il club ottiene la concessione di un piccolo pezzo di spiaggia vicino alla società che organizza la Barcolana e negli anni si forma un nucleo di appassionati che sfrutta la famosa Bora per uscire in acqua fin dalle prime luci dell'alba.</p>
-        <p>Dopo oltre vent'anni di presidenza, nel 2020 Cesare lascia il posto a Riccardo Marchesi, che dà al club una nuova spinta con l'ambizione di rinnovare la sede sociale.</p>
-        <p>Oggi siamo un'Associazione Sportiva Dilettantistica affiliata CONI e AICS: windsurf, wing foil, SUP e canoa, una scuola aperta tutto l'anno ed eventi come la Barcolana Fun e la Barcola Big Air.</p>
+    <h1 class="solo-lettori" id="titolo-home">Surf Team Trieste, windsurf club del Terrapieno di Barcola</h1>
+
+    <div class="video-club">
+      <video data-video-bora data-src="{{ '/assets/video/barcola-azione-960.mp4' | relative_url }}" data-src-alta="{{ '/assets/video/barcola-azione-1280.mp4' | relative_url }}" poster="{{ '/assets/video/barcola-azione-poster.jpg' | relative_url }}" width="1280" height="720" muted loop playsinline preload="none" aria-label="Windsurf e wing foil nel Golfo di Trieste, tra Barcola e il Castello di Miramare"></video>
+    </div>
+
+    <div class="club">
+      <div class="club__testo testo">
+        <p>Barcola. La riviera triestina dove tutti vanno a nuotare, prendere la tintarella, fare sport e rilassarsi. È qui che si trova il nostro club, situato vicino ad altri circoli nautici di vela, canottaggio, pesca sportiva e gommoni.</p>
+        <p>La nostra associazione nasce nel 1997, ottenendo la concessione di un piccolo pezzo di spiaggia sul terrapieno di Barcola. Negli anni si forma così un solido nucleo di appassionati che sfrutta la famosa Bora per uscire in acqua fin dalle prime luci dell'alba.</p>
+        <p>Oggi il club mette a disposizione dei soci rastrelliere per il rimessaggio dell'attrezzatura, spogliatoio, doccia, acqua dolce per sciacquare le vele, tavole scuola e una comoda zona ombreggiata.</p>
+        {%- if regolamento %}
+        <p class="club__regolamento"><a class="collegamento collegamento--pdf" href="{{ regolamento.file | relative_url }}">{{ regolamento.titolo }} (PDF)</a></p>
+        {%- endif %}
       </div>
-      <div>
-        <p class="etichetta">Giornale di bordo</p>
-        <div class="giornale-rotta" data-giornale>
-        <span class="giornale__scia" aria-hidden="true"></span>
-        <span class="giornale__vela" aria-hidden="true">{% include vela.html tipo="windsurf" %}</span>
-        <ol class="giornale">
-          <li><span class="giornale__anno">1997</span><p>Cesare Redolfi e un gruppo di amici fondano il primo club di windsurfisti della zona.</p></li>
-          <li><span class="giornale__anno">2020</span><p>Riccardo Marchesi diventa presidente. Il club entra nella rete AICS Windsurfing.</p></li>
-          <li><span class="giornale__anno">2023</span><p>Barcolana Fun: 68 partecipanti nella gara GPS organizzata con SVBG e Kitelife.</p></li>
-          <li><span class="giornale__anno">2025</span><p>Barcola Big Air, la prima gara di salti in wing foil in Italia.</p></li>
-        </ol>
-        </div>
-      </div>
+      <img class="club__logo" src="{{ '/assets/img/logo-surf-team.svg' | relative_url }}" width="301" height="177" alt="Logo del Surf Team Trieste">
     </div>
 
-    <figure class="foto club__foto">
-      {% include immagine.html nome="terrapieno-tavole" alt="Tavole da windsurf e vele sulla riva di sassi, con il mare del golfo dietro" w=1600 h=1067 sizes="(max-width: 1240px) 100vw, 1160px" %}
-      <figcaption>Tavole e vele pronte sulla riva.</figcaption>
-    </figure>
-
-    <div class="dotazione">
-      <p class="etichetta">In dotazione al club</p>
-      <ul class="dotazione__elenco">
-        <li>Rastrelliere per il rimessaggio dell'attrezzatura</li>
-        <li>Spogliatoio</li>
-        <li>Doccia</li>
-        <li>Acqua per sciacquare le vele</li>
-        <li>Tavole per la scuola</li>
-        <li>Zona ombreggiata</li>
-      </ul>
-      <p class="club__vicini">Siamo a Barcola, la riviera dove tutta Trieste va a nuotare, prendere il sole e fare sport, accanto ai circoli di vela, canottaggio, pesca sportiva e gommoni. Ci trovi all'altezza dell'unico semaforo, vicino alla fermata dell'autobus, con parcheggio comodo e l'area camper del Park Bovedo.</p>
-    </div>
-
-    {%- if site.data.direttivo.mostra %}
-    <div class="direttivo">
-      <p class="etichetta">Il Consiglio Direttivo</p>
-      <dl>
-        {%- for m in site.data.direttivo.membri %}{% if m.nome and m.nome != "" %}
-        <div><dt>{{ m.carica }}</dt><dd>{{ m.nome }}</dd></div>
-        {%- endif %}{% endfor %}
-      </dl>
-    </div>
-    {%- endif %}
+    <ul class="foto-club">
+      <li>{% include immagine.html nome="terrapieno-tavole" alt="Tavole da windsurf e vele sulla riva di sassi del club, con il mare del golfo dietro" w=1600 h=1067 sizes="(max-width: 700px) 100vw, 380px" %}</li>
+      <li>{% include immagine.html nome="club-giardino" alt="Il prato del club con la casetta di legno, le tavole e la bandiera, e il mare sullo sfondo" w=1600 h=1200 sizes="(max-width: 700px) 100vw, 380px" %}</li>
+      <li>{% include immagine.html nome="club-riva-barcolana" alt="Una tavola da windsurf sulla riva del club e le vele della Barcolana all'orizzonte" w=1600 h=1200 sizes="(max-width: 700px) 100vw, 380px" %}</li>
+    </ul>
   </div>
 </section>
 
-<!-- BOA 2 · LEZIONI -->
-<section class="tappa tappa--spuma" aria-labelledby="t-lezioni">
+<section class="sezione sezione--spuma" aria-labelledby="t-regole">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">2</span> Lezioni</p>
-    <h2 class="titolo" id="t-lezioni">Dai primi passi<br><em>alla prima planata</em></h2>
-    <figure class="scatto">
-      {% include immagine.html nome="andrej-windsurf-planata" alt="Andrej in planata sul windsurf, vela gialla, nel Golfo di Trieste" w=1600 h=900 sizes="(max-width: 1240px) 100vw, 1160px" %}
-      <figcaption>Andrej, referente dei corsi del club, in planata nel Golfo.</figcaption>
-    </figure>
-    <div class="discipline">
-      {%- for c in site.data.corsi.elenco %}
-      <article class="disciplina">
-        {% include vela.html tipo=c.vela %}
-        <h3 class="disciplina__nome">{{ c.nome }}</h3>
-        <p class="disciplina__sotto">{{ c.sottotitolo }}</p>
-        <p>{{ c.breve | default: c.testo }}</p>
-      </article>
-      {%- endfor %}
-    </div>
-    <div class="lezioni__piede">
-      <a class="bottone bottone--blu" href="{{ '/lezioni/' | relative_url }}#richiesta">Chiedi una lezione</a>
-      <p>{{ site.data.corsi.stagione }} · {{ site.data.corsi.gruppi | downcase }} · attrezzatura fornita dal club.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BOA 3 · LO SPOT -->
-<section class="tappa" aria-labelledby="t-spot">
-  <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">3</span> Meteo e spot di Barcola</p>
-    <h2 class="titolo" id="t-spot">Da terra,<br><em>raffiche al largo</em></h2>
-    <div class="spot__griglia">
-      <div class="testo">
-        <p>La costa di Barcola ha fondali sabbiosi e rive artificiali, moli e scogli. Il vento prevalente soffia da ENE, cioè da terra: per questo l'onda di solito è bassa.</p>
-        <p>Alla Bora si somma la componente catabatica: scendendo dal Carso il vento rinforza, soprattutto di primo mattino. Spesso è rafficato e da terra può sembrare debole, ma al largo aumenta. Nel dubbio, meglio una vela un po' più piccola.</p>
-      </div>
-      <div>
-        <dl class="spot__valori">
-          <div><dt>Direzione</dt><dd>ENE<small>Bora, off-shore</small></dd></div>
-          <div><dt>Onda</dt><dd>Bassa<small>vento da terra</small></dd></div>
-          <div><dt>Bordi</dt><dd>3 km<small>paralleli alla riva</small></dd></div>
-          <div><dt>Il trucco</dt><dd>Bolina<small>indispensabile stringere bene</small></dd></div>
-        </dl>
-        <div class="spot__azioni">
-          <a class="bottone bottone--boa" href="{{ '/meteo/' | relative_url }}">Vento, webcam e previsioni</a>
-        </div>
-      </div>
-    </div>
-    <figure class="foto spot__foto">
-      <picture>
-        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.webp' | relative_url }}">
-        <source media="(max-width: 700px)" srcset="{{ '/assets/img/golfo-bora-club-stretto-820.jpg' | relative_url }}">
-        <source type="image/webp" srcset="{{ '/assets/img/golfo-bora-club-largo-1200.webp' | relative_url }} 1200w, {{ '/assets/img/golfo-bora-club-largo-2000.webp' | relative_url }} 2000w" sizes="(max-width: 1240px) 100vw, 1160px">
-        <img src="{{ '/assets/img/golfo-bora-club-largo-1200.jpg' | relative_url }}" width="2000" height="634" loading="lazy" alt="Il Golfo di Trieste con la Bora visto da sopra il Faro della Vittoria: decine di windsurf in mare, il Terrapieno di Barcola in basso e il segno del Surf Team Trieste nel punto del club">
-      </picture>
-      <figcaption>Il golfo con la Bora: i puntini bianchi in mare sono windsurf. Il club è in fondo al Terrapieno, sotto il Faro.</figcaption>
-    </figure>
-    <figure class="foto spot__foto spot__mappa">
-      <picture>
-        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/vista3d-spot-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/vista3d-spot-stretto-1200.webp' | relative_url }} 1200w" sizes="100vw" width="1200" height="1000">
-        <source media="(max-width: 700px)" srcset="{{ '/assets/img/vista3d-spot-stretto-900.jpg' | relative_url }}" width="1200" height="1000">
-        <source type="image/webp" srcset="{{ '/assets/img/vista3d-spot-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/vista3d-spot-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
-        <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D da drone sulla collina sopra Barcola: il Faro della Vittoria, il Terrapieno con il logo del Surf Team Trieste, la fascia di mare dello spot fino a Miramare e le frecce della Bora che dalla riva escono verso il largo">
-      </picture>
-      <figcaption>Lo spot visto da drone, dalla collina sopra Barcola. La Bora scende da terra, da ENE, e soffia verso il largo; la fascia chiara è lo specchio d'acqua dove si esce, davanti alla riva fra il Terrapieno e Miramare. Modello 3D da rilievo LiDAR e ortofoto della Regione FVG e Copernicus DEM.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- BOA 4 · EVENTI -->
-<section class="tappa tappa--spuma" aria-labelledby="t-eventi">
-  <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> Eventi</p>
-    <h2 class="titolo" id="t-eventi">Gare, memorial<br><em>e Barcolana</em></h2>
-    <div class="eventi__griglia">
-      <figure class="locandina">
-        {% include immagine.html nome="regata-windsurf" alt="Una regata di windsurf: vele colorate con i numeri velici in planata" w=1600 h=1067 sizes="(max-width: 900px) 100vw, 500px" %}
-        <figcaption>Foto di repertorio: Maël Balland, Unsplash.</figcaption>
-      </figure>
-      <div>
-        <ol class="albo">
-          {%- for e in eventi limit: 4 %}
-          <li><a href="{{ e.url | relative_url }}">
-            <span class="albo__data">{% include data-evento.html evento=e %}</span>
-            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small></span>
-            <span class="albo__freccia" aria-hidden="true">→</span>
-          </a></li>
-          {%- endfor %}
-        </ol>
-        <p style="margin-top:24px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
-      </div>
-    </div>
+    <p class="etichetta">Dal regolamento del club</p>
+    <h2 class="titolo" id="t-regole">Prima di uscire</h2>
+    <ol class="prima-di-uscire">
+      <li><span><strong>Guarda il vento al largo, non a riva.</strong> Con la Bora, da riva il vento sembra meno forte di quello che trovi fuori.</span></li>
+      <li><span><strong>Nel dubbio, vela più piccola.</strong> Le raffiche scendono dal Carso, soprattutto al mattino presto.</span></li>
+      <li><span><strong>Mai con mare e meteo avversi.</strong> Ed è meglio non uscire da soli.</span></li>
+      <li><span><strong>Rispetta le norme della Capitaneria di Porto di Trieste:</strong> usa mezzi di galleggiamento adeguati e i sistemi di sicurezza previsti.</span></li>
+      <li><span><strong>Attorno al Castello di Miramare la navigazione è vietata.</strong> Quando il vento cala, riavvicinati alla costa.</span></li>
+    </ol>
   </div>
 </section>

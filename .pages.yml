@@ -42,7 +42,7 @@ content:
         required: true
       - name: date
         label: Data dell'evento
-        description: Serve per l'ordine degli eventi. Se la data è futura l'evento compare in «Prossimi appuntamenti».
+        description: Serve per l'ordine degli eventi nell'albo, dal più recente.
         type: date
         required: true
         options:
@@ -66,9 +66,13 @@ content:
         description: Una o due frasi che compaiono nell'elenco degli eventi e nelle anteprime sui social.
         type: text
         required: true
+      - name: video
+        label: Video YouTube
+        description: "Facoltativo. Il link del video su YouTube (es. https://www.youtube.com/watch?v=…): si guarda dentro il sito, sotto l'evento nell'albo e nella sua pagina. Se c'è il video, al posto della foto principale si vede il video."
+        type: string
       - name: immagine
         label: Foto principale
-        description: Compare accanto al testo e nelle anteprime sui social. Le foto grandi vengono rimpicciolite da sole dopo il salvataggio.
+        description: Compare sotto l'evento nell'albo (se non c'è un video), nella sua pagina e nelle anteprime sui social. Le foto grandi vengono rimpicciolite da sole dopo il salvataggio.
         type: image
         options:
           media: foto
@@ -164,17 +168,9 @@ content:
           - name: sottotitolo
             label: Sottotitolo
             type: string
-          - name: breve
-            label: Testo breve (home)
-            type: text
           - name: testo
-            label: Testo completo (pagina Lezioni)
+            label: Testo
             type: text
-          - name: contatti
-            label: Contatti
-            description: Nomi dei referenti, uguali a quelli in «Contatti del club».
-            type: string
-            list: true
 
   - name: club
     label: Contatti del club
@@ -217,7 +213,7 @@ content:
         label: Email
         type: string
       - name: pec
-        label: PEC (non compare sul sito)
+        label: PEC
         type: string
       - name: codice_fiscale
         label: Codice fiscale
@@ -226,7 +222,8 @@ content:
         label: Partita IVA
         type: string
       - name: referenti
-        label: Referenti per corsi e informazioni
+        label: Istruttore
+        description: Il primo della lista compare in «Prenota» nella pagina Lezioni.
         type: object
         list:
           collapsible:
@@ -235,9 +232,6 @@ content:
         fields:
           - name: nome
             label: Nome
-            type: string
-          - name: ruolo
-            label: Di cosa si occupa
             type: string
           - name: telefono
             label: Telefono
@@ -292,27 +286,3 @@ content:
         label: Nota
         description: Per esempio «approvato il 22 marzo 2020».
         type: string
-
-  - name: direttivo
-    label: Consiglio Direttivo
-    type: file
-    path: _data/direttivo.yml
-    format: yaml
-    fields:
-      - name: mostra
-        label: Mostra il Direttivo in home
-        type: boolean
-      - name: membri
-        label: Membri
-        type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{carica} · {nome}"
-        fields:
-          - name: carica
-            label: Carica
-            type: string
-          - name: nome
-            label: Nome
-            type: string

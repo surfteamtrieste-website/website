@@ -1,74 +1,42 @@
 ---
 title: Eventi
 permalink: /eventi/
-description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer Memorial, Barcolana Fun, Speed GPS Barcolan e il calendario dei prossimi appuntamenti.
+description: Gli eventi del Surf Team Trieste a Barcola. Barcola Big Air, Summer Memorial, Barcolana Fun, Speed GPS Barcolan.
 ---
-{%- assign oggi = site.time | date: "%Y-%m-%d" -%}
 {%- assign tutti = site.eventi | sort: "date" | reverse -%}
 {%- assign in_cima = tutti | where: "in_cima", true -%}
 {%- assign altri = tutti | where_exp: "e", "e.in_cima != true" -%}
 {%- assign tutti = in_cima | concat: altri -%}
-{%- assign prossimi = "" | split: "" -%}
-{%- assign passati = "" | split: "" -%}
-{%- for e in tutti -%}
-  {%- assign d = e.date | date: "%Y-%m-%d" -%}
-  {%- if d >= oggi -%}{%- assign prossimi = prossimi | push: e -%}{%- else -%}{%- assign passati = passati | push: e -%}{%- endif -%}
-{%- endfor -%}
 
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">4</span> Eventi</p>
     <h1 class="pagina-testa__titolo">Eventi</h1>
     <p class="pagina-testa__sotto">Gare GPS di velocità, salti in wing foil, regate di megasup e la settimana della Barcolana: l'albo del club, dal più recente.</p>
   </div>
 </header>
 
-<section class="sezione" aria-labelledby="t-prossimi">
+<section class="sezione" aria-labelledby="t-albo">
   <div class="contenitore">
-    <div>
-      <p class="etichetta">Prossimi appuntamenti</p>
-      <h2 class="solo-lettori" id="t-prossimi">Prossimi appuntamenti</h2>
-      {%- if prossimi.size > 0 %}
+    <h2 class="solo-lettori" id="t-albo">Albo del club</h2>
+    {%- assign per_anno = tutti | group_by_exp: "e", "e.date | date: '%Y'" -%}
+    {%- for gruppo in per_anno %}
+    <div class="anno-blocco">
+      <p class="anno">{{ gruppo.name }}</p>
       <ol class="albo">
-        {%- assign prossimi = prossimi | reverse -%}
-        {%- for e in prossimi %}
+        {%- for e in gruppo.items %}
         <li><a href="{{ e.url | relative_url }}">
           <span class="albo__data">{% include data-evento.html evento=e %}</span>
           <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{% assign d = e.disciplina | join: " · " %}{% if d != "" %}{{ d }} · {% endif %}{{ e.luogo }}</span></span>
           <span class="albo__freccia" aria-hidden="true">→</span>
-        </a></li>
+        </a>
+        {%- capture media %}{% include media-evento.html evento=e %}{% endcapture %}
+        {%- if media != "" %}
+        <div class="albo__media">{{ media }}</div>
+        {%- endif %}
+        </li>
         {%- endfor %}
       </ol>
-      {%- else %}
-      <div class="avviso-calendario">
-        <p><strong>Il calendario dei prossimi appuntamenti è in preparazione.</strong></p>
-        <p>Le date di gare e feste vengono pubblicate qui appena il Direttivo le fissa. Per informazioni scrivi a <a href="mailto:{{ site.data.club.email }}">{{ site.data.club.email }}</a>.</p>
-      </div>
-      {%- endif %}
     </div>
-  </div>
-</section>
-
-<section class="sezione sezione--spuma" aria-labelledby="t-albo">
-  <div class="contenitore">
-    <div>
-      <p class="etichetta">Albo del club</p>
-      <h2 class="solo-lettori" id="t-albo">Eventi passati</h2>
-      {%- assign per_anno = passati | group_by_exp: "e", "e.date | date: '%Y'" -%}
-      {%- for gruppo in per_anno %}
-      <div class="anno-blocco">
-        <p class="anno">{{ gruppo.name }}</p>
-        <ol class="albo">
-          {%- for e in gruppo.items %}
-          <li><a href="{{ e.url | relative_url }}">
-            <span class="albo__data">{% include data-evento.html evento=e %}</span>
-            <span class="albo__titolo">{{ e.title }}<small>{{ e.riassunto }}</small><span class="albo__tipo">{% assign d = e.disciplina | join: " · " %}{% if d != "" %}{{ d }} · {% endif %}{{ e.luogo }}</span></span>
-            <span class="albo__freccia" aria-hidden="true">→</span>
-          </a></li>
-          {%- endfor %}
-        </ol>
-      </div>
-      {%- endfor %}
-    </div>
+    {%- endfor %}
   </div>
 </section>

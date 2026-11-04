@@ -1,14 +1,15 @@
 ---
 title: Lezioni
 permalink: /lezioni/
-description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole: scrivici per prenotare."
+description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole con il nostro istruttore."
 ---
 {%- assign club = site.data.club -%}
 {%- assign corsi = site.data.corsi -%}
+{%- assign istruttore = club.referenti | first -%}
 
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta"><span class="boa" aria-hidden="true">2</span> Scuola di windsurf, wing foil e SUP</p>
+    <p class="etichetta">Scuola di windsurf, wing foil e SUP</p>
     <h1 class="pagina-testa__titolo">Lezioni</h1>
     <p class="pagina-testa__sotto">Corsi tutto l'anno a Barcola, nello specchio d'acqua davanti al Terrapieno. Sicurezza e divertimento alla base di ogni uscita: dai primi passi sulla tavola alle prime planate, fino a uscire da soli.</p>
   </div>
@@ -16,115 +17,32 @@ description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste
 
 <section class="sezione" aria-labelledby="t-come">
   <div class="contenitore">
-      <h2 class="solo-lettori" id="t-come">Come funzionano i corsi</h2>
-      <dl class="scheda">
-        <div><dt>Quando</dt><dd>{{ corsi.stagione }}</dd></div>
-        <div><dt>Dove</dt><dd>{{ corsi.dove }}</dd></div>
-        <div><dt>Come</dt><dd>{{ corsi.gruppi }}</dd></div>
-        <div><dt>Attrezzatura</dt><dd>{{ corsi.attrezzatura }}</dd></div>
-        <div><dt>Sconti</dt><dd><ul>{% for s in corsi.sconti %}<li>{{ s }}</li>{% endfor %}</ul></dd></div>
-        <div><dt>Informazioni</dt><dd>{% for r in club.referenti %}{{ r.nome }} {% include tel.html n=r.telefono %}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</dd></div>
-      </dl>
+    <h2 class="solo-lettori" id="t-come">Come funzionano i corsi</h2>
+    <dl class="scheda">
+      <div><dt>Quando</dt><dd>{{ corsi.stagione }}</dd></div>
+      <div><dt>Dove</dt><dd>{{ corsi.dove }}</dd></div>
+      <div><dt>Come</dt><dd>{{ corsi.gruppi }}</dd></div>
+      <div><dt>Attrezzatura</dt><dd>{{ corsi.attrezzatura }}</dd></div>
+      <div><dt>Sconti</dt><dd><ul>{% for s in corsi.sconti %}<li>{{ s }}</li>{% endfor %}</ul></dd></div>
+      {%- if istruttore %}
+      <div class="scheda__prenota"><dt>Prenota</dt><dd>Scrivi al nostro istruttore {{ istruttore.nome }} al {% include tel.html n=istruttore.telefono %}{% if istruttore.whatsapp %} · <a href="https://wa.me/39{{ istruttore.telefono }}">WhatsApp</a>{% endif %}</dd></div>
+      {%- endif %}
+    </dl>
 
-      <div class="foto-coppia">
-        <figure class="foto">
-          {% include immagine.html nome="andrej-windsurf-portacontainer" alt="Andrej sul windsurf con la vela gialla, sullo sfondo un portacontainer nel Golfo di Trieste" w=1600 h=1071 sizes="(max-width: 700px) 100vw, 580px" %}
-          <figcaption>Windsurf: Andrej nel Golfo, con un portacontainer sullo sfondo.</figcaption>
-        </figure>
-        <figure class="foto">
-          {% include immagine.html nome="wing-foil-barcola" alt="Un rider di wing foil con l'ala gialla nel golfo, accanto una moto d'acqua" w=1600 h=611 sizes="(max-width: 700px) 100vw, 580px" %}
-          <figcaption>Wing foil: l'ala gialla e la tavola con il foil.</figcaption>
-        </figure>
-      </div>
+    <figure class="foto foto-lezioni">
+      {% include immagine.html nome="allievi-windsurf" alt="Due allievi in piedi sulla tavola da windsurf, con il mare calmo del golfo" w=1600 h=864 sizes="(max-width: 1240px) 100vw, 1160px" %}
+    </figure>
 
+    <h2 class="solo-lettori">I corsi</h2>
+    <div class="discipline">
       {%- for c in corsi.elenco %}
-      <article class="corso" id="{{ c.id }}">
+      <article class="disciplina" id="{{ c.id }}">
         {% include vela.html tipo=c.vela %}
-        <div>
-          <h2 class="corso__nome">{{ c.nome }}</h2>
-          <p class="corso__sotto">{{ c.sottotitolo }}</p>
-          <p class="testo">{{ c.testo }}</p>
-        </div>
-        <div class="corso__lato">
-          <p class="etichetta">Informazioni e iscrizioni</p>
-          <p>Date, gruppi e costi: chiedi a chi tiene il corso.</p>
-          <ul class="contatto-rapido">
-            {%- for nome in c.contatti %}{% assign r = club.referenti | where: "nome", nome | first %}{% if r %}
-            <li>{{ r.nome }} · {% include tel.html n=r.telefono %}{% if r.whatsapp %} · <a href="https://wa.me/39{{ r.telefono }}">WhatsApp</a>{% endif %}</li>
-            {%- endif %}{% endfor %}
-          </ul>
-        </div>
+        <h3 class="disciplina__nome">{{ c.nome }}</h3>
+        <p class="disciplina__sotto">{{ c.sottotitolo }}</p>
+        <p>{{ c.testo }}</p>
       </article>
       {%- endfor %}
-  </div>
-</section>
-
-<section class="sezione sezione--spuma" id="richiesta" aria-labelledby="t-richiesta">
-  <div class="contenitore">
-      <p class="etichetta">Prenota</p>
-      <h2 class="titolo" id="t-richiesta">Scrivici<br><em>per una lezione</em></h2>
-      <p class="testo" style="margin-bottom:32px">Raccontaci cosa vuoi provare e quando sei libero: ti rispondiamo con date e dettagli.</p>
-
-      {%- if site.form_endpoint != "" -%}
-        {%- assign azione = site.form_endpoint | replace: "/ajax/", "/" -%}
-      {%- else -%}
-        {%- assign azione = "mailto:" | append: club.email -%}
-      {%- endif %}
-      <form class="modulo" data-modulo data-endpoint="{{ site.form_endpoint }}" data-email="{{ club.email }}" action="{{ azione }}" method="post"{% if site.form_endpoint == "" %} enctype="text/plain"{% endif %} novalidate>
-        {%- if site.form_endpoint contains "formsubmit.co" %}
-        <input type="hidden" name="_subject" value="Richiesta lezione dal sito">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-        {%- endif %}
-        <div class="campo">
-          <label for="f-nome">Nome e cognome *</label>
-          <input id="f-nome" name="nome" type="text" autocomplete="name" required>
-        </div>
-        <div class="campo">
-          <label for="f-email">Email *</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="campo">
-          <label for="f-tel">Telefono</label>
-          <input id="f-tel" name="telefono" type="tel" autocomplete="tel">
-        </div>
-        <div class="campo">
-          <label for="f-corso">Corso *</label>
-          <select id="f-corso" name="corso" required>
-            {%- for c in corsi.elenco %}<option>{{ c.nome }}</option>{% endfor %}
-            <option>Non so ancora</option>
-          </select>
-        </div>
-        <div class="campo campo--largo">
-          <fieldset>
-            <legend>Esperienza</legend>
-            <div class="scelte">
-              <label><input type="radio" name="livello" value="Mai provato" checked><span>Mai provato</span></label>
-              <label><input type="radio" name="livello" value="Qualche uscita"><span>Qualche uscita</span></label>
-              <label><input type="radio" name="livello" value="Già autonomo"><span>Già autonomo</span></label>
-            </div>
-          </fieldset>
-        </div>
-        <div class="campo">
-          <label for="f-persone">Quante persone</label>
-          <input id="f-persone" name="persone" type="number" min="1" max="12" value="1" inputmode="numeric">
-        </div>
-        <div class="campo">
-          <label for="f-periodo">Periodo preferito</label>
-          <input id="f-periodo" name="periodo" type="text" placeholder="es. luglio, nei weekend">
-        </div>
-        <div class="campo campo--largo">
-          <label for="f-messaggio">Messaggio</label>
-          <textarea id="f-messaggio" name="messaggio" rows="4"></textarea>
-        </div>
-        <div class="modulo__invio">
-          <button class="bottone bottone--boa" type="submit">Invia la richiesta</button>
-          <small>* campi obbligatori</small>
-        </div>
-        {%- if site.form_endpoint contains "formsubmit.co" %}
-        <p class="modulo__nota">La richiesta arriva alla mail del club tramite il servizio FormSubmit. Usiamo i tuoi dati solo per risponderti.</p>
-        {%- endif %}
-        <p class="modulo__esito" role="status" aria-live="polite" data-esito></p>
-      </form>
+    </div>
   </div>
 </section>

@@ -5,6 +5,7 @@ data_testo: Ottobre 2024
 luogo: Golfo di Trieste
 disciplina: [Wing foil]
 immagine: ""
+video: https://www.youtube.com/watch?v=ij702n6jZzQ
 riassunto: Grande partecipazione dei nostri atleti nella categoria wing foil, piazzati al 2°, 4°, 7° e 8° posto.
 ---
 

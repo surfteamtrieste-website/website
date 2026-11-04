@@ -1,5 +1,5 @@
 # Corsi della scuola. Testi dal vecchio sito.
-# I prezzi non si pubblicano: sul sito c'è "chiedi a chi tiene il corso".
+# I prezzi non si pubblicano: per prenotare si scrive all'istruttore (Contatti del club → referenti).
 
 stagione: Tutto l'anno
 dove: Barcola, nello specchio d'acqua davanti al Terrapieno
@@ -14,31 +14,24 @@ elenco:
     nome: Windsurf
     vela: windsurf
     sottotitolo: Dai primi passi sulla tavola alle prime planate
-    breve: Lezioni di gruppo o singole, fino a uscire in acqua da soli.
     testo: >-
-      Sicurezza e divertimento sono alla base delle lezioni. Il percorso
-      accompagna l'allievo dai primi passi sulla tavola alle prime planate,
-      fino a renderlo indipendente. A seconda delle esigenze si va dalle
-      lezioni di gruppo alle lezioni singole.
-    contatti: [Andrej]
+      Il percorso accompagna l'allievo dai primi passi sulla tavola alle prime
+      planate, fino a renderlo indipendente. A seconda delle esigenze si va
+      dalle lezioni di gruppo alle lezioni singole.
 
   - id: wing-foil
     nome: Wing foil
     vela: wing
     sottotitolo: Lo sport del momento
-    breve: Ala gonfiabile e tavola con il foil. Facile anche per chi non ha mai fatto windsurf o kite.
     testo: >-
       Si pratica con un'ala gonfiabile e una tavola con il foil, una speciale
       pinna che solleva la tavola sopra l'acqua. Si impara facilmente ed è
       adatto anche a chi non è mai salito su un windsurf o un kitesurf.
-    contatti: [Andrej]
 
   - id: sup
     nome: SUP
     vela: sup
     sottotitolo: Stand up paddle, remare in piedi
-    breve: Intuitivo e adatto a tutti i livelli, dall'uscita tranquilla all'agonismo.
     testo: >-
       Uno sport molto intuitivo e di facile apprendimento, che si pratica a
       tutti i livelli: dall'uscita amatoriale fino all'agonismo.
-    contatti: [Andrej]

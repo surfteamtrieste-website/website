@@ -236,35 +236,9 @@
     }
   }
 
-  /* ── giornale di bordo: la tavola scende con lo scorrimento e accende le date ── */
-  var rotta = document.querySelector("[data-giornale]");
-  var riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (rotta && !riduci) {
-    rotta.classList.add("animata");
-    var voci = rotta.querySelectorAll(".giornale li");
-    var precedente = 0, inAttesa = false;
-    var aggiornaRotta = function () {
-      inAttesa = false;
-      var r = rotta.getBoundingClientRect();
-      var p = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height));
-      rotta.style.setProperty("--avanzamento", p.toFixed(4));
-      // la vela si inclina verso il lato in cui sta andando, poi torna dritta
-      rotta.style.setProperty("--inclina", (p > precedente + 0.001 ? 9 : p < precedente - 0.001 ? -9 : 0) + "deg");
-      precedente = p;
-      Array.prototype.forEach.call(voci, function (li) {
-        li.classList.toggle("raggiunto", p * r.height >= li.offsetTop + 8);
-      });
-      clearTimeout(rotta._dritta);
-      rotta._dritta = setTimeout(function () { rotta.style.setProperty("--inclina", "0deg"); }, 220);
-    };
-    var chiedi = function () { if (!inAttesa) { inAttesa = true; requestAnimationFrame(aggiornaRotta); } };
-    window.addEventListener("scroll", chiedi, { passive: true });
-    window.addEventListener("resize", chiedi);
-    aggiornaRotta();
-  }
-
   /* ── le vele delle discipline si disegnano quando entrano in vista ── */
   var discipline = document.querySelectorAll(".disciplina");
+  var riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (discipline.length && !riduci && "IntersectionObserver" in window) {
     var ossVele = new IntersectionObserver(function (voci) {
       voci.forEach(function (v) {
@@ -274,7 +248,7 @@
     Array.prototype.forEach.call(discipline, function (d) { d.classList.add("da-disegnare"); ossVele.observe(d); });
   }
 
-  /* ── video di apertura e del meteo: partono solo se servono ───
+  /* ── video della home: parte solo se serve ──────────────
      Niente video con «movimento ridotto» o risparmio dati: resta l'immagine di anteprima.
      Su schermi stretti si carica la versione più leggera (data-src), sui grandi data-src-alta. */
   var videoBora = document.querySelectorAll("[data-video-bora]");
@@ -292,97 +266,6 @@
       } else {
         parti();
       }
-    });
-  }
-
-  /* ── modulo lezioni ───────────────────────────────────── */
-  var modulo = document.querySelector("[data-modulo]");
-  if (modulo) {
-    var esito = modulo.querySelector("[data-esito]");
-    var mostra = function (testo) { esito.textContent = testo; esito.classList.add("visibile"); };
-    var oggetto = function (dati) { return "Lezione di " + dati.get("corso") + " - " + dati.get("nome"); };
-
-    // La stessa richiesta come email già scritta: app di posta (mailto), Gmail o Outlook dal browser.
-    var dallaPosta = function (dati, testo, apri) {
-      var righe = [
-        "Richiesta lezione dal sito",
-        "",
-        "Nome: " + dati.get("nome"),
-        "Email: " + dati.get("email"),
-        "Telefono: " + (dati.get("telefono") || "-"),
-        "Corso: " + dati.get("corso"),
-        "Esperienza: " + dati.get("livello"),
-        "Persone: " + (dati.get("persone") || "1"),
-        "Periodo: " + (dati.get("periodo") || "-"),
-        "",
-        dati.get("messaggio") || ""
-      ];
-      var a = modulo.getAttribute("data-email"), s = encodeURIComponent(oggetto(dati)), b = encodeURIComponent(righe.join("\n"));
-      var mailto = "mailto:" + a + "?subject=" + s + "&body=" + b;
-      if (apri) window.location.href = mailto;
-      esito.innerHTML = "";
-      esito.appendChild(document.createTextNode(testo));
-      var scelte = document.createElement("span"); scelte.className = "modulo__webmail";
-      var link = [["Apri in Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(a) + "&su=" + s + "&body=" + b],
-                  ["Apri in Outlook", "https://outlook.live.com/mail/0/deeplink/compose?to=" + encodeURIComponent(a) + "&subject=" + s + "&body=" + b]];
-      if (!apri) link.unshift(["App di posta", mailto]);
-      link.forEach(function (x) {
-        var l = document.createElement("a"); l.href = x[1]; l.className = "bottone bottone--linea"; l.textContent = x[0];
-        if (x[1].indexOf("https:") === 0) { l.target = "_blank"; l.rel = "noopener"; }
-        scelte.appendChild(l);
-      });
-      esito.appendChild(scelte);
-      esito.classList.add("visibile");
-    };
-
-    modulo.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!modulo.checkValidity()) {
-        var primo = modulo.querySelector(":invalid");
-        mostra("Controlla i campi obbligatori: nome, email valida e corso.");
-        if (primo) primo.focus();
-        return;
-      }
-      var dati = new FormData(modulo);
-      var endpoint = modulo.getAttribute("data-endpoint");
-
-      if (!endpoint) {
-        // Nessun servizio collegato: si apre l'app di posta con il messaggio già scritto.
-        dallaPosta(dati, "Si sta aprendo la tua app di posta con il messaggio pronto: basta premere Invia. Se non si apre, usa la posta dal browser:", true);
-        return;
-      }
-
-      var corpo = {};
-      dati.forEach(function (v, k) { corpo[k] = v; });
-      corpo._subject = oggetto(dati);
-      var bottone = modulo.querySelector("button[type=submit]");
-      bottone.disabled = true;
-      mostra("Invio in corso…");
-      // FormSubmit a volte risponde dopo più di un minuto: dopo 30 s si propone anche la mail già scritta,
-      // ma la richiesta continua e, se poi arriva, lo si dice
-      var lento = false;
-      var attesa = setTimeout(function () {
-        lento = true;
-        dallaPosta(dati, "Il servizio di invio è lento: la richiesta potrebbe arrivarci lo stesso tra poco. Se preferisci non aspettare, mandala dalla tua posta, è già scritta:", false);
-      }, 30000);
-      fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(corpo)
-      })
-        .then(function (r) {
-          return r.json().catch(function () { return {}; }).then(function (j) {
-            // FormSubmit risponde 200 anche quando l'invio non è andato: conta il campo success
-            if (!r.ok || j.success === false || j.success === "false") throw new Error(j.message || r.status);
-          });
-        })
-        .then(function () {
-          modulo.reset();
-          mostra(lento ? "Richiesta arrivata, grazie! Non serve mandarla anche dalla posta." : "Richiesta inviata, grazie! Ti rispondiamo appena possibile alla mail che ci hai lasciato.");
-        }, function () {
-          dallaPosta(dati, "Non siamo riusciti a inviare la richiesta dal sito. Mandala dalla tua posta, è già scritta:", false);
-        })
-        .then(function () { clearTimeout(attesa); bottone.disabled = false; });
     });
   }
 

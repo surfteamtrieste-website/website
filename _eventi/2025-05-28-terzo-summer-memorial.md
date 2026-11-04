@@ -5,6 +5,7 @@ data_testo: Maggio 2025
 luogo: Surf Team Trieste, Barcola
 disciplina: [SUP]
 immagine: ""
+video: https://www.youtube.com/watch?v=WW9zpxBL2Og
 riassunto: 80 rider in acqua per ricordare Summer, in una giornata di sport e ricordo.
 ---
 
