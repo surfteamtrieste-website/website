@@ -176,12 +176,18 @@
     var img = webcam.querySelector("img");
     var ora = webcam.querySelector("[data-webcam-ora]");
     var base = webcam.getAttribute("data-src");
+    // il riquadro resta anche quando la webcam non trasmette: al posto dell'immagine compare un avviso
+    var offline = function () { webcam.setAttribute("data-stato", "offline"); };
+    if (img.complete && !img.naturalWidth) offline();
+    img.addEventListener("error", offline);
     var aggiorna = function () {
       var nuova = new Image();
       nuova.onload = function () {
         img.src = nuova.src;
+        webcam.removeAttribute("data-stato");
         if (ora) ora.textContent = " (ultima alle " + new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" }) + ")";
       };
+      nuova.onerror = offline;
       nuova.src = base + "?t=" + Date.now();
     };
     setInterval(function () { if (!document.hidden) aggiorna(); }, 60000);
@@ -236,9 +242,35 @@
     }
   }
 
+  /* ── giornale di bordo degli eventi: la tavola scende con lo scorrimento e accende le voci ── */
+  var riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rotta = document.querySelector("[data-giornale]");
+  if (rotta && !riduci) {
+    rotta.classList.add("animata");
+    var voci = rotta.querySelectorAll(".giornale li");
+    var precedente = 0, inAttesa = false;
+    var aggiornaRotta = function () {
+      inAttesa = false;
+      var r = rotta.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height));
+      rotta.style.setProperty("--avanzamento", p.toFixed(4));
+      // la vela si inclina verso il lato in cui sta andando, poi torna dritta
+      rotta.style.setProperty("--inclina", (p > precedente + 0.001 ? 9 : p < precedente - 0.001 ? -9 : 0) + "deg");
+      precedente = p;
+      Array.prototype.forEach.call(voci, function (li) {
+        li.classList.toggle("raggiunto", p * r.height >= li.offsetTop + 8);
+      });
+      clearTimeout(rotta._dritta);
+      rotta._dritta = setTimeout(function () { rotta.style.setProperty("--inclina", "0deg"); }, 220);
+    };
+    var chiedi = function () { if (!inAttesa) { inAttesa = true; requestAnimationFrame(aggiornaRotta); } };
+    window.addEventListener("scroll", chiedi, { passive: true });
+    window.addEventListener("resize", chiedi);
+    aggiornaRotta();
+  }
+
   /* ── le vele delle discipline si disegnano quando entrano in vista ── */
   var discipline = document.querySelectorAll(".disciplina");
-  var riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (discipline.length && !riduci && "IntersectionObserver" in window) {
     var ossVele = new IntersectionObserver(function (voci) {
       voci.forEach(function (v) {

@@ -6,6 +6,18 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
 {%- for d in site.data.documenti -%}
   {%- if d.file contains "regolamento" -%}{%- assign regolamento = d -%}{%- endif -%}
 {%- endfor -%}
+{%- assign webcam = "https://content.meteobridge.com/cam/98c72e78ea6476e8074295ab40c6a429/camplus.jpg" -%}
+{%- comment -%} Eventi in evidenza: il più recente con video o foto, accanto gli altri nel giornale di bordo {%- endcomment -%}
+{%- assign eventi = site.eventi | sort: "date" | reverse -%}
+{%- assign in_cima = eventi | where: "in_cima", true -%}
+{%- assign altri = eventi | where_exp: "e", "e.in_cima != true" -%}
+{%- assign eventi = in_cima | concat: altri -%}
+{%- for e in eventi -%}
+  {%- assign ha_media = false -%}
+  {%- if e.video and e.video != "" -%}{%- assign ha_media = true -%}{%- endif -%}
+  {%- if e.immagine and e.immagine != "" -%}{%- assign ha_media = true -%}{%- endif -%}
+  {%- if ha_media -%}{%- assign evidenza = e -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
 
 <section class="sezione home" aria-labelledby="titolo-home">
   <div class="contenitore">
@@ -32,6 +44,55 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
       <li>{% include immagine.html nome="club-giardino" alt="Il prato del club con la casetta di legno, le tavole e la bandiera, e il mare sullo sfondo" w=1600 h=1200 sizes="(max-width: 700px) 100vw, 380px" %}</li>
       <li>{% include immagine.html nome="club-riva-barcolana" alt="Una tavola da windsurf sulla riva del club e le vele della Barcolana all'orizzonte" w=1600 h=1200 sizes="(max-width: 700px) 100vw, 380px" %}</li>
     </ul>
+  </div>
+</section>
+
+<section class="sezione sezione--spuma" aria-labelledby="t-eventi">
+  <div class="contenitore">
+    <p class="etichetta">Eventi</p>
+    <h2 class="titolo" id="t-eventi">Gli ultimi <em>eventi del club</em></h2>
+    <div class="evidenza">
+      {%- if evidenza %}
+      <article class="evidenza__primo">
+        {% include media-evento.html evento=evidenza %}
+        <p class="evidenza__data">{% include data-evento.html evento=evidenza %}</p>
+        <h3 class="evidenza__titolo"><a href="{{ evidenza.url | relative_url }}">{{ evidenza.title }}</a></h3>
+        <p class="evidenza__riassunto">{{ evidenza.riassunto }}</p>
+      </article>
+      {%- endif %}
+      <div class="giornale-rotta" data-giornale>
+        <span class="giornale__scia" aria-hidden="true"></span>
+        <span class="giornale__vela" aria-hidden="true">{% include vela.html tipo="windsurf" %}</span>
+        <ol class="giornale">
+          {%- assign n = 0 -%}
+          {%- for e in eventi -%}
+            {%- if e.url == evidenza.url -%}{%- continue -%}{%- endif -%}
+            {%- assign n = n | plus: 1 -%}
+            {%- if n > 4 -%}{%- break -%}{%- endif %}
+          <li><a href="{{ e.url | relative_url }}"><span class="giornale__anno">{{ e.date | date: "%Y" }}</span><strong>{{ e.title }}</strong><span>{{ e.riassunto }}</span></a></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </div>
+    <p class="evidenza__tutti"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
+  </div>
+</section>
+
+<section class="sezione" aria-labelledby="t-adesso">
+  <div class="contenitore">
+    <p class="etichetta">Meteo e webcam</p>
+    <h2 class="titolo" id="t-adesso">Adesso <em>a Barcola</em></h2>
+    <div class="adesso">
+      {% include vento.html %}
+      <figure class="webcam" data-webcam data-src="{{ webcam }}">
+        <div class="webcam__cornice">
+          <img src="{{ webcam }}" width="1790" height="1036" alt="Webcam di Barcola: il mare davanti al Terrapieno verso Miramare, in questo momento">
+          <span>Webcam Barcola</span>
+          <p class="webcam__offline">La webcam del Terrapieno non trasmette in questo momento.</p>
+        </div>
+        <figcaption>Webcam sul Terrapieno, si aggiorna da sola ogni minuto<span data-webcam-ora></span>.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 

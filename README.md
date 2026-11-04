@@ -7,7 +7,7 @@ su GitHub va online da sola in 1–2 minuti, senza installare niente.
 - **Anteprima:** https://surfteamtrieste-website.github.io/website/
 - **Dominio definitivo (dopo il passaggio):** https://www.surfteamtrieste.com
 
-Pagine, ognuna con la sua voce nel menu in cima: **Home** (video, il club, foto e «Prima di uscire») ·
+Pagine, ognuna con la sua voce nel menu in cima: **Home** (video, il club, foto, gli ultimi eventi, vento e webcam di Barcola, «Prima di uscire») ·
 **Meteo e webcam** (lo spot di Barcola, vento in tempo reale, webcam e previsioni) · **Lezioni** (corsi e
 numero dell'istruttore) · **Eventi** (l'albo del club con video e foto).
 In fondo a ogni pagina: contatti, statuto e regolamento.
@@ -39,7 +39,8 @@ galleria e risultati sono facoltativi → salva.
 
 - La **data per esteso** è facoltativa: se resta vuota sul sito si legge «12 giugno 2027».
   Serve per scritte come «Sabato 12 giugno 2027» o «Per tutto il 2027».
-- Gli eventi compaiono nell'albo, diviso per anno, dal più recente.
+- Gli eventi compaiono nell'albo, diviso per anno, dal più recente. In home c'è in grande l'ultimo
+  evento con un video o una foto, e accanto i quattro eventi più recenti.
 - **Video YouTube:** basta incollare il link del video (es. `https://www.youtube.com/watch?v=…`).
   Il video si guarda dentro il sito, sotto l'evento nell'albo e nella sua pagina. Se non c'è un video,
   sotto l'evento compare la foto principale.

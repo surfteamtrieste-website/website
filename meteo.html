@@ -39,6 +39,14 @@ description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, p
         <img src="{{ '/assets/img/golfo-bora-largo-1200.jpg' | relative_url }}" width="2000" height="634" alt="Il Golfo di Trieste con la Bora visto da sopra il Faro della Vittoria: decine di windsurf in mare e, in basso, il Terrapieno di Barcola">
       </picture>
     </figure>
+    <figure class="foto foto-golfo vista3d">
+      <picture>
+        <source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/img/vista3d-spot-stretto-900.webp' | relative_url }} 900w, {{ '/assets/img/vista3d-spot-stretto-1200.webp' | relative_url }} 1200w" sizes="100vw" width="1200" height="1000">
+        <source media="(max-width: 700px)" srcset="{{ '/assets/img/vista3d-spot-stretto-900.jpg' | relative_url }}" width="1200" height="1000">
+        <source type="image/webp" srcset="{{ '/assets/img/vista3d-spot-largo-1600.webp' | relative_url }} 1600w, {{ '/assets/img/vista3d-spot-largo-2400.webp' | relative_url }} 2400w" sizes="(max-width: 1240px) 100vw, 1160px">
+        <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D dalla collina sopra Barcola: il Faro della Vittoria, il club sul Terrapieno, lo specchio d'acqua dello spot fino a Miramare e le frecce della Bora che da ENE escono dalla riva verso il largo">
+      </picture>
+    </figure>
   </div>
 </section>
 
@@ -51,6 +59,7 @@ description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, p
         <div class="webcam__cornice">
           <img src="{{ webcam }}" width="1790" height="1036" alt="Webcam di Barcola: il mare davanti al Terrapieno verso Miramare, in questo momento">
           <span>Webcam Barcola</span>
+          <p class="webcam__offline">La webcam del Terrapieno non trasmette in questo momento.</p>
         </div>
         <figcaption>Webcam sul Terrapieno, si aggiorna da sola ogni minuto<span data-webcam-ora></span>. Altre webcam live del golfo su <a href="{{ vt }}?{{ utm_meteo }}&utm_content=webcam#webcam" target="_blank" rel="noopener">Vento Trieste</a>.</figcaption>
       </figure>
