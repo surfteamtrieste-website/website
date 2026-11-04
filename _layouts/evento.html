@@ -22,16 +22,16 @@ layout: default
 
 <section class="sezione">
   <div class="contenitore">
+    {%- capture media %}{% include media-evento.html evento=page %}{% endcapture %}
+    {%- if media != "" %}
+    <div class="evento__media">{{ media }}</div>
+    {%- endif %}
     <div class="evento__corpo">
       <div class="testo">
         {{ content | replace: 'src="/assets/', src_foto | replace: 'href="/assets/', href_foto }}
         <p style="margin-top:32px"><a class="collegamento" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a></p>
       </div>
       <div>
-        {%- capture media %}{% include media-evento.html evento=page %}{% endcapture %}
-        {%- if media != "" %}
-        <div class="evento__media">{{ media }}</div>
-        {%- endif %}
         {%- if page.risultati and page.risultati.size > 0 %}
         <p class="etichetta">Risultati</p>
         <dl class="podio">
@@ -43,13 +43,5 @@ layout: default
         {%- endif %}
       </div>
     </div>
-    {%- if page.galleria and page.galleria.size > 0 %}
-    <h2 class="solo-lettori">Foto</h2>
-    <ul class="galleria">
-      {%- for foto in page.galleria %}
-      <li><a href="{{ foto | relative_url }}"><img src="{{ foto | relative_url }}" alt="{{ page.title }}, foto {{ forloop.index }}" loading="lazy"></a></li>
-      {%- endfor %}
-    </ul>
-    {%- endif %}
   </div>
 </section>

@@ -45,8 +45,8 @@ galleria e risultati sono facoltativi → salva.
   Il video si guarda dentro il sito, sotto l'evento nell'albo e nella sua pagina. Se non c'è un video,
   sotto l'evento compare la foto principale. Con **Copertina del video** si sceglie l'immagine che si vede
   prima di far partire il video (se resta vuota si usa quella di YouTube).
-- Nel **testo** il pulsante dell'immagine inserisce foto tra un paragrafo e l'altro; la
-  **galleria** mette le foto in griglia sotto il testo.
+- Nel **testo** il pulsante dell'immagine inserisce foto tra un paragrafo e l'altro; le foto della
+  **galleria** vanno nel carosello dell'evento, dopo il video (si sfogliano con le frecce o col dito).
 - Le foto finiscono in `assets/img/eventi/`. Subito dopo il salvataggio un'azione automatica
   (scheda **Actions**, «Foto eventi leggere») le porta a 1600 px di lato e toglie i dati del
   telefono, compresa la posizione GPS.
@@ -92,6 +92,7 @@ disciplina: [SUP]
 riassunto: Una riga che compare nell'elenco degli eventi.
 video: https://www.youtube.com/watch?v=…         # facoltativo
 video_copertina: /assets/img/eventi/memorial-2027-copertina.jpg  # facoltativo
+video_clip: /assets/video/eventi/memorial-2027      # facoltativo: montaggio breve (NOME-960.mp4 e NOME-1280.mp4)
 immagine: /assets/img/eventi/memorial-2027.jpg   # facoltativo
 galleria:                                        # facoltativo
   - /assets/img/eventi/memorial-2027-arrivo.jpg

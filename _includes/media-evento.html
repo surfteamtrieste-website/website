@@ -1,26 +1,63 @@
 {%- comment -%}
-  Video o foto di un evento: il video YouTube se c'è, altrimenti la foto principale.
-  Il video si presenta con la sua copertina (video_copertina, un fotogramma scelto da noi; se manca quella
-  di YouTube) e parte dentro la pagina al clic (sito.js); senza JavaScript il link apre YouTube.
-  Il campo video accetta il link YouTube in qualsiasi forma (watch?v=, youtu.be/, shorts/) o solo il codice.
+  Carosello di un evento: prima il video, poi la foto principale e le foto della galleria.
+  Il video YouTube si presenta con la sua copertina (video_copertina, un fotogramma scelto da noi; se manca
+  quella di YouTube). Se c'è video_clip (montaggio breve senza audio in assets/video/eventi, NOME-960.mp4 e
+  NOME-1280.mp4) il montaggio parte da solo quando si vede; al clic il video completo parte nella pagina (sito.js).
+  Senza JavaScript il link apre YouTube. Il campo video accetta il link YouTube in qualsiasi forma o solo il codice.
   Uso: {% include media-evento.html evento=e %}
 {%- endcomment -%}
 {%- assign e = include.evento -%}
-{%- if e.video and e.video != "" -%}
-  {%- assign yt = e.video | strip | split: "v=" | last | split: "&" | first | split: "youtu.be/" | last | split: "embed/" | last | split: "shorts/" | last | split: "?" | first | split: "/" | first -%}
-  {%- if e.video_copertina and e.video_copertina != "" -%}
-    {%- assign copertina = e.video_copertina | relative_url -%}
-  {%- else -%}
-    {%- assign copertina = "https://i.ytimg.com/vi/" | append: yt | append: "/hqdefault.jpg" -%}
-  {%- endif -%}
-<div class="video-evento" data-youtube="{{ yt }}">
-  <a class="video-evento__avvia" href="https://www.youtube.com/watch?v={{ yt }}" target="_blank" rel="noopener" aria-label="Guarda il video: {{ e.title | escape }}">
-    <img src="{{ copertina }}" alt="" loading="lazy">
-    <span class="video-evento__play" aria-hidden="true"></span>
-  </a>
+{%- assign ha_video = false -%}
+{%- if e.video and e.video != "" -%}{%- assign ha_video = true -%}{%- endif -%}
+{%- assign ha_foto = false -%}
+{%- if e.immagine and e.immagine != "" -%}{%- assign ha_foto = true -%}{%- endif -%}
+{%- assign n = e.galleria.size | default: 0 -%}
+{%- if ha_video -%}{%- assign n = n | plus: 1 -%}{%- endif -%}
+{%- if ha_foto -%}{%- assign n = n | plus: 1 -%}{%- endif -%}
+{%- if n > 0 -%}
+{%- assign i = 0 -%}
+<div class="carosello" data-carosello role="region" aria-roledescription="carosello" aria-label="Video e foto: {{ e.title | escape }}">
+  <div class="carosello__binario" data-binario{% if n > 1 %} tabindex="0"{% endif %}>
+    {%- if ha_video -%}
+      {%- assign i = i | plus: 1 -%}
+      {%- assign yt = e.video | strip | split: "v=" | last | split: "&" | first | split: "youtu.be/" | last | split: "embed/" | last | split: "shorts/" | last | split: "?" | first | split: "/" | first -%}
+      {%- if e.video_copertina and e.video_copertina != "" -%}
+        {%- assign copertina = e.video_copertina | relative_url -%}
+      {%- else -%}
+        {%- assign copertina = "https://i.ytimg.com/vi/" | append: yt | append: "/hqdefault.jpg" -%}
+      {%- endif %}
+    <div class="carosello__slide" role="group" aria-roledescription="slide" aria-label="{{ i }} di {{ n }}">
+      <div class="video-evento" data-youtube="{{ yt }}">
+        {%- if e.video_clip and e.video_clip != "" -%}
+        {%- assign clip = e.video_clip | relative_url %}
+        <video class="video-evento__clip" data-clip data-src="{{ clip }}-960.mp4" data-src-alta="{{ clip }}-1280.mp4" poster="{{ copertina }}" muted loop playsinline preload="none" aria-hidden="true"></video>
+        <a class="video-evento__avvia video-evento__avvia--clip" href="https://www.youtube.com/watch?v={{ yt }}" target="_blank" rel="noopener" aria-label="Guarda il video completo: {{ e.title | escape }}"><span class="video-evento__pillola"><span class="video-evento__play" aria-hidden="true"></span>Video completo</span></a>
+        {%- else %}
+        <a class="video-evento__avvia" href="https://www.youtube.com/watch?v={{ yt }}" target="_blank" rel="noopener" aria-label="Guarda il video: {{ e.title | escape }}">
+          <img src="{{ copertina }}" alt="" loading="lazy">
+          <span class="video-evento__play" aria-hidden="true"></span>
+        </a>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endif -%}
+    {%- if ha_foto -%}
+      {%- assign i = i | plus: 1 %}
+    <div class="carosello__slide" role="group" aria-roledescription="slide" aria-label="{{ i }} di {{ n }}">
+      <img src="{{ e.immagine | relative_url }}" alt="{{ e.title | escape }}" loading="lazy">
+    </div>
+    {%- endif -%}
+    {%- for foto in e.galleria -%}
+      {%- assign i = i | plus: 1 %}
+    <div class="carosello__slide" role="group" aria-roledescription="slide" aria-label="{{ i }} di {{ n }}">
+      <img src="{{ foto | relative_url }}" alt="{{ e.title | escape }}, foto {{ forloop.index }}" loading="lazy">
+    </div>
+    {%- endfor %}
+  </div>
+  {%- if n > 1 %}
+  <button class="carosello__freccia carosello__freccia--prec" type="button" data-prec aria-label="Precedente" disabled><span aria-hidden="true">‹</span></button>
+  <button class="carosello__freccia carosello__freccia--succ" type="button" data-succ aria-label="Successiva"><span aria-hidden="true">›</span></button>
+  <p class="carosello__conto" aria-hidden="true"><span data-conto>1</span> / {{ n }}</p>
+  {%- endif %}
 </div>
-{%- elsif e.immagine and e.immagine != "" -%}
-<figure class="foto foto-evento">
-  <img src="{{ e.immagine | relative_url }}" alt="{{ e.title | escape }}" loading="lazy">
-</figure>
 {%- endif -%}

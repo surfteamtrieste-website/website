@@ -7,6 +7,7 @@ disciplina: [Wing foil]
 immagine: ""
 video: https://www.youtube.com/watch?v=-KrQW1C3ftA
 video_copertina: /assets/img/eventi/big-air-2025-copertina.jpg
+video_clip: /assets/video/eventi/big-air-2025
 galleria:
   - /assets/img/eventi/big-air-2025-1.jpg
   - /assets/img/eventi/big-air-2025-2.jpg

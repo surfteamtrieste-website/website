@@ -76,6 +76,10 @@ content:
         type: image
         options:
           media: foto
+      - name: video_clip
+        label: Montaggio breve del video
+        description: Lo prepara Alberto dal video di YouTube (file in assets/video/eventi). Lasciare com'è.
+        type: string
       - name: immagine
         label: Foto principale
         description: Compare sotto l'evento nell'albo (se non c'è un video), nella sua pagina e nelle anteprime sui social. Le foto grandi vengono rimpicciolite da sole dopo il salvataggio.
@@ -91,7 +95,7 @@ content:
           media: foto
       - name: galleria
         label: Galleria di foto
-        description: Le foto compaiono in griglia sotto il testo, nell'ordine scelto qui.
+        description: Le foto compaiono nel carosello dell'evento, dopo il video, nell'ordine scelto qui.
         type: image
         options:
           media: foto

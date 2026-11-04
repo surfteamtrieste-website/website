@@ -7,6 +7,14 @@ disciplina: [Wing foil]
 immagine: ""
 video: https://www.youtube.com/watch?v=ij702n6jZzQ
 video_copertina: /assets/img/eventi/foil-academy-2024-copertina.jpg
+video_clip: /assets/video/eventi/foil-academy-2024
+galleria:
+  - /assets/img/eventi/foil-academy-2024-1.jpg
+  - /assets/img/eventi/foil-academy-2024-2.jpg
+  - /assets/img/eventi/foil-academy-2024-3.jpg
+  - /assets/img/eventi/foil-academy-2024-4.jpg
+  - /assets/img/eventi/foil-academy-2024-5.jpg
+  - /assets/img/eventi/foil-academy-2024-6.jpg
 riassunto: Grande partecipazione dei nostri atleti nella categoria wing foil, piazzati al 2°, 4°, 7° e 8° posto.
 ---
 

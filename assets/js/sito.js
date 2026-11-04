@@ -299,7 +299,7 @@
     });
   }
 
-  /* ── video degli eventi: copertina nostra, al clic il video di YouTube parte nella pagina ── */
+  /* ── video degli eventi: al clic il video completo di YouTube parte nella pagina, con l'audio ── */
   Array.prototype.forEach.call(document.querySelectorAll("[data-youtube]"), function (box) {
     var link = box.querySelector("a");
     link.addEventListener("click", function (e) {
@@ -310,9 +310,59 @@
       f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       f.referrerPolicy = "strict-origin-when-cross-origin";
       f.allowFullscreen = true;
-      box.replaceChild(f, link);
+      box.textContent = "";
+      box.appendChild(f);
+      // mentre gira il video completo il contatore del carosello non copre i comandi di YouTube
+      var car = box.closest("[data-carosello]");
+      if (car) car.classList.add("carosello--video");
       f.focus();
     });
+  });
+
+  /* ── montaggi brevi degli eventi: si caricano vicino allo schermo, partono quando si vedono ──
+     Con «movimento ridotto» o risparmio dati resta la copertina. */
+  var clip = document.querySelectorAll("[data-clip]");
+  if (clip.length && !fermo && "IntersectionObserver" in window) {
+    // il file si sceglie una volta sola: quello più leggero se il riquadro è piccolo
+    var sorgente = function (c) {
+      if (c.getAttribute("src")) return;
+      var alta = c.getAttribute("data-src-alta");
+      c.src = (alta && c.clientWidth * (window.devicePixelRatio || 1) > 1100) ? alta : c.getAttribute("data-src");
+    };
+    var carica = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) { if (v.isIntersecting) { sorgente(v.target); carica.unobserve(v.target); } });
+    }, { rootMargin: "300px 0px" });
+    var gira = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (v.isIntersecting) { sorgente(v.target); var p = v.target.play(); if (p && p.catch) p.catch(function () {}); }
+        else v.target.pause();
+      });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(clip, function (c) { carica.observe(c); gira.observe(c); });
+  }
+
+  /* ── caroselli: scorrimento a dito o con le frecce, contatore delle foto ── */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-carosello]"), function (car) {
+    var binario = car.querySelector("[data-binario]");
+    var prec = car.querySelector("[data-prec]"), succ = car.querySelector("[data-succ]"), conto = car.querySelector("[data-conto]");
+    if (!prec) return;
+    var totale = binario.children.length;
+    var aggiorna = function () {
+      var i = Math.round(binario.scrollLeft / binario.clientWidth);
+      conto.textContent = i + 1;
+      prec.disabled = i <= 0;
+      succ.disabled = i >= totale - 1;
+    };
+    var vai = function (verso) { binario.scrollBy({ left: verso * binario.clientWidth, behavior: riduci ? "auto" : "smooth" }); };
+    prec.addEventListener("click", function () { vai(-1); });
+    succ.addEventListener("click", function () { vai(1); });
+    binario.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); vai(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); vai(-1); }
+    });
+    var attesa;
+    binario.addEventListener("scroll", function () { clearTimeout(attesa); attesa = setTimeout(aggiorna, 60); }, { passive: true });
+    aggiorna();
   });
 
   /* ── avviso sul vecchio dominio: alla prima visita, poi di nuovo dopo 30 giorni ── */
