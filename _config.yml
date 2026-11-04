@@ -20,7 +20,8 @@ baseurl: "/website"
 # Mettere false solo quando il sito va su surfteamtrieste.com.
 anteprima: true
 
-# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): finestra che compare
+# Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): fascia fissa in cima a ogni
+# pagina e finestra che compare
 # alla prima visita (e di nuovo dopo 30 giorni). Mettere false quando il problema è risolto.
 avviso_dominio: true
 

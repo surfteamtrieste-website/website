@@ -460,7 +460,12 @@ h1, h2, h3 { margin: 0; }
 .arrivo__fondo a { color: var(--blu); text-decoration-color: var(--accento); text-underline-offset: 3px; }
 @media (max-width: 860px) { .arrivo__griglia { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .arrivo__griglia { grid-template-columns: 1fr; } }
-/* avviso sul vecchio dominio: finestra alla prima visita */
+/* avviso sul vecchio dominio: fascia fissa in cima a ogni pagina e finestra alla prima visita */
+.avviso-banner { background: var(--blu-notte); color: var(--bianco); font-size: .84rem; line-height: 1.45; }
+.avviso-banner p { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; padding-block: 9px; text-align: left; }
+.avviso-banner strong { font-weight: 750; }
+.avviso-banner__segno { flex: none; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accento); color: var(--blu-notte); font-weight: 800; font-size: .8rem; }
+@media (max-width: 560px) { .avviso-banner { font-size: .78rem; } .avviso-banner p { align-items: flex-start; } }
 .avviso-dominio { width: min(520px, calc(100vw - 32px)); margin: auto; padding: 30px clamp(20px, 5vw, 34px) 26px; border: 0; border-top: 6px solid var(--accento); border-radius: 14px; background: var(--bianco); color: var(--inchiostro); box-shadow: 0 24px 60px -20px rgba(12, 43, 75, .5); }
 .avviso-dominio::backdrop { background: rgba(12, 43, 75, .45); }
 .avviso-dominio__segno { width: 40px; height: 40px; margin: 0 0 14px; border-radius: 50%; background: var(--accento); color: var(--blu-notte); font-weight: 800; font-size: 1.3rem; line-height: 40px; text-align: center; }
