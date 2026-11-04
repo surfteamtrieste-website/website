@@ -274,6 +274,8 @@ h1, h2, h3 { margin: 0; }
 .pagina-testa__sotto { max-width: 58ch; margin: 14px 0 0; font-size: clamp(1.02rem, 1rem + .25vw, 1.12rem); color: var(--inchiostro-2); }
 .sezione { padding-block: clamp(44px, 6vw, 84px); }
 .sezione--spuma { background: var(--spuma); }
+/* la prima sezione subito sotto il titolo (meteo: webcam e vento appena si apre la pagina) */
+.sezione--subito { padding-top: clamp(22px, 3vw, 36px); }
 
 /* ── lezioni ──────────────────────────────────────────────── */
 .scheda { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 clamp(32px, 4.5vw, 52px); }
@@ -331,7 +333,8 @@ h1, h2, h3 { margin: 0; }
 
 /* adesso, webcam, Windguru, Vento Trieste, guide e «Prima di uscire» (home) */
 .adesso { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
-@media (max-width: 860px) { .adesso { grid-template-columns: 1fr; } }
+/* su telefono prima la webcam, subito visibile, poi il surfometro */
+@media (max-width: 860px) { .adesso { grid-template-columns: 1fr; } .adesso .webcam { order: -1; } }
 .webcam { margin: 0; }
 .webcam__cornice { position: relative; border-radius: 14px; overflow: hidden; background: var(--cielo); aspect-ratio: 1790 / 1036; }
 .webcam__cornice img { width: 100%; height: 100%; object-fit: cover; }

@@ -1,7 +1,7 @@
 ---
 title: Meteo e webcam
 permalink: /meteo/
-description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, previsioni Windguru e Vento Trieste.
+description: Vento in tempo reale e webcam del Terrapieno di Barcola, Vento Trieste, lo spot e le previsioni Windguru.
 ---
 {%- assign vt = site.ventotrieste -%}
 {%- comment -%} utm_meteo, non utm: vento.html riassegna utm per il suo badge {%- endcomment -%}
@@ -10,14 +10,51 @@ description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, p
 
 <header class="pagina-testa">
   <div class="contenitore">
-    <p class="etichetta">Lo spot di Barcola</p>
+    <p class="etichetta">Vento, webcam e previsioni</p>
     <h1 class="pagina-testa__titolo">Meteo e webcam</h1>
   </div>
 </header>
 
+<section class="sezione sezione--subito" aria-labelledby="t-adesso">
+  <div class="contenitore">
+    <h2 class="solo-lettori" id="t-adesso">Adesso a Barcola</h2>
+    <div class="adesso">
+      {% include vento.html esteso=true %}
+      <figure class="webcam" data-webcam data-src="{{ webcam }}">
+        <div class="webcam__cornice">
+          <img src="{{ webcam }}" width="1790" height="1036" alt="Webcam di Barcola: il mare davanti al Terrapieno verso Miramare, in questo momento">
+          <span>Webcam Barcola</span>
+          <p class="webcam__offline">La webcam del Terrapieno non trasmette in questo momento.</p>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione--spuma" aria-labelledby="t-vt">
+  <div class="contenitore">
+    <p class="etichetta">Vento Trieste</p>
+    <h2 class="titolo" id="t-vt">Tutto il golfo <em>in tempo reale</em></h2>
+    <div class="finestra">
+      <div class="finestra__barra">
+        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
+        <a class="collegamento" href="{{ vt }}?{{ utm_meteo }}&utm_content=barra" target="_blank" rel="noopener">Apri a schermo intero</a>
+      </div>
+      <iframe src="{{ vt }}?{{ utm_meteo }}&utm_content=iframe" title="Vento Trieste: surfometro di Barcola e vento in tempo reale nel Golfo di Trieste" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen"></iframe>
+      <div class="finestra__piede">Surfometro, centraline, Spinta della Bora, webcam e previsioni da <a href="{{ vt }}?{{ utm_meteo }}&utm_content=piede" target="_blank" rel="noopener">ventotrieste.info</a>, gratuito e senza pubblicità.</div>
+    </div>
+    <ul class="strumenti" style="margin-top:28px">
+      <li><a href="{{ vt }}mappa/?{{ utm_meteo }}&utm_content=mappa" target="_blank" rel="noopener">Mappa live del Golfo <span>tutte le centraline</span></a></li>
+      <li><a href="{{ vt }}registro/?{{ utm_meteo }}&utm_content=registro" target="_blank" rel="noopener">Registro del vento <span>com'era ieri e i giorni scorsi</span></a></li>
+      <li><a href="https://www.meteo.fvg.it/" target="_blank" rel="noopener">Meteo FVG <span>previsioni ufficiali della Regione</span></a></li>
+    </ul>
+  </div>
+</section>
+
 <section class="sezione" aria-labelledby="t-spot">
   <div class="contenitore">
-    <h2 class="solo-lettori" id="t-spot">Lo spot</h2>
+    <p class="etichetta">Lo spot</p>
+    <h2 class="titolo" id="t-spot">Barcola</h2>
     <div class="spot__griglia">
       <div class="testo">
         <p>La costa barcolana è caratterizzata da fondali sabbiosi e rive artificiali, tipicamente moli e scogli. Il vento prevalente soffia da ENE, quindi da terra (off-shore): per questo le onde sono di solito basse.</p>
@@ -47,42 +84,6 @@ description: Lo spot di Barcola, vento in tempo reale e webcam del Terrapieno, p
         <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D dalla collina sopra Barcola: il Faro della Vittoria, il club sul Terrapieno, lo specchio d'acqua dello spot fino a Miramare e le frecce della Bora che da ENE escono dalla riva verso il largo">
       </picture>
     </figure>
-  </div>
-</section>
-
-<section class="sezione sezione--spuma" aria-labelledby="t-adesso">
-  <div class="contenitore">
-    <h2 class="solo-lettori" id="t-adesso">Adesso a Barcola</h2>
-    <div class="adesso">
-      {% include vento.html esteso=true %}
-      <figure class="webcam" data-webcam data-src="{{ webcam }}">
-        <div class="webcam__cornice">
-          <img src="{{ webcam }}" width="1790" height="1036" alt="Webcam di Barcola: il mare davanti al Terrapieno verso Miramare, in questo momento">
-          <span>Webcam Barcola</span>
-          <p class="webcam__offline">La webcam del Terrapieno non trasmette in questo momento.</p>
-        </div>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="sezione" aria-labelledby="t-vt">
-  <div class="contenitore">
-    <p class="etichetta">Vento Trieste</p>
-    <h2 class="titolo" id="t-vt">Tutto il golfo <em>in tempo reale</em></h2>
-    <div class="finestra">
-      <div class="finestra__barra">
-        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> Vento Trieste · live</span>
-        <a class="collegamento" href="{{ vt }}?{{ utm_meteo }}&utm_content=barra" target="_blank" rel="noopener">Apri a schermo intero</a>
-      </div>
-      <iframe src="{{ vt }}?{{ utm_meteo }}&utm_content=iframe" title="Vento Trieste: surfometro di Barcola e vento in tempo reale nel Golfo di Trieste" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen"></iframe>
-      <div class="finestra__piede">Surfometro, centraline, Spinta della Bora, webcam e previsioni da <a href="{{ vt }}?{{ utm_meteo }}&utm_content=piede" target="_blank" rel="noopener">ventotrieste.info</a>, gratuito e senza pubblicità.</div>
-    </div>
-    <ul class="strumenti" style="margin-top:28px">
-      <li><a href="{{ vt }}mappa/?{{ utm_meteo }}&utm_content=mappa" target="_blank" rel="noopener">Mappa live del Golfo <span>tutte le centraline</span></a></li>
-      <li><a href="{{ vt }}registro/?{{ utm_meteo }}&utm_content=registro" target="_blank" rel="noopener">Registro del vento <span>com'era ieri e i giorni scorsi</span></a></li>
-      <li><a href="https://www.meteo.fvg.it/" target="_blank" rel="noopener">Meteo FVG <span>previsioni ufficiali della Regione</span></a></li>
-    </ul>
   </div>
 </section>
 
