@@ -4,7 +4,8 @@ Il sito del windsurf club del Terrapieno di Barcola.
 È un sito statico pubblicato gratis da **GitHub Pages**: ogni modifica salvata qui
 su GitHub va online da sola in 1–2 minuti, senza installare niente.
 
-- **Sito:** https://www.surfteamtrieste.com (l'indirizzo di anteprima su github.io rimanda qui)
+- **Sito:** https://surfteamtrieste-website.github.io/website/ (surfteamtrieste.com rimanda qui finché
+  il DNS del dominio non punta a GitHub; poi l'indirizzo diventa https://www.surfteamtrieste.com)
 - **Statistiche:** Google Analytics, account «Surf Team Trieste» di surfteamtrieste@gmail.com,
   solo per chi accetta dal riquadro in fondo alla pagina (informativa in `privacy.md`)
 
