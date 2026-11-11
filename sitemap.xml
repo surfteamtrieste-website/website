@@ -1,0 +1,17 @@
+---
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in site.pages -%}
+  {%- if p.sitemap == false or p.url contains "404" -%}{%- continue -%}{%- endif -%}
+  {%- unless p.url contains ".html" or p.url == "/" or p.url contains "/" -%}{%- continue -%}{%- endunless -%}
+  {%- if p.url contains ".xml" or p.url contains ".txt" or p.url contains ".css" or p.url contains ".js" -%}{%- continue -%}{%- endif %}
+  <url><loc>{{ p.url | absolute_url | xml_escape }}</loc></url>
+{%- endfor -%}
+{%- for e in site.eventi %}
+  <url><loc>{{ e.url | absolute_url | xml_escape }}</loc>{% if e.last_modified_at %}<lastmod>{{ e.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}</url>
+{%- endfor %}
+</urlset>

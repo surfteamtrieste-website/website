@@ -1,0 +1,11 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
+User-agent: *
+{% if site.anteprima %}Disallow: /
+{% else %}Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+{% endif %}

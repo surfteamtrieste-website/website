@@ -495,6 +495,22 @@ h1, h2, h3 { margin: 0; }
 .arrivo .collegamento { color: var(--blu); }
 .arrivo__fondo { margin: 28px 0 0; padding-top: 16px; border-top: 1px solid rgba(12, 43, 75, .12); font-size: .8rem; color: var(--inchiostro-2); }
 .arrivo__fondo a { color: var(--blu); text-decoration-color: var(--accento); text-underline-offset: 3px; }
+.arrivo__cookie { font: inherit; color: var(--blu); background: none; border: 0; padding: 4px 0; margin-left: .2em; cursor: pointer; text-decoration: underline; text-decoration-color: var(--accento); text-underline-offset: 3px; }
+.arrivo__cookie::before { content: "· "; color: var(--inchiostro-2); text-decoration: none; display: inline-block; white-space: pre; }
+
+/* consenso alle statistiche: riquadro in basso a sinistra, le due scelte con lo stesso peso */
+.consenso {
+  position: fixed; z-index: 60; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  max-width: 500px; padding: 18px 20px; border-radius: 14px;
+  background: var(--bianco); border: 1px solid var(--linea); border-top: 4px solid var(--accento); box-shadow: var(--ombra);
+  color: var(--inchiostro); font-size: .92rem; line-height: 1.5;
+}
+.consenso[hidden] { display: none; }
+.consenso p { margin: 0 0 14px; }
+.consenso a { color: var(--blu); text-decoration-color: var(--accento); text-underline-offset: 3px; white-space: nowrap; }
+.consenso__scelte { display: flex; gap: 10px; }
+.bottone--scelta { flex: 1 1 0; min-height: 44px; padding: .6em 1em; background: var(--cielo); color: var(--blu-notte); border-color: rgba(0, 80, 143, .35); }
+.bottone--scelta:hover { background: var(--accento); border-color: var(--accento); }
 @media (max-width: 860px) { .arrivo__griglia { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .arrivo__griglia { grid-template-columns: 1fr; } }
 /* avviso sul vecchio dominio: riquadro fisso in fondo a ogni pagina e finestra alla prima visita */

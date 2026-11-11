@@ -4,8 +4,9 @@ Il sito del windsurf club del Terrapieno di Barcola.
 È un sito statico pubblicato gratis da **GitHub Pages**: ogni modifica salvata qui
 su GitHub va online da sola in 1–2 minuti, senza installare niente.
 
-- **Anteprima:** https://surfteamtrieste-website.github.io/website/
-- **Dominio definitivo (dopo il passaggio):** https://www.surfteamtrieste.com
+- **Sito:** https://www.surfteamtrieste.com (l'indirizzo di anteprima su github.io rimanda qui)
+- **Statistiche:** Google Analytics, account «Surf Team Trieste» di surfteamtrieste@gmail.com,
+  solo per chi accetta dal riquadro in fondo alla pagina (informativa in `privacy.md`)
 
 Pagine, ognuna con la sua voce nel menu in cima: **Il club** (il club, video, foto, gli ultimi eventi, vento e webcam di Barcola, «Prima di uscire») ·
 **Meteo e webcam** (vento in tempo reale, webcam, previsioni e lo spot di Barcola) · **Lezioni** (corsi, prezzi e
@@ -77,7 +78,8 @@ I testi delle pagine non sono nel pannello: si cambiano su GitHub.
 | Statuto, regolamento e altri PDF | pannello → Statuto e documenti (`_data/documenti.yml` + `documenti/`) |
 | Testi della pagina Il club (la home: il club, «Prima di uscire») | `index.html` |
 | Testi delle pagine Meteo e webcam, Lezioni, Eventi | `meteo.html`, `lezioni.html`, `eventi.html` |
-| Avviso sul vecchio dominio, anteprima | `_config.yml` |
+| Avviso sul vecchio dominio, Google Analytics | `_config.yml` |
+| Informativa privacy e cookie | `privacy.md` |
 
 Un evento scritto a mano in `_eventi/AAAA-MM-GG-nome-evento.md` ha questa forma (gli stessi
 campi del pannello):

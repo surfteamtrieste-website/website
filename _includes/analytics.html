@@ -1,0 +1,9 @@
+{%- comment -%}
+  Google Analytics 4 solo con il consenso del visitatore (modalità «base»: gtag.js non si carica
+  finché non clicca Accetta). Logica e riquadro in assets/js/consenso.js e _includes/consenso.html.
+  Spento nelle build locali (jekyll.environment diverso da "production") e con ga4: "" in _config.yml.
+{%- endcomment -%}
+{%- if site.ga4 and site.ga4 != "" and jekyll.environment == "production" %}
+<script>window.STT_GA4 = "{{ site.ga4 }}";</script>
+<script src="{{ '/assets/js/consenso.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+{%- endif %}

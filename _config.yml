@@ -10,15 +10,17 @@ description: >-
   Windsurf, wing foil e SUP: corsi tutto l'anno, eventi, meteo dello spot.
 lang: it
 
-# Indirizzo del sito.
-# ANTEPRIMA (oggi):  url "https://surfteamtrieste-website.github.io"  +  baseurl "/website"
-# DOMINIO VERO (dopo il passaggio): url "https://www.surfteamtrieste.com"  +  baseurl ""
-url: "https://surfteamtrieste-website.github.io"
-baseurl: "/website"
+# Indirizzo del sito: online su www.surfteamtrieste.com dall'11 novembre 2026
+# (file CNAME + DNS su Weebly). L'anteprima su github.io ora rimanda qui da sola.
+url: "https://www.surfteamtrieste.com"
+baseurl: ""
 
-# Finché è true Google non indicizza il sito (serve per l'anteprima).
-# Mettere false solo quando il sito va su surfteamtrieste.com.
-anteprima: true
+# true = Google non indicizza il sito (serviva per l'anteprima). Online: false.
+anteprima: false
+
+# Google Analytics 4 (account «Surf Team Trieste» di surfteamtrieste@gmail.com): parte solo se il visitatore accetta
+# dal riquadro in fondo alla pagina. Lasciare vuoto ("") per spegnerlo.
+ga4: "G-7J2DDS9E7H"
 
 # Avviso sul vecchio dominio windsurfclubtrieste.it (non più del club): riquadro in fondo a ogni
 # pagina e finestra che compare alla prima visita (e di nuovo dopo 30 giorni). Mettere false quando il problema è risolto.

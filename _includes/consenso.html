@@ -1,0 +1,10 @@
+{%- if site.ga4 and site.ga4 != "" and jekyll.environment == "production" %}
+<section class="consenso" data-consenso hidden aria-labelledby="consenso-titolo">
+  <h2 class="solo-lettori" id="consenso-titolo">Statistiche del sito</h2>
+  <p>Se accetti, usiamo Google Analytics per contare le visite al sito, in forma aggregata. Niente pubblicità né profilazione. <a href="{{ '/privacy/' | relative_url }}">Privacy e cookie</a></p>
+  <div class="consenso__scelte">
+    <button class="bottone bottone--scelta" type="button" data-consenso-scelta="no">Rifiuta</button>
+    <button class="bottone bottone--scelta" type="button" data-consenso-scelta="si">Accetta</button>
+  </div>
+</section>
+{%- endif %}
