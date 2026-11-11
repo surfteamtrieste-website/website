@@ -345,8 +345,11 @@ h1, h2, h3 { margin: 0; }
 /* su telefono prima la webcam, subito visibile, poi il surfometro */
 @media (max-width: 860px) { .adesso { grid-template-columns: 1fr; } .adesso .webcam { order: -1; } }
 .webcam { margin: 0; }
-.webcam__cornice { position: relative; border-radius: 14px; overflow: hidden; background: var(--cielo); aspect-ratio: 1790 / 1036; }
-.webcam__cornice img { width: 100%; height: 100%; object-fit: cover; }
+/* cornice scura: l'immagine non si arrotonda in basso, così la data e i dati in sovrimpressione
+   (barra in fondo, data nell'angolo a sinistra) restano interi (segnalazione di Andrej, 11/11/2026) */
+.webcam__cornice { position: relative; border-radius: 14px; overflow: hidden; background: var(--blu-notte); padding: 5px; }
+.webcam__cornice img { display: block; width: 100%; height: auto; aspect-ratio: 1790 / 1036; object-fit: contain; border-radius: 9px 9px 0 0; }
+.webcam[data-stato="offline"] .webcam__cornice { background: var(--cielo); }
 .webcam__cornice span { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(12, 43, 75, .78); color: var(--bianco); font-weight: 650; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
 .webcam figcaption { font-size: .82rem; color: var(--inchiostro-2); margin-top: 10px; }
 .webcam__offline { display: none; }
