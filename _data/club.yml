@@ -22,7 +22,7 @@ partita_iva: "01340290327"
 referenti:
   - nome: Andrej
     telefono: "3248809908"
-    whatsapp: false   # true = compare anche il link WhatsApp
+    whatsapp: true    # true = compare anche il link WhatsApp (wa.me)
 
 # Come arrivare (dal vecchio sito)
 come_arrivare:

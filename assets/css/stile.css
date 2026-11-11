@@ -145,10 +145,11 @@ h1, h2, h3 { margin: 0; }
 .foto img { width: 100%; border-radius: 6px; }
 
 /* ── testata ──────────────────────────────────────────────── */
+/* la banda azzurra con le vele fa da testata fissa su tutte le pagine */
 .testata {
-  background: rgba(255, 255, 255, .96); color: var(--blu-notte);
+  background: var(--spuma) url("../img/texture-vele.svg") left -90px top -170px / 760px auto repeat-x;
+  color: var(--blu-notte);
   position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--linea);
-  -webkit-backdrop-filter: saturate(1.4) blur(8px); backdrop-filter: saturate(1.4) blur(8px);
 }
 .testata__riga { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; }
 .marchio { display: inline-flex; align-items: center; padding-block: 8px; }
