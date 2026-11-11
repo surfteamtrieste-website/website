@@ -22,9 +22,10 @@
   /* ── vento ora a Barcola, dai dati di Vento Trieste ─────
      Il worker di ventotrieste.info tiene una copia dei dati aggiornata ogni minuto.
      Barcola = centralina Windguru sul Terrapieno: media e raffica degli ultimi 10 minuti, in nodi.
-     È offline se è ferma da più di 20 minuti o se segna 0 nodi sia di media sia di raffica
-     (la centralina a volte resta accesa ma non misura): allora si mostra Trieste molo
-     (Protezione Civile FVG). Se non risponde Vento Trieste, tutto offline.
+     È offline se è ferma da più di 20 minuti, oppure se segna 0 nodi di media e di raffica
+     mentre al molo di Trieste soffiano almeno 4 nodi (anemometro guasto, come a fine ottobre 2026):
+     allora si mostra Trieste molo (Protezione Civile FVG). 0 nodi con calma anche al molo = calma vera.
+     Se non risponde Vento Trieste, tutto offline.
      Le parole sono quelle del surfometro di Vento Trieste; a Barcola seguono la raffica
      perché la centralina è al riparo (vedi il commento in ventotrieste.info). */
   var DATI_VENTO = "https://ventotrieste-dati.bebroggi.workers.dev/";
@@ -80,11 +81,15 @@
     return out;
   }
 
-  function barcolaViva(b) { return !!b && b.eta <= VECCHIO_MIN && !b.zero; }
+  function barcolaViva(b, t) {
+    if (!b || b.eta > VECCHIO_MIN) return false;
+    if (!b.zero) return true;
+    return !(t && t.media >= 4);   // 0 nodi a Barcola e vento al molo: anemometro sospetto
+  }
 
   function mostraVento(box, l) {
     var q = function (s) { return box.querySelector(s); };
-    var b = l.barcola, viva = barcolaViva(b);
+    var b = l.barcola, viva = barcolaViva(b, l.trieste);
     var scelta = viva ? b : l.trieste;
     if (!scelta || isNaN(scelta.media)) return erroreVento(box, "Barcola offline");
 
@@ -139,11 +144,21 @@
     if (q("[data-v-righe]")) q("[data-v-righe]").hidden = true;
   }
 
+  /* webcam: Vento Trieste sa da quanti minuti l'immagine non cambia; oltre 30 minuti la webcam
+     è ferma anche se l'ultima foto si carica ancora (successo dal 30/10/2026) */
+  function statoWebcam(cam) {
+    if (!cam || typeof cam.etaMin !== "number") return;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-webcam]"), function (w) {
+      if (cam.etaMin > 30) { w.setAttribute("data-ferma", ""); w.setAttribute("data-stato", "offline"); }
+      else { w.removeAttribute("data-ferma"); if (w.getAttribute("data-stato") === "offline") w.removeAttribute("data-stato"); }
+    });
+  }
+
   /* la stazione Windguru del club nella pagina meteo: online solo se Vento Trieste la vede misurare */
   function statoStazione(l) {
     var st = document.querySelector("[data-stazione]");
     if (!st) return;
-    var viva = barcolaViva(l && l.barcola);
+    var viva = barcolaViva(l && l.barcola, l && l.trieste);
     st.setAttribute("data-stato", viva ? "ok" : "offline");
     st.querySelector("[data-stazione-stato]").textContent = viva ? "online" : "offline";
   }
@@ -159,6 +174,7 @@
           var l = letture(d);
           Array.prototype.forEach.call(boxVento, function (box) { mostraVento(box, l); });
           statoStazione(l);
+          statoWebcam(d && d.camBarcola);
         })
         .catch(function () {
           Array.prototype.forEach.call(boxVento, function (box) { erroreVento(box); });
@@ -183,7 +199,7 @@
       var nuova = new Image();
       nuova.onload = function () {
         img.src = nuova.src;
-        webcam.removeAttribute("data-stato");
+        if (!webcam.hasAttribute("data-ferma")) webcam.removeAttribute("data-stato");
       };
       nuova.onerror = offline;
       nuova.src = base + "?t=" + Date.now();
