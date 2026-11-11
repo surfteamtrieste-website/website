@@ -1,5 +1,5 @@
 # Corsi della scuola. Testi dal vecchio sito.
-# I prezzi non si pubblicano: per prenotare si scrive all'istruttore (Contatti del club → referenti).
+# Prezzi: listino di Andrej (novembre 2026), in euro. Per prenotare si scrive all'istruttore (Contatti del club → referenti).
 
 stagione: Tutto l'anno
 dove: Barcola, nello specchio d'acqua davanti al Terrapieno
@@ -18,6 +18,11 @@ elenco:
       Il percorso accompagna l'allievo dai primi passi sulla tavola alle prime
       planate, fino a renderlo indipendente. A seconda delle esigenze si va
       dalle lezioni di gruppo alle lezioni singole.
+    prezzi:
+      - voce: Corso di gruppo (6 ore)
+        prezzo: 140
+      - voce: Lezione individuale (1 ora)
+        prezzo: 30
 
   - id: wing-foil
     nome: Wing foil
@@ -27,6 +32,11 @@ elenco:
       Si pratica con un'ala gonfiabile e una tavola con il foil, una speciale
       pinna che solleva la tavola sopra l'acqua. Si impara facilmente ed è
       adatto anche a chi non è mai salito su un windsurf o un kitesurf.
+    prezzi:
+      - voce: Lezione individuale (1 ora)
+        prezzo: 87
+      - voce: Lezione di gruppo (avanzato)
+        prezzo: 20
 
   - id: sup
     nome: SUP
@@ -35,3 +45,8 @@ elenco:
     testo: >-
       Uno sport molto intuitivo e di facile apprendimento, che si pratica a
       tutti i livelli: dall'uscita amatoriale fino all'agonismo.
+    prezzi:
+      - voce: Lezione individuale (1 ora)
+        prezzo: 15
+      - voce: Lezione di gruppo
+        prezzo: 12

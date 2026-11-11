@@ -1,7 +1,7 @@
 ---
 title: Lezioni
 permalink: /lezioni/
-description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole con il nostro istruttore."
+description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste, con attrezzatura fornita dal club. Lezioni di gruppo o singole con il nostro istruttore, prezzi e sconti."
 ---
 {%- assign club = site.data.club -%}
 {%- assign corsi = site.data.corsi -%}
@@ -41,6 +41,13 @@ description: "Corsi di windsurf, wing foil e SUP tutto l'anno a Barcola, Trieste
         <h3 class="disciplina__nome">{{ c.nome }}</h3>
         <p class="disciplina__sotto">{{ c.sottotitolo }}</p>
         <p>{{ c.testo }}</p>
+        {%- if c.prezzi and c.prezzi.size > 0 %}
+        <dl class="prezzi">
+          {%- for p in c.prezzi %}
+          <div><dt>{{ p.voce }}</dt><dd>{{ p.prezzo }}&nbsp;€</dd></div>
+          {%- endfor %}
+        </dl>
+        {%- endif %}
       </article>
       {%- endfor %}
     </div>

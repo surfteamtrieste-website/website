@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Il club
 corpo: home
 description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997. Windsurf, wing foil e SUP nel Golfo di Trieste, corsi tutto l'anno, eventi, vento in tempo reale e webcam dello spot.
 ---
@@ -19,14 +19,15 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
   {%- if ha_media -%}{%- assign evidenza = e -%}{%- break -%}{%- endif -%}
 {%- endfor -%}
 
+<header class="pagina-testa">
+  <div class="contenitore">
+    <p class="etichetta">Windsurf club del Terrapieno di Barcola</p>
+    <h1 class="pagina-testa__titolo" id="titolo-home">Il club</h1>
+  </div>
+</header>
+
 <section class="sezione home" aria-labelledby="titolo-home">
   <div class="contenitore">
-    <h1 class="solo-lettori" id="titolo-home">Surf Team Trieste, windsurf club del Terrapieno di Barcola</h1>
-
-    <div class="video-club">
-      <video data-video-bora data-src="{{ '/assets/video/barcola-montaggio-960.mp4' | relative_url }}" data-src-alta="{{ '/assets/video/barcola-montaggio-1280.mp4' | relative_url }}" poster="{{ '/assets/video/barcola-montaggio-poster.jpg' | relative_url }}" width="1280" height="720" muted loop playsinline preload="none" aria-label="Il club visto dal drone, poi windsurf, wing foil e megasup nel Golfo di Trieste, tra Barcola, il Faro e il Castello di Miramare"></video>
-    </div>
-
     <div class="club">
       <div class="club__testo testo">
         <p>Barcola. La riviera triestina dove tutti vanno a nuotare, prendere la tintarella, fare sport e rilassarsi. È qui che si trova il nostro club, situato vicino ad altri circoli nautici di vela, canottaggio, pesca sportiva e gommoni.</p>
@@ -37,6 +38,10 @@ description: Surf Team Trieste, windsurf club del Terrapieno di Barcola dal 1997
         {%- endif %}
       </div>
       <img class="club__logo" src="{{ '/assets/img/logo-surf-team.svg' | relative_url }}" width="301" height="177" alt="Logo del Surf Team Trieste">
+    </div>
+
+    <div class="video-club">
+      <video data-video-bora data-src="{{ '/assets/video/barcola-montaggio-960.mp4' | relative_url }}" data-src-alta="{{ '/assets/video/barcola-montaggio-1280.mp4' | relative_url }}" poster="{{ '/assets/video/barcola-montaggio-poster.jpg' | relative_url }}" width="1280" height="720" muted loop playsinline preload="none" aria-label="Il club visto dal drone, poi windsurf, wing foil e megasup nel Golfo di Trieste, tra Barcola, il Faro e il Castello di Miramare"></video>
     </div>
 
     <ul class="foto-club">

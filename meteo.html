@@ -1,7 +1,7 @@
 ---
 title: Meteo e webcam
 permalink: /meteo/
-description: Vento in tempo reale e webcam del Terrapieno di Barcola, Vento Trieste, lo spot e le previsioni Windguru.
+description: Vento in tempo reale e webcam del Terrapieno di Barcola, Vento Trieste, le previsioni Windguru e lo spot.
 ---
 {%- assign vt = site.ventotrieste -%}
 {%- comment -%} utm_meteo, non utm: vento.html riassegna utm per il suo badge {%- endcomment -%}
@@ -51,7 +51,32 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, Vento Trie
   </div>
 </section>
 
-<section class="sezione" aria-labelledby="t-spot">
+<section class="sezione" aria-labelledby="t-previsioni">
+  <div class="contenitore">
+    <p class="etichetta">Previsioni</p>
+    <h2 class="titolo" id="t-previsioni">Windguru <em>per Trieste</em></h2>
+    <div class="windguru" data-windguru>
+      <div class="windguru__schede" role="tablist" aria-label="Modelli di previsione Windguru">
+        <button type="button" role="tab" aria-selected="true" data-wg-spot="49156" data-wg-model="100">WG</button>
+        <button type="button" role="tab" aria-selected="false" data-wg-spot="49156" data-wg-model="107">ALADIN</button>
+        <button type="button" role="tab" aria-selected="false" data-wg-spot="49156" data-wg-model="104">ICON-2I</button>
+      </div>
+      <div class="windguru__palco" data-wg-palco role="tabpanel"><p data-wg-attesa>Le previsioni compaiono qui tra un attimo.</p></div>
+      <p class="windguru__nota">WG è la sintesi di più modelli fatta da Windguru; ALADIN e ICON-2I sono i modelli ad alta risoluzione, più affidabili con la Bora. Vento in nodi. Previsioni di <a href="https://www.windguru.cz/49156" target="_blank" rel="noopener">windguru.cz</a>. Come si legge la tabella: <a href="{{ vt }}guida/windguru/?{{ utm_meteo }}&utm_content=guida-windguru" target="_blank" rel="noopener">la guida di Vento Trieste</a>.</p>
+    </div>
+
+    <div class="finestra finestra--stazione" data-stazione>
+      <div class="finestra__barra">
+        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> La nostra stazione · Barcola <span class="finestra__stato" data-stazione-stato></span></span>
+        <a class="collegamento" href="https://www.windguru.cz/station/5307" target="_blank" rel="noopener">Apri su Windguru</a>
+      </div>
+      <iframe src="https://www.windguru.cz/wglive-iframe.php?s=5307&amp;wj=knots&amp;tj=c&amp;m=3&amp;show=n,g,c&amp;direct=1" title="Stazione Windguru del Surf Team Trieste sul Terrapieno di Barcola: vento delle ultime 24 ore e valore attuale" loading="lazy" scrolling="no"></iframe>
+      <div class="finestra__piede">La centralina del club sul Terrapieno: vento e raffiche delle ultime 24 ore, in nodi. È quella da cui arrivano i dati del vento in tempo reale qui e su Vento Trieste. Quando smette di trasmettere o segna 0 nodi la segniamo offline.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione--spuma" aria-labelledby="t-spot">
   <div class="contenitore">
     <p class="etichetta">Lo spot</p>
     <h2 class="titolo" id="t-spot">Barcola</h2>
@@ -84,31 +109,6 @@ description: Vento in tempo reale e webcam del Terrapieno di Barcola, Vento Trie
         <img src="{{ '/assets/img/vista3d-spot-largo-1600.jpg' | relative_url }}" width="2400" height="1350" loading="lazy" alt="Vista 3D dalla collina sopra Barcola: il Faro della Vittoria, il club sul Terrapieno, lo specchio d'acqua dello spot fino a Miramare e le frecce della Bora che da ENE escono dalla riva verso il largo">
       </picture>
     </figure>
-  </div>
-</section>
-
-<section class="sezione sezione--spuma" aria-labelledby="t-previsioni">
-  <div class="contenitore">
-    <p class="etichetta">Previsioni</p>
-    <h2 class="titolo" id="t-previsioni">Windguru <em>per Trieste</em></h2>
-    <div class="windguru" data-windguru>
-      <div class="windguru__schede" role="tablist" aria-label="Modelli di previsione Windguru">
-        <button type="button" role="tab" aria-selected="true" data-wg-spot="49156" data-wg-model="100">WG</button>
-        <button type="button" role="tab" aria-selected="false" data-wg-spot="49156" data-wg-model="107">ALADIN</button>
-        <button type="button" role="tab" aria-selected="false" data-wg-spot="49156" data-wg-model="104">ICON-2I</button>
-      </div>
-      <div class="windguru__palco" data-wg-palco role="tabpanel"><p data-wg-attesa>Le previsioni compaiono qui tra un attimo.</p></div>
-      <p class="windguru__nota">WG è la sintesi di più modelli fatta da Windguru; ALADIN e ICON-2I sono i modelli ad alta risoluzione, più affidabili con la Bora. Vento in nodi. Previsioni di <a href="https://www.windguru.cz/49156" target="_blank" rel="noopener">windguru.cz</a>. Come si legge la tabella: <a href="{{ vt }}guida/windguru/?{{ utm_meteo }}&utm_content=guida-windguru" target="_blank" rel="noopener">la guida di Vento Trieste</a>.</p>
-    </div>
-
-    <div class="finestra finestra--stazione" data-stazione>
-      <div class="finestra__barra">
-        <span class="finestra__marchio"><span class="finestra__live" aria-hidden="true"></span> La nostra stazione · Barcola <span class="finestra__stato" data-stazione-stato></span></span>
-        <a class="collegamento" href="https://www.windguru.cz/station/5307" target="_blank" rel="noopener">Apri su Windguru</a>
-      </div>
-      <iframe src="https://www.windguru.cz/wglive-iframe.php?s=5307&amp;wj=knots&amp;tj=c&amp;m=3&amp;show=n,g,c&amp;direct=1" title="Stazione Windguru del Surf Team Trieste sul Terrapieno di Barcola: vento delle ultime 24 ore e valore attuale" loading="lazy" scrolling="no"></iframe>
-      <div class="finestra__piede">La centralina del club sul Terrapieno: vento e raffiche delle ultime 24 ore, in nodi. È quella da cui arrivano i dati del vento in tempo reale qui e su Vento Trieste. Quando smette di trasmettere o segna 0 nodi la segniamo offline.</div>
-    </div>
   </div>
 </section>
 

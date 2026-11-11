@@ -145,7 +145,6 @@ content:
         type: string
       - name: sconti
         label: Sconti
-        description: I prezzi non si pubblicano.
         type: string
         list: true
       - name: elenco
@@ -181,6 +180,19 @@ content:
           - name: testo
             label: Testo
             type: text
+          - name: prezzi
+            label: Prezzi
+            description: Una riga per ogni tipo di lezione. Il prezzo è in euro, solo il numero (il simbolo € lo aggiunge il sito).
+            type: object
+            list: true
+            fields:
+              - name: voce
+                label: Lezione
+                description: Per esempio «Lezione individuale (1 ora)».
+                type: string
+              - name: prezzo
+                label: Prezzo in euro
+                type: number
 
   - name: club
     label: Contatti del club

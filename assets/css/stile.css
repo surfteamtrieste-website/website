@@ -187,12 +187,13 @@ h1, h2, h3 { margin: 0; }
 }
 
 /* ── home ─────────────────────────────────────────────────── */
-.home { padding-top: clamp(24px, 4vw, 48px); }
-.video-club { border-radius: 6px; overflow: hidden; background: var(--cielo); aspect-ratio: 16 / 9; }
+.home { padding-top: clamp(30px, 4.5vw, 56px); }
+/* testo e logo subito sotto la banda, poi il video e le tre foto, staccati come una galleria */
+.video-club { border-radius: 6px; overflow: hidden; background: var(--cielo); aspect-ratio: 16 / 9; margin-bottom: 14px; }
 .video-club video { width: 100%; height: 100%; object-fit: cover; }
 .club {
   display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 80px); align-items: center;
-  margin-block: clamp(36px, 5vw, 64px);
+  margin-block: 0 clamp(36px, 5vw, 64px);
 }
 .club__testo p:first-child { font-size: clamp(1.08rem, 1rem + .35vw, 1.25rem); line-height: 1.55; color: var(--blu-notte); }
 .club__regolamento { margin: 1.4em 0 0; }
@@ -300,6 +301,12 @@ h1, h2, h3 { margin: 0; }
 .disciplina__sotto { font-weight: 600; color: var(--azzurro-testo); margin: 8px 0 10px; }
 .disciplina p { color: var(--inchiostro-2); }
 .disciplina p:last-child { margin-bottom: 0; }
+/* listino in fondo al riquadro: voce a sinistra, prezzo a destra, puntini in mezzo come su un cartello */
+.prezzi { margin: auto 0 0; padding-top: 18px; }
+.prezzi div { display: flex; align-items: baseline; gap: 8px; padding: 10px 0; border-top: 1px solid var(--linea); }
+.prezzi dt { color: var(--inchiostro); font-weight: 500; line-height: 1.35; }
+.prezzi div::before { content: ""; order: 1; flex: 1 1 12px; min-width: 12px; border-bottom: 1.5px dotted rgba(19, 38, 59, .3); transform: translateY(-4px); }
+.prezzi dd { order: 2; margin: 0; font-family: var(--font-titoli); font-stretch: 90%; font-weight: 700; font-size: 1.3rem; line-height: 1; color: var(--blu); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .vela__tela { fill: rgba(38, 170, 225, .14); stroke: var(--blu); stroke-width: 2; stroke-linejoin: round; }
 .vela__stecca { fill: none; stroke: var(--blu); stroke-width: 1.2; opacity: .6; }
 .vela__albero { fill: none; stroke: var(--blu-notte); stroke-width: 3; stroke-linecap: round; }
@@ -309,6 +316,7 @@ h1, h2, h3 { margin: 0; }
   .discipline { grid-template-columns: 1fr; }
   .disciplina { display: grid; grid-template-columns: 72px minmax(0, 1fr); column-gap: 16px; padding: 20px; }
   .disciplina .vela { width: 72px; height: 90px; grid-row: span 3; margin: 0; }
+  .prezzi { grid-column: 1 / -1; padding-top: 14px; }
 }
 /* le vele si disegnano quando entrano in vista (sito.js) */
 .disciplina.da-disegnare .vela path { stroke-dasharray: 420; stroke-dashoffset: 420; }

@@ -7,8 +7,8 @@ su GitHub va online da sola in 1–2 minuti, senza installare niente.
 - **Anteprima:** https://surfteamtrieste-website.github.io/website/
 - **Dominio definitivo (dopo il passaggio):** https://www.surfteamtrieste.com
 
-Pagine, ognuna con la sua voce nel menu in cima: **Home** (video, il club, foto, gli ultimi eventi, vento e webcam di Barcola, «Prima di uscire») ·
-**Meteo e webcam** (lo spot di Barcola, vento in tempo reale, webcam e previsioni) · **Lezioni** (corsi e
+Pagine, ognuna con la sua voce nel menu in cima: **Il club** (il club, video, foto, gli ultimi eventi, vento e webcam di Barcola, «Prima di uscire») ·
+**Meteo e webcam** (vento in tempo reale, webcam, previsioni e lo spot di Barcola) · **Lezioni** (corsi, prezzi e
 numero dell'istruttore) · **Eventi** (l'albo del club con video e foto).
 In fondo a ogni pagina: contatti, statuto e regolamento.
 
@@ -73,9 +73,9 @@ I testi delle pagine non sono nel pannello: si cambiano su GitHub.
 |---|---|
 | Eventi | pannello → Eventi (file in `_eventi/`) |
 | Istruttore e telefono, email, PEC, indirizzo, come arrivare | pannello → Contatti del club (`_data/club.yml`) |
-| Corsi e sconti (i prezzi non si pubblicano) | pannello → Corsi (`_data/corsi.yml`) |
+| Corsi, prezzi e sconti | pannello → Corsi (`_data/corsi.yml`) |
 | Statuto, regolamento e altri PDF | pannello → Statuto e documenti (`_data/documenti.yml` + `documenti/`) |
-| Testi della home (il club, «Prima di uscire») | `index.html` |
+| Testi della pagina Il club (la home: il club, «Prima di uscire») | `index.html` |
 | Testi delle pagine Meteo e webcam, Lezioni, Eventi | `meteo.html`, `lezioni.html`, `eventi.html` |
 | Avviso sul vecchio dominio, anteprima | `_config.yml` |
 
