@@ -204,6 +204,8 @@
       nuova.onerror = offline;
       nuova.src = base + "?t=" + Date.now();
     };
+    // subito una copia fresca: senza ?t= il browser può mostrare una foto vecchia dalla cache
+    aggiorna();
     setInterval(function () { if (!document.hidden) aggiorna(); }, 60000);
   }
 
