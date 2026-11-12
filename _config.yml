@@ -10,12 +10,10 @@ description: >-
   Windsurf, wing foil e SUP: corsi tutto l'anno, eventi, meteo dello spot.
 lang: it
 
-# Indirizzo del sito. Per ora su github.io: il DNS di surfteamtrieste.com non si riesce a cambiare
-# dal pannello Weebly (errore del registrar), quindi il vecchio sito Weebly reindirizza qui.
-# Quando il DNS punta a GitHub: unire la pull request «dominio-surfteamtrieste»
-# (file CNAME + url "https://www.surfteamtrieste.com" e baseurl "").
-url: "https://surfteamtrieste-website.github.io"
-baseurl: "/website"
+# Indirizzo del sito: online su www.surfteamtrieste.com dall'11 novembre 2026
+# (file CNAME + DNS su Weebly). L'anteprima su github.io ora rimanda qui da sola.
+url: "https://www.surfteamtrieste.com"
+baseurl: ""
 
 # true = Google non indicizza il sito (serviva per l'anteprima). Online: false.
 anteprima: false
